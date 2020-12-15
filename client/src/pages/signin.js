@@ -6,8 +6,12 @@ import Button from "../components/Button/button"
 import Input from "../components/Input/input";
 
 function SignIn(){
-    const [user, userSet] = useState([])
-    const [pass, passSet] = useState([])
+    const [formCred, setFormCred] = useState({})
+
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormCred({...formCred, [name]: value})
+    };
 
     return(
         <div>
@@ -17,7 +21,8 @@ function SignIn(){
             </Input>
 
             <Input 
-            name = "Password">
+            name = "Password"
+            onChange = {handleInputChange}>
             </Input>
 
             <Button  
