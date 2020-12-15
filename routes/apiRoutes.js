@@ -14,8 +14,10 @@ router.route("/api/user")
 
 router.route("/api/user/:id")
     .get(userController.getUserById)
-    // .put(userController.)
-    // .delete()
+    .delete(userController.deleteUserById)
+
+router.route("api/user/:username")
+    .get(userController.getUserByUsername)
 
 // SURVEY Routes
 
