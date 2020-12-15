@@ -6,15 +6,24 @@ import Button from "../components/Button/button"
 import Input from "../components/Input/input";
 
 function SignIn(){
+    const [user, userSet] = useState([])
+    const [pass, passSet] = useState([])
 
     return(
         <div>
-            <Input name = "Username">
+            <Input 
+            name = "Username"
+            onChange = {handleInputChange}>
             </Input>
-            <Input name = "Password">
+
+            <Input 
+            name = "Password">
             </Input>
+
             <Button  
-            name = "Sign In">
+            name = "Sign In"
+            onClick = {handleFormSubmit}
+            >
             </Button>
 
             
