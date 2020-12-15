@@ -32,14 +32,24 @@ UserController.prototype.getUserByUsername = function (username, cb) {
     });
 }
 
+UserController.prototype.deleteUserById = function (userId, cb) {
+    db.User.deleteOne({ _id: userId }).then(result => {
+        cb(result);
+    });
+}
+
 // Testing
 const userController = new UserController();
 
-userController.getUserByUsername('test', data => {
-    console.log(data);
-});
+// userController.getUserByUsername('test', data => {
+//     console.log(data);
+// });
 
 // userController.getAllUsers(data => {
+//     console.log(data);
+// });
+
+// userController.deleteUserById('5fd82bb48d2b564dc47c1d88', data => {
 //     console.log(data);
 // });
 
