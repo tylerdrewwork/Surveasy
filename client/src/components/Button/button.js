@@ -3,8 +3,8 @@ import "./button.css";
 
 function Button(props){
     return(
-        <button>
-            Sign In
+        <button className = "btn">
+            {props.name}
         </button>
     )
 }
