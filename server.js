@@ -7,11 +7,11 @@ const app = express();
 const apiRoutes = require('./routes/apiRoutes');
 
 // Define Middleware
-if(process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static('./client/build'));
 }
 
-// Connet to the Mongo DB
+// Connect to the Mongo DB
 mongoose.connect(
     // Use MONGODB URI from environment, otherwise use local database
     process.env.MONGODB_URI || "mongodb://localhost/surveydb",
