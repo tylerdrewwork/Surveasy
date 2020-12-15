@@ -2,7 +2,7 @@
   "name": "unnamed-survey-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Sakiskid/Unnamed-Survey-App/issues"
   },
-  "homepage": "https://github.com/Sakiskid/Unnamed-Survey-App#readme"
+  "homepage": "https://github.com/Sakiskid/Unnamed-Survey-App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8"
+  }
 }
