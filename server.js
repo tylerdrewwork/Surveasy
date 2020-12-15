@@ -4,7 +4,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-const apiRoutes = require('./routes/apiRoutes');
+// const apiRoutes = require('./routes/apiRoutes');
 
 // Define Middleware
 if (process.env.NODE_ENV === "production") {
@@ -17,6 +17,8 @@ mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/surveydb",
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 );
+
+require('./controllers/userController');
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {
