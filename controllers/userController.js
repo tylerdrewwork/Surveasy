@@ -14,8 +14,18 @@ UserController.prototype.createUser = function (userData, cb) {
     });
 }
 
+UserController.prototype.getAllUsers = function (cb) {
+    db.User.find({}).then(result => {
+        cb(result);
+    })
+}
+
 // Testing
 const userController = new UserController();
+
+userController.getAllUsers(data => {
+    console.log(data);
+});
 
 // userController.createUser({
 //     username: 'user',
