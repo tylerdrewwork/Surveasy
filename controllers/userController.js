@@ -26,10 +26,16 @@ UserController.prototype.getUserById = function (userId, cb) {
     });
 }
 
+UserController.prototype.getUserByUsername = function (username, cb) {
+    db.User.findOne({ username: username }).then(result => {
+        cb(result);
+    });
+}
+
 // Testing
 const userController = new UserController();
 
-userController.getUserById('5fd82bb48d2b564dc47c1d88', data => {
+userController.getUserByUsername('test', data => {
     console.log(data);
 });
 
