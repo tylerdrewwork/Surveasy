@@ -22,7 +22,7 @@ router.route("/api/user")
         });
     });
 
-router.route("/api/user/:id")
+router.route("/api/user/?id=:id")
     .get((req, res) => {
         userController.getUserById(req.params.id, (user) => {
             res.json(user);
@@ -34,8 +34,12 @@ router.route("/api/user/:id")
         });
     })
 
-router.route("api/user/:username")
-    .get(userController.getUserByUsername)
+router.route("api/user/?username=:username")
+    .get((req, res) => {
+        userController.getUserByUsername(req.params.username, (user) => {
+            res.json(user);
+        })
+    })
 
 // SURVEY Routes
 
