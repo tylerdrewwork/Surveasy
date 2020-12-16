@@ -6,6 +6,9 @@ import Button from "../components/Button/button";
 import Input from "../components/Input/input";
 
 function SignUp() {
+  const [formCred, setFormCred] = useState({});
+  const history = useHistory();
+
   return (
     <div>
       <Input name="Email"></Input>
