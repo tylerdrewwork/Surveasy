@@ -1,8 +1,16 @@
+AuthController = require('./authController.js');
 const db = require('../models');
 
-function UserController() { }
+function UserController() {
+    this.authorize = new AuthController();
+}
 
 UserController.prototype.createUser = function (userData, cb) {
+
+    this.authorize.generateSalt(salt => {
+        console.log(salt);
+    });
+
     db.User.create({
         username: userData.username,
         passToken: userData.passToken,
@@ -37,5 +45,14 @@ UserController.prototype.deleteUserById = function (userId, cb) {
         cb(result);
     });
 }
+
+// Testing
+const userController = new UserController();
+userController.createUser({
+    username: "username",
+    passToken: "userData.passToken",
+    salt: "userData.salt",
+    email: "userData.email"
+});
 
 module.exports = UserController

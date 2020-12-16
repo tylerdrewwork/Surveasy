@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 function AuthController() { }
 
 // Encryption
-AuthController.prototype.getSalt = function (cb) {
+AuthController.prototype.generateSalt = function (cb) {
     bcrypt.genSalt(10).then(salt => {
         cb(salt);
     });

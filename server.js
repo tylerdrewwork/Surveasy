@@ -6,9 +6,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 // const apiRoutes = require('./routes/apiRoutes');
 
-// Testing
-require('./controllers/authController.js');
-
 // Define Middleware
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('./client/build'));
@@ -21,7 +18,7 @@ mongoose.connect(
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 );
 
-// require('./controllers/userController');
+require('./controllers/userController');
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {
