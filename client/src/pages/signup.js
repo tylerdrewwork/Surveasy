@@ -4,6 +4,7 @@ import Button from "../components/Button/button";
 //import { Col, Row, Container } from "../components/Grid";
 //import { List, ListItem } from "../components/List";
 import Input from "../components/Input/input";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
@@ -14,12 +15,17 @@ function SignUp() {
     setFormCred({ ...formCred, [name]: value });
   }
 
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    history.push("/admin");
+  }
+
   return (
     <div>
       <Input onChange={handleInputChange} name="Email"></Input>
       <Input onChange={handleInputChange} name="Username"></Input>
       <Input onChange={handleInputChange} name="Password"></Input>
-      <Button name="Sign Up"></Button>
+      <Button onClick={handleFormSubmit} name="Sign Up"></Button>
     </div>
   );
 }
