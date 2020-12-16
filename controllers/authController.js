@@ -15,4 +15,13 @@ AuthController.prototype.getHash = function (password, salt, cb) {
     });
 }
 
+AuthController.prototype.validateWithHash = function (passwordInput, hash) {
+    bcrypt.compare(passwordInput, hash).then(response => {
+        console.log(response);
+    });
+}
+
+const auth = new AuthController();
+auth.validateWithHash('password123', '$2b$10$ozOqiRayNagmHpSsrrctheVMJ5mJKUZhY3y0nz1LPK0bB4FWhw6WK');
+
 module.exports = AuthController;
