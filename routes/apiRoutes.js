@@ -6,13 +6,47 @@ const UserController = require('../controllers/UserController');
 const userController = new UserController;
 
 // USER Routes
+router.route("/api/user/")
+    .get((req, res) => {
+        // Define request query parameters
+        let id = req.query.id;
+        let username = req.query.username;
 
-// When hitting the /api/user route, reference the controller and run the respective function
+        // Only allow one query at a time:
+        if (id && username) {
+            res.send("Error! Only one query is allowed at a time.");
+        }
+
+        // Handle Queries
+        else {
+            // If there is an 'id' query
+            if (id) {
+                userController.getUserById(req.query.id, (user) => {
+                    res.json(user);
+                    console.log("Got user by id.")
+                })
+            }
+
+            // If there is a 'username' query
+            if (username) {
+                userController.getUserByUsername(req.query.username, (user) => {
+                    res.json(user);
+                })
+            }
+        }
+    })
+    .delete((req, res) => {
+        userController.deleteUserById(req.query.id, (result) => {
+            res.send(result);
+        });
+    })
+
 router.route("/api/user")
     .get((req, res) => {
         userController.getAllUsers(users => {
             console.log("Users: ", users);
             res.json(users);
+            console.log("Got all users")
         });
     })
     .post((req, res) => {
@@ -22,27 +56,7 @@ router.route("/api/user")
         });
     });
 
-router.route("/api/user/?id=:id")
-    .get((req, res) => {
-        userController.getUserById(req.params.id, (user) => {
-            res.json(user);
-        })
-    })
-    .delete((req, res, next) => {
-        userController.deleteUserById(req.params.id, (result) => {
-            res.send(result);
-        });
-    })
-
-router.route("api/user/?username=:username")
-    .get((req, res) => {
-        userController.getUserByUsername(req.params.username, (user) => {
-            res.json(user);
-        })
-    })
-
 // SURVEY Routes
-
 router.route("/api/survey")
     // .get()
     // .post();
