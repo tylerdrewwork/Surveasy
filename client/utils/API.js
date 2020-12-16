@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  getUsers: function () {
+  getUser: function () {
     return axios.get("/api/user");
   },
 
@@ -25,7 +25,19 @@ export default {
   //     return axios.get("/api/survey");
   //   },
 
+  //   createSurvey: function () {
+  //     return axios.post("/api/survey");
+  //   },
+
   //   getSurveyId: function (id) {
   //     return axios.get("/api/survey/" + id);
+  //   },
+
+  //   updateSurvey: function (id) {
+  //     return axios.put("/api/survey/" + id);
+  //   },
+
+  //   deleteSurvey: function (id) {
+  //     return axios.delete("/api/survey/" + id);
   //   },
 };
