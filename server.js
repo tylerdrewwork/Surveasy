@@ -22,7 +22,7 @@ mongoose.connect(
 ).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
 
 // API Routes
-// require('./routes/apiRoutes');
+require('./routes/apiRoutes');
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {
