@@ -29,16 +29,17 @@ AuthController.prototype.validatePasswordToken = function (passwordInput, user, 
     });
 }
 
+AuthController.prototype.verifyAuthSignature = function (jwtSignature, cb) {
+    try {
+        const verification = jwt.verify(jwtSignature, process.env.JWT_SECRET);
+        cb(verification);
+    }
+    catch (err) {
+        cb('Error: Authorization is Unsuccessful.');
+    }
+}
+
 // Testing
 const auth = new AuthController();
-auth.validatePasswordToken("password123", {
-    "_id": "5fd97cc6867de64b10924901",
-    "surveys": [],
-    "username": "test",
-    "passToken": "$2b$10$nA7seLpRxHHaGgd7rO9g4.XvCBBhwd89751mqqlt9pdKzS30b0.Bu",
-    "__v": 0
-}, signature => {
-    console.log(signature);
-});
 
 module.exports = AuthController;
