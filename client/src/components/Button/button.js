@@ -3,7 +3,7 @@ import "./button.css";
 
 function Button(props){
     return(
-        <button className = "btn" {...props}>
+        <button className = "example_d" {...props}>
             {props.name}
         </button>
     )
