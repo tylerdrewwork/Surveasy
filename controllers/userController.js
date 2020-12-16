@@ -11,7 +11,6 @@ UserController.prototype.createUser = function (userData, cb) {
             db.User.create({
                 username: userData.username,
                 passToken: hash,
-                salt: salt,
                 email: userData.email,
                 surveys: new Array()
             }).then(result => {
@@ -47,12 +46,12 @@ UserController.prototype.deleteUserById = function (userId, cb) {
 
 // Testing
 const userController = new UserController();
-// userController.createUser({
-//     username: "username",
-//     password: "password123",
-//     email: "userData.email"
-// }, result => {
-//     console.log(result);
-// });
+userController.createUser({
+    username: "username",
+    password: "password123",
+    email: "userData.email"
+}, result => {
+    console.log(result);
+});
 
 module.exports = UserController
