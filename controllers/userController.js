@@ -6,19 +6,18 @@ function UserController() {
 }
 
 UserController.prototype.createUser = function (userData, cb) {
-
     this.authorize.generateSalt(salt => {
-        console.log(salt);
-    });
-
-    db.User.create({
-        username: userData.username,
-        passToken: userData.passToken,
-        salt: userData.salt,
-        email: userData.email,
-        surveys: new Array()
-    }).then(result => {
-        cb(result);
+        this.authorize.getHash(userData.password, salt, hash => {
+            db.User.create({
+                username: userData.username,
+                passToken: hash,
+                salt: salt,
+                email: userData.email,
+                surveys: new Array()
+            }).then(result => {
+                cb(result);
+            });
+        });
     });
 }
 
@@ -50,9 +49,10 @@ UserController.prototype.deleteUserById = function (userId, cb) {
 const userController = new UserController();
 userController.createUser({
     username: "username",
-    passToken: "userData.passToken",
-    salt: "userData.salt",
+    password: "password123",
     email: "userData.email"
+}, result => {
+    console.log(result);
 });
 
 module.exports = UserController
