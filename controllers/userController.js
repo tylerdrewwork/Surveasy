@@ -15,6 +15,9 @@ UserController.prototype.createUser = function (userData, cb) {
                 surveys: new Array()
             }).then(result => {
                 cb(result);
+            }).catch(err => {
+                console.log("ERROR: ", err);
+                cb(err);
             });
         });
     });
@@ -23,18 +26,27 @@ UserController.prototype.createUser = function (userData, cb) {
 UserController.prototype.getAllUsers = function (cb) {
     db.User.find({}).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
 UserController.prototype.getUserById = function (userId, cb) {
     db.User.findOne({ _id: userId }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
 UserController.prototype.getUserByUsername = function (username, cb) {
     db.User.findOne({ username: username }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
