@@ -8,31 +8,29 @@ const userController = new UserController;
 // USER Routes
 router.route("/api/user/")
     .get((req, res) => {
+        // Only allow one query at a time:
+        if (Object.keys(req.query).length > 1) {
+            res.send("Error! Only one query is allowed at a time.");
+            return;
+        }
+
         // Define request query parameters
         let id = req.query.id;
         let username = req.query.username;
 
-        // Only allow one query at a time:
-        if (id && username) {
-            res.send("Error! Only one query is allowed at a time.");
+        // If there is an 'id' query
+        if (id) {
+            userController.getUserById(req.query.id, (user) => {
+                res.json(user);
+                console.log("Got user by id.")
+            })
         }
 
-        // Handle Queries
-        else {
-            // If there is an 'id' query
-            if (id) {
-                userController.getUserById(req.query.id, (user) => {
-                    res.json(user);
-                    console.log("Got user by id.")
-                })
-            }
-
-            // If there is a 'username' query
-            if (username) {
-                userController.getUserByUsername(req.query.username, (user) => {
-                    res.json(user);
-                })
-            }
+        // If there is a 'username' query
+        if (username) {
+            userController.getUserByUsername(req.query.username, (user) => {
+                res.json(user);
+            })
         }
     })
     .delete((req, res) => {
