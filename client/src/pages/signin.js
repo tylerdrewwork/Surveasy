@@ -11,18 +11,31 @@ function SignIn(){
     function handleInputChange(event) {
         const { name, value } = event.target;
         setFormCred({...formCred, [name]: value})
+        
+    };
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        console.log(formCred.username);
+        console.log(formCred.password);
+        if (formCred.username && formCred.password) {
+            console.log(formCred.username);
+            console.log(formCred.password);
+        }
     };
 
     return(
         <div>
             <Input 
-            name = "Username"
-            onChange = {handleInputChange}>
+             onChange = {handleInputChange}
+             name = "username"
+            >
             </Input>
 
             <Input 
-            name = "Password"
-            onChange = {handleInputChange}>
+            onChange = {handleInputChange}
+            name = "password"
+            >
             </Input>
 
             <Button  
