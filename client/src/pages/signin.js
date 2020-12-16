@@ -38,6 +38,7 @@ function SignIn(){
             <Input 
             onChange = {handleInputChange}
             name = "password"
+            type = "password"
             >
             </Input>
 

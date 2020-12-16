@@ -21,7 +21,11 @@ function SignUp() {
     <div>
       <Input onChange={handleInputChange} name="Email"></Input>
       <Input onChange={handleInputChange} name="Username"></Input>
-      <Input onChange={handleInputChange} name="Password"></Input>
+      <Input
+        onChange={handleInputChange}
+        name="Password"
+        type="password"
+      ></Input>
       <Button onClick={handleFormSubmit} name="Sign Up"></Button>
     </div>
   );
