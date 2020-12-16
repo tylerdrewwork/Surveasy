@@ -9,11 +9,24 @@ const userController = new UserController;
 
 // When hitting the /api/user route, reference the controller and run the respective function
 router.route("/api/user")
-    .get(userController.getAllUsers) 
-    .post(userController.createUser);
+    .get((req, res) => {
+        userController.getAllUsers(users => {
+            console.log("Users: ", users);
+            res.json(users);
+        });
+    })
+    .post((req, res) => {
+        userController.createUser(req.body, (result) => {
+            res.send(result);
+        });
+    });
 
 router.route("/api/user/:id")
-    .get(userController.getUserById)
+    .get((req, res) => {
+        userController.getUserById(req.params.id, (user) => {
+            res.json(user);
+        })
+    })
     .delete(userController.deleteUserById)
 
 router.route("api/user/:username")
