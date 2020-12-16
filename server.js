@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 // const apiRoutes = require('./routes/apiRoutes');
 
-console.log(process.env.NODE_ENV)
-
 // Define Middleware
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('./client/build'));
@@ -15,9 +13,6 @@ if (process.env.NODE_ENV === "production") {
 else {
     process.env = require('./env.json');
 }
-
-console.log(process);
-console.log(process.env);
 
 // Connect to the Mongo DB
 mongoose.connect(
