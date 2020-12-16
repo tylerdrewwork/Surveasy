@@ -21,7 +21,4 @@ AuthController.prototype.validateWithHash = function (passwordInput, hash) {
     });
 }
 
-const auth = new AuthController();
-auth.validateWithHash('password123', '$2b$10$ozOqiRayNagmHpSsrrctheVMJ5mJKUZhY3y0nz1LPK0bB4FWhw6WK');
-
 module.exports = AuthController;

@@ -45,13 +45,13 @@ UserController.prototype.deleteUserById = function (userId, cb) {
 }
 
 // Testing
-const userController = new UserController();
-userController.createUser({
-    username: "username",
-    password: "password123",
-    email: "userData.email"
-}, result => {
-    console.log(result);
-});
+// const userController = new UserController();
+// userController.createUser({
+//     username: "username",
+//     password: "password123",
+//     email: "userData.email"
+// }, result => {
+//     console.log(result);
+// });
 
 module.exports = UserController
