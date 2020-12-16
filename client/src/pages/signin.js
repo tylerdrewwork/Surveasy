@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 function SignIn(){
     const [formCred, setFormCred] = useState({})
+    const history = useHistory();
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -16,12 +17,13 @@ function SignIn(){
 
     function handleFormSubmit(event) {
         event.preventDefault();
+        
         if (formCred.username && formCred.password) {
             API.getUsername({
                 username : formCred.username, 
                 password : formCred.password
-            }).then(() => this.props.history.push('/admin')
-            )
+            }).then(() => history.push('/admin')
+            ).catch(err => console.log(err));
         }
     };
 
