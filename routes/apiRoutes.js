@@ -16,6 +16,7 @@ router.route("/api/user")
         });
     })
     .post((req, res) => {
+        console.log("posting. req.body: ", req.body);
         userController.createUser(req.body, (result) => {
             res.send(result);
         });
@@ -27,7 +28,9 @@ router.route("/api/user/:id")
             res.json(user);
         })
     })
-    .delete(userController.deleteUserById)
+    .delete((req, res) => {
+        // userController.deleteUserById(req.params.id, (user))
+    })
 
 router.route("api/user/:username")
     .get(userController.getUserByUsername)

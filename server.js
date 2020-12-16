@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const apiRoutes = require('./routes/apiRoutes');
 const path = require('path');
+require('./controllers/userController');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-require('./controllers/userController');
-
-// Use apiRoutes with express
-const apiRoutes = require('./routes/apiRoutes');
+// Use apiRoutes with express, and allow body parsing
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(apiRoutes);
 
 // Define Middleware
