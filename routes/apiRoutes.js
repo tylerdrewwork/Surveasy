@@ -28,8 +28,10 @@ router.route("/api/user/:id")
             res.json(user);
         })
     })
-    .delete((req, res) => {
-        // userController.deleteUserById(req.params.id, (user))
+    .delete((req, res, next) => {
+        userController.deleteUserById(req.params.id, (result) => {
+            res.send(result);
+        });
     })
 
 router.route("api/user/:username")

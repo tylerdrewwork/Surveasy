@@ -41,6 +41,9 @@ UserController.prototype.getUserByUsername = function (username, cb) {
 UserController.prototype.deleteUserById = function (userId, cb) {
     db.User.deleteOne({ _id: userId }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
@@ -51,7 +54,7 @@ userController.createUser({
     password: "password123",
     email: "userData.email"
 }, result => {
-    console.log(result);
+    // console.log(result);
 });
 
 module.exports = UserController
