@@ -9,11 +9,16 @@ function SignUp() {
   const [formCred, setFormCred] = useState({});
   const history = useHistory();
 
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormCred({ ...formCred, [name]: value });
+  }
+
   return (
     <div>
-      <Input name="Email"></Input>
-      <Input name="Username"></Input>
-      <Input name="Password"></Input>
+      <Input onChange={handleInputChange} name="Email"></Input>
+      <Input onChange={handleInputChange} name="Username"></Input>
+      <Input onChange={handleInputChange} name="Password"></Input>
       <Button name="Sign Up"></Button>
     </div>
   );
