@@ -2,19 +2,21 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 function AuthController() { }
 
-// Encryption
+// Return Random Salt Value
 AuthController.prototype.generateSalt = function (cb) {
     bcrypt.genSalt(10).then(salt => {
         cb(salt);
     });
 }
 
+// Return Encrypted Password Token
 AuthController.prototype.getHash = function (password, salt, cb) {
     bcrypt.hash(password, salt).then(hash => {
         cb(hash);
     });
 }
 
+// Return JWT Token When Validation is Successful
 AuthController.prototype.validatePasswordToken = function (passwordInput, user, cb) {
     bcrypt.compare(passwordInput, user.passToken).then(response => {
         if (!response) {
@@ -29,6 +31,7 @@ AuthController.prototype.validatePasswordToken = function (passwordInput, user, 
     });
 }
 
+// Return User Data When Authorization is Successful
 AuthController.prototype.verifyAuthSignature = function (jwtSignature, cb) {
     try {
         const verification = jwt.verify(jwtSignature, process.env.JWT_SECRET);
@@ -38,8 +41,5 @@ AuthController.prototype.verifyAuthSignature = function (jwtSignature, cb) {
         cb('Error: Authorization is Unsuccessful.');
     }
 }
-
-// Testing
-const auth = new AuthController();
 
 module.exports = AuthController;
