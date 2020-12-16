@@ -1,6 +1,5 @@
 // const jwt = require(jsonwebtoken);
 const bcrypt = require('bcrypt');
-
 function AuthController() { }
 
 AuthController.prototype.getSalt = function (cb) {
@@ -9,11 +8,20 @@ AuthController.prototype.getSalt = function (cb) {
     });
 }
 
+AuthController.prototype.getHash = function (password, salt, cb) {
+    bcrypt.hash(password, salt).then(hash => {
+        cb(hash);
+    });
+}
+
 // Testing
 const auth = new AuthController();
 
 auth.getSalt(salt => {
-    console.log(salt);
+    console.log('salt', salt);
+    auth.getHash('pass123', salt, hash => {
+        console.log('hash', hash);
+    });
 });
 
 module.exports = AuthController;
