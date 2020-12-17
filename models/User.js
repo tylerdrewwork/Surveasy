@@ -4,7 +4,6 @@ const UserSchema = mongoose.Schema({
     username: String,
     passToken: String,
     salt: String,
-    email: String,
     surveys: []
 });
 

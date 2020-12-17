@@ -29,6 +29,7 @@ function SignIn(){
     };
 
     return(
+
      <div className = "back-div">
         <Row md ={5} float="center">
             <Col sx={3} md ={12} >
@@ -51,6 +52,7 @@ function SignIn(){
             </Col>             
         </Row>
      </div>
+
     );
 }
 
