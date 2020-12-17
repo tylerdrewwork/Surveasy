@@ -3,10 +3,10 @@ import "./answer";
 
 function Answer(answer) {
     return (
-        <div onClick="#">
-            { answer }
-        </div>
-    )
+      <div onClick="#">
+        {answer}
+      </div>
+    );
 };
 
 export default Answer;
