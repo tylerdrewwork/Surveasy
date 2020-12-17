@@ -17,7 +17,7 @@ router.route("/api/user/")
         // Define request query parameters
         let id = req.query.id;
         let username = req.query.username;
-        
+
         // If there are no queries, then get all users
         if (checkIfObjectIsEmpty(req.query)) {
             userController.getAllUsers(users => {
@@ -64,7 +64,7 @@ router.route("/api/user/")
     .post((req, res) => {
         let user = req.body;
 
-        if (checkIfObjectIsEmpty(user) === false) {   
+        if (checkIfObjectIsEmpty(user) === false) {
             console.log("API: Creating user: ", req.body);
             userController.createUser(req.body, (result) => {
                 res.send(result);
@@ -75,12 +75,28 @@ router.route("/api/user/")
         }
     });
 
+// AUTHORIZATION ROUTES
+router.route("/api/auth")
+    .post((req, res) => {
+
+        let password = req.body.password;
+        let token = req.body.token;
+
+        if (password) {
+            console.log(password);
+        }
+
+        if (token) {
+            console.log(token);
+        }
+    });
+
 // SURVEY Routes
 router.route("/api/survey")
-    // .get()
-    // .post();
-    
-function checkIfObjectIsEmpty (obj) {
+// .get()
+// .post();
+
+function checkIfObjectIsEmpty(obj) {
     // Check if the req.query object is empty!
     if (Object.keys(obj).length === 0) return true;
     else return false;
