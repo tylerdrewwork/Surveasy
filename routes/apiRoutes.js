@@ -19,30 +19,45 @@ router.route("/api/user/")
         // Define request query parameters
         let id = req.query.id;
         let username = req.query.username;
+        let token = req.body.token;
 
-        // If there are no queries, then get all users
-        if (checkIfObjectIsEmpty(req.query)) {
-            userController.getAllUsers(users => {
-                res.json(users);
-                console.log("API: Got all users.");
-            });
+        // If user is not authorized, do not return user data
+        if (!token) {
+            res.send("Error! User is not authorized.");
+            return;
         }
 
-        // If there is an 'id' query
-        if (id) {
-            userController.getUserById(id, (user) => {
-                res.json(user);
-                console.log("API: Got user by id: ", id);
-            })
-        }
+        // Verify Authentic Token
+        authController.verifyAuthSignature(token, authorization => {
+            if (authorization === 'Error: Authorization is Unsuccessful.') {
+                res.send("Error! User is not authorized.");
+                return;
+            }
 
-        // If there is a 'username' query
-        if (username) {
-            userController.getUserByUsername(username, (user) => {
-                res.json(user);
-                console.log("API: Got user by username: ", username);
-            })
-        }
+            // If there are no queries, then get all users
+            if (checkIfObjectIsEmpty(req.query)) {
+                userController.getAllUsers(users => {
+                    res.json(users);
+                    console.log("API: Got all users.");
+                });
+            }
+
+            // If there is an 'id' query
+            if (id) {
+                userController.getUserById(id, (user) => {
+                    res.json(user);
+                    console.log("API: Got user by id: ", id);
+                })
+            }
+
+            // If there is a 'username' query
+            if (username) {
+                userController.getUserByUsername(username, (user) => {
+                    res.json(user);
+                    console.log("API: Got user by username: ", username);
+                })
+            }
+        });
     })
     // Delete Users
     .delete((req, res) => {
@@ -84,7 +99,6 @@ router.route("/api/auth")
         // Get existing variables based on request
         let username = req.body.username
         let password = req.body.password;
-        let token = req.body.token;
 
         if (username && password) {
             userController.getUserByUsername(username, user => {
@@ -99,10 +113,6 @@ router.route("/api/auth")
                 }
 
             });
-        }
-
-        if (token) {
-            console.log(token);
         }
     });
 
