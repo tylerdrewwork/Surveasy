@@ -2,9 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const PORT = process.env.PORT || 3001;
 const app = express();
-// const apiRoutes = require('./routes/apiRoutes');
 
 // Define Middleware
 if (process.env.NODE_ENV === "production") {
@@ -14,14 +12,17 @@ else {
     process.env = require('./env.json');
 }
 
+const PORT = process.env.PORT;
+
 // Connect to the Mongo DB
 mongoose.connect(
     // Use MONGODB URI from environment, otherwise use local database
-    process.env.MONGODB_URI || "mongodb://localhost/surveydb",
+    process.env.MONGODB_URI,
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
-);
+).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
 
-require('./controllers/userController');
+// API Routes
+require('./routes/apiRoutes');
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {
