@@ -59,14 +59,20 @@ UserController.prototype.deleteUserById = function (userId, cb) {
     });
 }
 
+UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
+    db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
+        cb(result);
+    })
+}
+
 // Testing
 const userController = new UserController();
-userController.createUser({
-    username: "username",
-    password: "password123",
-    email: "userData.email"
-}, result => {
-    // console.log(result);
-});
+// userController.addSurveyToUser('5fdabcb0db59e750449e81de', "5fdabc9b97322051d84ae2e8", res => {
+//     console.log(res);
+// });
 
-module.exports = UserController
+// userController.getAllUsers(users => {
+//     console.log(users);
+// });
+
+module.exports = UserController;
