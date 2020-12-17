@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const apiRoutes = require('./routes/apiRoutes');
 const path = require('path');
 
 const app = express();
@@ -21,8 +23,9 @@ mongoose.connect(
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 ).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
 
-// API Routes
-require('./routes/apiRoutes');
+// Use apiRoutes with express, and allow body parsing
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(apiRoutes);
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {

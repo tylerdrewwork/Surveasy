@@ -15,6 +15,9 @@ UserController.prototype.createUser = function (userData, cb) {
                 surveys: new Array()
             }).then(result => {
                 cb(result);
+            }).catch(err => {
+                console.log("ERROR: ", err);
+                cb(err);
             });
         });
     });
@@ -23,35 +26,37 @@ UserController.prototype.createUser = function (userData, cb) {
 UserController.prototype.getAllUsers = function (cb) {
     db.User.find({}).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
 UserController.prototype.getUserById = function (userId, cb) {
     db.User.findOne({ _id: userId }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
 UserController.prototype.getUserByUsername = function (username, cb) {
     db.User.findOne({ username: username }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
 
 UserController.prototype.deleteUserById = function (userId, cb) {
     db.User.deleteOne({ _id: userId }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
     });
 }
-
-// Testing
-// const userController = new UserController();
-// userController.createUser({
-//     username: "username",
-//     password: "password123",
-//     email: "userData.email"
-// }, result => {
-//     console.log(result);
-// });
 
 module.exports = UserController
