@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const UserController = require('../controllers/UserController');
+const AuthController = require('../controllers/AuthController');
 
 // Create a new UserController 
 const userController = new UserController;
+const authController = new AuthController();
 
 // USER Routes
 router.route("/api/user/")
@@ -79,11 +81,24 @@ router.route("/api/user/")
 router.route("/api/auth")
     .post((req, res) => {
 
+        let username = req.body.username
         let password = req.body.password;
         let token = req.body.token;
 
-        if (password) {
-            console.log(password);
+        if (username && password) {
+            userController.getUserByUsername(username, user => {
+
+                if (!user) {
+                    res.send("Error: Incorrect Username or Password.");
+                }
+                else {
+                    authController.validatePasswordToken(password, user, result => {
+                        console.log("API: Validate password")
+                        res.send(result);
+                    });
+                }
+
+            });
         }
 
         if (token) {
