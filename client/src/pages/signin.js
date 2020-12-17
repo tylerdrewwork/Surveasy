@@ -29,24 +29,28 @@ function SignIn(){
     };
 
     return(
-        <div className = "back-div">
-            <Input 
-             onChange = {handleInputChange}
-             name = "username">
-            </Input>
-
-            <Input 
-            onChange = {handleInputChange}
-            name = "password">
-            </Input>
-
-            <Button  
-            name = "Sign In"
-            onClick = {handleFormSubmit}>
-            </Button>
-
-            
-        </div>
+     <div className = "back-div">
+        <Row md ={5} float="center">
+            <Col sx={3} md ={12} >
+                <Input 
+                onChange = {handleInputChange}
+                name = "username">
+                </Input>
+            </Col>
+            <Col sx={3} md ={12} >
+                <Input 
+                onChange = {handleInputChange}
+                name = "password">
+                </Input>
+            </Col>
+            <Col sx={3} md ={12} >
+                <Button  
+                name = "Sign In"
+                onClick = {handleFormSubmit}>
+                </Button>
+            </Col>             
+        </Row>
+     </div>
     );
 }
 
