@@ -10,6 +10,9 @@ const app = express();
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('./client/build'));
 }
+else {
+    process.env = require('./env.json');
+}
 
 // Connect to the Mongo DB
 mongoose.connect(
