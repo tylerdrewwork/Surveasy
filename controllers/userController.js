@@ -59,6 +59,15 @@ UserController.prototype.getUserByUsername = function (username, cb) {
     });
 }
 
+UserController.prototype.getUserByUsernamePopulated = function (username, cb) {
+    db.User.findOne({ username: username }).populate('surveys').then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
+    });
+}
+
 UserController.prototype.deleteUserById = function (userId, cb) {
     db.User.deleteOne({ _id: userId }).then(result => {
         cb(result);
@@ -73,20 +82,5 @@ UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
         cb(result);
     })
 }
-
-// Testing
-const userController = new UserController();
-
-// userController.createUser({
-//     username: 'popUser',
-//     password: '123456',
-//     email: 'email@email.com'
-// }, data => {
-//     console.log(data);
-// })
-
-// userController.addSurveyToUser('5fdac3ddd0d65c558c546105', "5fdabc6c2dae044c1414eedb", data => {
-//     console.log(data);
-// });
 
 module.exports = UserController;
