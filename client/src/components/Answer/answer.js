@@ -1,5 +1,5 @@
 import React from "react";
-import "./answer";
+import "./answer.css";
 
 function Answer(answer) {
     return (
