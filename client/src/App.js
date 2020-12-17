@@ -7,7 +7,6 @@ import Admin from "./pages/admin"
 function App() {
   return (
     <Router>
-      <div>Hello World</div>
       <Route exact path="/signin">
         <SignIn />
       </Route>

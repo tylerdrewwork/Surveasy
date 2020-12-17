@@ -3,7 +3,8 @@ import Button from "../components/Button/button"
 import Input from "../components/Input/input";
 import API from "../utils/API"
 import { useHistory } from 'react-router-dom';
-
+import "./style.css";
+import {Grid, Row, Col} from "react-bootstrap"
 
 function SignIn(){
     const [formCred, setFormCred] = useState({})
@@ -28,23 +29,20 @@ function SignIn(){
     };
 
     return(
-        <div>
+        <div className = "back-div">
             <Input 
              onChange = {handleInputChange}
-             name = "username"
-            >
+             name = "username">
             </Input>
 
             <Input 
             onChange = {handleInputChange}
-            name = "password"
-            >
+            name = "password">
             </Input>
 
             <Button  
             name = "Sign In"
-            onClick = {handleFormSubmit}
-            >
+            onClick = {handleFormSubmit}>
             </Button>
 
             
