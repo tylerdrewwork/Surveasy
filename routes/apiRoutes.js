@@ -81,6 +81,7 @@ router.route("/api/user/")
 router.route("/api/auth")
     .post((req, res) => {
 
+        // Get existing variables based on request
         let username = req.body.username
         let password = req.body.password;
         let token = req.body.token;
@@ -93,8 +94,7 @@ router.route("/api/auth")
                 }
                 else {
                     authController.validatePasswordToken(password, user, result => {
-                        console.log("API: Validate password")
-                        res.send(result);
+                        (result === "Error: Incorrect Username or Password.") ? res.send(result) : res.json({ token: result, user: user });
                     });
                 }
 
