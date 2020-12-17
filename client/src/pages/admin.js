@@ -4,6 +4,7 @@ import Button from "../components/Button/button";
 //import { Col, Row, Container } from "../components/Grid";
 //import { List, ListItem } from "../components/List";
 import Input from "../components/Input/input";
+import "./style.css";
 
 function Admin() {
   return (
