@@ -6,12 +6,16 @@ function AuthController() { }
 AuthController.prototype.generateSalt = function (cb) {
     bcrypt.genSalt(10).then(salt => {
         cb(salt);
+    }).catch(err => {
+        console.log("ERROR!", err);
     });
 }
 
 AuthController.prototype.getHash = function (password, salt, cb) {
     bcrypt.hash(password, salt).then(hash => {
         cb(hash);
+    }).catch(err => {
+        console.log("ERROR!", err);
     });
 }
 
@@ -20,8 +24,5 @@ AuthController.prototype.validateWithHash = function (passwordInput, hash) {
         console.log(response);
     });
 }
-
-const auth = new AuthController();
-auth.validateWithHash('password123', '$2b$10$ozOqiRayNagmHpSsrrctheVMJ5mJKUZhY3y0nz1LPK0bB4FWhw6WK');
 
 module.exports = AuthController;

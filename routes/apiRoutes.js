@@ -20,7 +20,7 @@ router.route("/api/user/")
         let username = req.query.username;
         
         // If there are no queries, then get all users
-        if (checkIfQueryIsEmpty(req)) {
+        if (checkIfObjectIsEmpty(req.query)) {
             userController.getAllUsers(users => {
                 res.json(users);
                 console.log("API: Got all users.");
@@ -56,36 +56,34 @@ router.route("/api/user/")
 
         // Delete user by ID
         if (id) {
-            userController.deleteUserById(req.query.id, (result) => {
+            userController.deleteUserById(id, (result) => {
                 res.send(result);
+                console.log("API: Deleting user by id: ", id);
             });
         }
     })
-
-router.route("/api/user")
-    .get((req, res) => {
-        
-    })
     .post((req, res) => {
-        console.log("posting. req.body: ", req.body);
-        userController.createUser(req.body, (result) => {
-            res.send(result);
-        });
+        let user = req.body;
+
+        if (checkIfObjectIsEmpty(user) === false) {   
+            console.log("API: Creating user: ", req.body);
+            userController.createUser(req.body, (result) => {
+                res.send(result);
+            });
+        } else {
+            console.log("API ERROR: Attempted to create user but object was empty.");
+            res.send("Error: object empty");
+        }
     });
 
 // SURVEY Routes
 router.route("/api/survey")
     // .get()
     // .post();
-
-router.route("/api/survey/:id")
-    // .get()
-    // .put()
-    // .delete();
-
-function checkIfQueryIsEmpty (req) {
+    
+function checkIfObjectIsEmpty (obj) {
     // Check if the req.query object is empty!
-    if (Object.keys(req.query).length === 0) return true;
+    if (Object.keys(obj).length === 0) return true;
     else return false;
 }
 
