@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const db = require('../models');
 const UserController = require('../controllers/UserController');
 
 // Create a new UserController 
