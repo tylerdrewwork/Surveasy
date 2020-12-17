@@ -3,7 +3,7 @@ import "./input.css";
 
 function Input(props){
     return(
-        <input placeholder = {props.name}>
+        <input {...props} placeholder = {props.name}>
             
         </input>
     )
