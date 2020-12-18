@@ -13,6 +13,11 @@ function Admin() {
     //starting the side survey page 
     <div>
       <h1>Welcome</h1>
+      <SurveyList
+      name = "password"
+      >
+      </SurveyList>
+
 
     </div>
   );
