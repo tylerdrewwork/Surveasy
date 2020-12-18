@@ -1,4 +1,5 @@
 const db = require('../models');
+
 function SurveyController() {}
 
 //
@@ -57,7 +58,7 @@ SurveyController.prototype.updateQuestionTitle = function () {
 }
 
 SurveyController.prototype.updateChoice = function () {
-    
+
 }
 
 // 
