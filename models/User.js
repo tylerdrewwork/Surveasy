@@ -4,7 +4,10 @@ const UserSchema = mongoose.Schema({
     username: String,
     passToken: String,
     salt: String,
-    surveys: []
+    surveys: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Survey'
+    }]
 });
 
 const User = mongoose.model('User', UserSchema);
