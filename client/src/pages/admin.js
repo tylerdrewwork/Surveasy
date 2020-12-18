@@ -4,6 +4,7 @@ import Button from "../components/Button/button";
 import {Grid, Row, Col} from "react-bootstrap"
 import Input from "../components/Input/input";
 import "./style.css";
+import SurveyList from "../components/SurveyList/surveyList"
 
 function Admin() {
   return (
@@ -12,6 +13,7 @@ function Admin() {
     //starting the side survey page 
     <div>
       <h1>Welcome</h1>
+
     </div>
   );
 }

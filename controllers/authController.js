@@ -6,6 +6,8 @@ function AuthController() { }
 AuthController.prototype.generateSalt = function (cb) {
     bcrypt.genSalt(10).then(salt => {
         cb(salt);
+    }).catch(err => {
+        console.log("ERROR!", err);
     });
 }
 
@@ -13,6 +15,8 @@ AuthController.prototype.generateSalt = function (cb) {
 AuthController.prototype.getHash = function (password, salt, cb) {
     bcrypt.hash(password, salt).then(hash => {
         cb(hash);
+    }).catch(err => {
+        console.log("ERROR!", err);
     });
 }
 
