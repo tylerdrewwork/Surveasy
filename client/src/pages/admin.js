@@ -13,47 +13,38 @@ function Admin() {
     //starting the side survey page 
     <div>
       <Row float="center">
+      
           <Col sx={3} md ={3}>
               <div className = "back-div">
-                  <SurveyList
-                  name = "Ice Cream Survey"
-                  >
+                  <SurveyList name = "Ice Cream Survey">
                   </SurveyList>
 
-                  <SurveyList
-                  name = "Italian Food Survey"
-                  >
+                  <SurveyList name = "Italian Food Survey">
                   </SurveyList>
 
-                  <SurveyList
-                  name = "Mexican Food Survey"
-                  >
+                  <SurveyList name = "Mexican Food Survey">
                   </SurveyList>
 
-                  <SurveyList
-                  name = "New Survey"
-                  >
+                  <SurveyList name = "New Survey">
                   </SurveyList>
               </div>
           </Col>
+
           <Col md ={2} float="center">
-          <SurveyList
-          name = "Edit Survey"
-          >
-          </SurveyList>
+            <SurveyList name = "Edit Survey">
+            </SurveyList>
           </Col>
+
           <Col md ={2} float="center">
-              <SurveyList
-                name = "Analytics"
-                >
-                </SurveyList>
-          </Col>
-          <Col md ={2} float="center">
-              <SurveyList
-              name = "Admin"
-              >
+              <SurveyList name = "Analytics">
               </SurveyList>
           </Col>
+
+          <Col md ={2} float="center">
+              <SurveyList name = "Admin">
+              </SurveyList>
+          </Col>
+
       </Row>
 
 
