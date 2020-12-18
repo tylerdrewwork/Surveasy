@@ -6,7 +6,7 @@ import Question from "../Question/question";
 function Survey(props) {
   return (
     <div className="back-div" {...props}>
-      <Question />
+      <Question /> 
       <Answer />
       <Answer />
       <Answer />
