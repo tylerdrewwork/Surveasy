@@ -121,28 +121,40 @@ router.route("/api/survey")
     .get((req, res) => {
         let id = req.query.id;
         let username = req.query.username;
-        let token = req.body.token;
 
-        if (!token) {
-            res.send("Error! User is not authorized.");
-            return;
-        }
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
 
-        // Get one survey by id
-        if (id) {
-            console.log("GET ONE SURVEY BY ID");
-        }
+            console.log(authorization);
 
-        // Get all surveys of username
-        if (username) {
-            console.log("GET ALL SURVEYS OF USER");
-        }
+            // Get one survey by id
+            if (id) {
+                console.log("GET ONE SURVEY BY ID");
+            }
 
-
+            // Get all surveys of username
+            if (username) {
+                console.log("GET ALL SURVEYS OF USER");
+            }
+        });
     })
     .post((req, res) => {
         console.log("Post Survey");
     });
+
+function authorizeRequest(request, cb) {
+    let token = request.body.token;
+
+    // If no token, unauthorized
+    if (!token) { cb("Error! User is not authorized."); }
+
+    authController.verifyAuthSignature(token, authorization => {
+        cb(authorization);
+    })
+}
 
 function checkIfObjectIsEmpty(obj) {
     // Check if the req.query object is empty!
