@@ -1,10 +1,11 @@
 // Created this for easy, separate testing of the controllers. Edit as you need!
 
-const surveyController = require('../surveyController');
+const SurveyController = require('../surveyController');
 
 // Test Method:
 let testController = new SurveyController();
 
+/* TEST SURVEY
 testController.createSurvey({
     title: "Test survey!",
     active: true,
@@ -38,4 +39,5 @@ testController.createSurvey({
             ]
         }
     ]
-});
+}, () => {});
+*/

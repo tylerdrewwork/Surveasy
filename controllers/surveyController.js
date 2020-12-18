@@ -1,19 +1,11 @@
 const db = require('../models');
 function SurveyController() {}
 
-
-
 //
 //  CREATE METHODS
 //
 
 SurveyController.prototype.createSurvey = function (surveyData, cb) {
-    let formattedQuestions;
-
-    for (let q of surveyData.questions) {
-        console.log("Q: ", q);
-    }
-
     db.Survey.create({
         title: surveyData.title,
         active: surveyData.active,
@@ -28,7 +20,7 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
-    db.Survey.updateOne({ 
+    db.Survey.updateOne({
         id: surveyId 
     }).then(result => {
         console.log("Update one result: ", result);
