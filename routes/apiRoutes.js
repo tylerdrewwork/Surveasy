@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const UserController = require('../controllers/UserController');
+const SurveyController = require('../controllers/surveyController.js');
 const AuthController = require('../controllers/AuthController');
 
 // Create a new UserController 
-const userController = new UserController;
+const userController = new UserController();
+const surveyController = new SurveyController();
 const authController = new AuthController();
 
 // USER Routes
@@ -122,8 +124,25 @@ router.route("/api/survey")
             }
         });
     })
+    // Create a survey
     .post((req, res) => {
-        console.log("Post Survey");
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
+
+            let surveyData = req.body;
+            let userId = authorization.userId;
+
+            surveyController.createSurvey(surveyData, survey => {
+                userController.addSurveyToUser(userId, survey._id, result => {
+                    console.log(result);
+                    res.json(survey);
+                })
+            });
+        })
     });
 
 function authorizeRequest(request, cb) {

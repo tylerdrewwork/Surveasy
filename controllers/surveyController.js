@@ -1,6 +1,6 @@
 const db = require('../models');
 
-function SurveyController() {}
+function SurveyController() { }
 
 //
 //  CREATE METHODS
@@ -15,7 +15,7 @@ SurveyController.prototype.createQuestion = function () {
 }
 
 SurveyController.prototype.createChoice = function () {
-    
+
 }
 
 // 
@@ -44,7 +44,7 @@ SurveyController.prototype.updateQuestionTitle = function () {
 }
 
 SurveyController.prototype.updateChoice = function () {
-    
+
 }
 
 // 
@@ -62,3 +62,5 @@ SurveyController.prototype.deleteQuestion = function () {
 SurveyController.prototype.deleteChoice = function () {
 
 }
+
+module.exports = SurveyController;
