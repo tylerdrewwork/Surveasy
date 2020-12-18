@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 //import { Link } from "react-router-dom";
-import {Grid, Row, Col} from "react-bootstrap"
+
 import Input from "../components/Input/input";
 import "./style.css";
+import {Grid, Row, Col} from "react-bootstrap"
 import SurveyList from "../components/SurveyList/surveyList"
 
 function Admin() {
@@ -12,29 +13,54 @@ function Admin() {
     // ---- Have the log out button link here 
     //starting the side survey page 
     <div>
-      <Col sx={3} md ={12}>
-          <div className = "back-div">
-              <SurveyList
-              name = "Ice Cream Survey"
-              >
-              </SurveyList>
+      <Row md ={5} float="center">
+          <Col sx={3} md ={3}>
+              
+                  <SurveyList
+                  name = "Ice Cream Survey"
+                  >
+                  </SurveyList>
 
-              <SurveyList
-              name = "Italian Food Survey"
-              >
-              </SurveyList>
+                  <SurveyList
+                  name = "Italian Food Survey"
+                  >
+                  </SurveyList>
 
-              <SurveyList
-              name = "Mexican Food Survey"
-              >
-              </SurveyList>
+                  <SurveyList
+                  name = "Mexican Food Survey"
+                  >
+                  </SurveyList>
 
-              <SurveyList
-              name = "New Survey"
-              >
-              </SurveyList>
-          </div>
-      </Col>
+                  <SurveyList
+                  name = "New Survey"
+                  >
+                  </SurveyList>
+              
+          </Col>
+          <Col sx={3} md={3}>
+             
+                  <SurveyList
+                  name = "Ice Cream Survey"
+                  >
+                  </SurveyList>
+
+                  <SurveyList
+                  name = "Italian Food Survey"
+                  >
+                  </SurveyList>
+
+                  <SurveyList
+                  name = "Mexican Food Survey"
+                  >
+                  </SurveyList>
+
+                  <SurveyList
+                  name = "New Survey"
+                  >
+                  </SurveyList>
+              
+          </Col>
+      </Row>
 
     </div>
   );
