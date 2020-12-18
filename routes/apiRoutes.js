@@ -92,7 +92,7 @@ router.route("/api/user/")
         }
     });
 
-// AUTHORIZATION ROUTES
+// AUTHORIZATION Routes
 router.route("/api/auth")
     .post((req, res) => {
 
@@ -118,8 +118,31 @@ router.route("/api/auth")
 
 // SURVEY Routes
 router.route("/api/survey")
-// .get()
-// .post();
+    .get((req, res) => {
+        let id = req.query.id;
+        let username = req.query.username;
+        let token = req.body.token;
+
+        if (!token) {
+            res.send("Error! User is not authorized.");
+            return;
+        }
+
+        // Get one survey by id
+        if (id) {
+            console.log("GET ONE SURVEY BY ID");
+        }
+
+        // Get all surveys of username
+        if (username) {
+            console.log("GET ALL SURVEYS OF USER");
+        }
+
+
+    })
+    .post((req, res) => {
+        console.log("Post Survey");
+    });
 
 function checkIfObjectIsEmpty(obj) {
     // Check if the req.query object is empty!
