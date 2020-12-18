@@ -1,11 +1,19 @@
 const db = require('../models');
 function SurveyController() {}
 
+
+
 //
 //  CREATE METHODS
 //
 
 SurveyController.prototype.createSurvey = function (surveyData, cb) {
+    let formattedQuestions;
+
+    for (let q of surveyData.questions) {
+        console.log("Q: ", q);
+    }
+
     db.Survey.create({
         title: surveyData.title,
         active: surveyData.active,
@@ -75,3 +83,5 @@ SurveyController.prototype.deleteQuestion = function () {
 SurveyController.prototype.deleteChoice = function () {
 
 }
+
+module.exports = SurveyController;
