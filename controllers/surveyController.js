@@ -1,13 +1,21 @@
 const db = require('../models');
-
 function SurveyController() {}
 
 //
 //  CREATE METHODS
 //
 
-SurveyController.prototype.createSurvey = function () {
-
+SurveyController.prototype.createSurvey = function (surveyData, cb) {
+    db.Survey.create({
+        title: surveyData.title,
+        active: surveyData.active,
+        public: surveyData.public,
+        questions: surveyData.questions
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        cb(err);
+    });
 }
 
 SurveyController.prototype.createQuestion = function () {
@@ -15,7 +23,7 @@ SurveyController.prototype.createQuestion = function () {
 }
 
 SurveyController.prototype.createChoice = function () {
-    
+
 }
 
 // 
