@@ -16,23 +16,15 @@ router.route("/api/user/")
             return;
         }
 
-        // Define request query parameters
-        let id = req.query.id;
-        let username = req.query.username;
-        let token = req.body.token;
-
-        // If user is not authorized, do not return user data
-        if (!token) {
-            res.send("Error! User is not authorized.");
-            return;
-        }
-
-        // Verify Authentic Token
-        authController.verifyAuthSignature(token, authorization => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
             if (authorization === 'Error: Authorization is Unsuccessful.') {
                 res.send("Error! User is not authorized.");
                 return;
             }
+
+            // Define request query parameters
+            let id = req.query.id;
 
             // If there are no queries, then get all users
             if (checkIfObjectIsEmpty(req.query)) {
@@ -49,9 +41,10 @@ router.route("/api/user/")
                     console.log("API: Got user by id: ", id);
                 })
             }
-
             // If there is a 'username' query
-            if (username) {
+            else {
+                username = authorization.username;
+                console.log("USER:", username);
                 userController.getUserByUsername(username, (user) => {
                     res.json(user);
                     console.log("API: Got user by username: ", username);
@@ -119,16 +112,16 @@ router.route("/api/auth")
 // SURVEY Routes
 router.route("/api/survey")
     .get((req, res) => {
-        let id = req.query.id;
-        let username = req.query.username;
-
+        // AUTHORIZATION
         authorizeRequest(req, authorization => {
             if (authorization === "Error: Authorization is Unsuccessful.") {
                 res.send("Error: Authorization is Unsuccessful.");
                 return;
             }
 
-            console.log(authorization);
+            // define query parameters
+            let id = req.query.id;
+            let username = req.query.username;
 
             // Get one survey by id
             if (id) {
