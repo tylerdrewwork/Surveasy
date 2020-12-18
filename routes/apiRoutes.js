@@ -124,6 +124,24 @@ router.route("/api/survey")
             }
         });
     })
+    .delete((req, res) => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
+
+            let surveyId = req.query.surveyId;
+            let userId = authorization.userId;
+
+            surveyController.deleteSurvey(surveyId, result => {
+                console.log(result);
+            });
+
+            // NEED TO REMOVE SURVEY FROM USER
+        });
+    })
     // Create a survey
     .post((req, res) => {
         // AUTHORIZATION
@@ -140,11 +158,12 @@ router.route("/api/survey")
                 userController.addSurveyToUser(userId, survey._id, result => {
                     console.log(result);
                     res.json(survey);
-                })
+                });
             });
         })
     });
 
+// Return decrypted authorization if authorized
 function authorizeRequest(request, cb) {
     let token = request.body.token;
 
