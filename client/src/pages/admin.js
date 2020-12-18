@@ -12,7 +12,7 @@ function Admin() {
     // ---- Have the log out button link here 
     //starting the side survey page 
     <div>
-      <Row md ={5} float="center">
+      <Row float="center">
           <Col sx={3} md ={3}>
               <div className = "back-div">
                   <SurveyList
@@ -36,7 +36,26 @@ function Admin() {
                   </SurveyList>
               </div>
           </Col>
+          <Col md ={2} float="center">
+          <SurveyList
+          name = "Edit Survey"
+          >
+          </SurveyList>
+          </Col>
+          <Col md ={2} float="center">
+              <SurveyList
+                name = "Analytics"
+                >
+                </SurveyList>
+          </Col>
+          <Col md ={2} float="center">
+              <SurveyList
+              name = "Admin"
+              >
+              </SurveyList>
+          </Col>
       </Row>
+
 
     </div>
   );
