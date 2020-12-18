@@ -12,17 +12,22 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
         public: surveyData.public,
         questions: surveyData.questions
     }).then(result => {
+        console.log("API: Successfully created survey: ", result);
         cb(result);
     }).catch(err => {
         cb(err);
     });
 }
 
-SurveyController.prototype.createQuestion = function () {
-
+SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
+    db.Survey.updateOne({ 
+        id: surveyId 
+    }).then(result => {
+        console.log("Update one result: ", result);
+    })
 }
 
-SurveyController.prototype.createChoice = function () {
+SurveyController.prototype.addChoiceToQuestion = function () {
 
 }
 
