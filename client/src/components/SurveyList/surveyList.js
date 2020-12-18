@@ -3,9 +3,12 @@ import "./survey-list.css";
 
 function SurveyList(props){
     return(
-        <div {...props} placeholder = {props.name}>
-            <h1>{props.name}</h1>
-        </div>
+       
+            <div className = "div-init" {...props} placeholder = {props.name}>
+                <h1 className = "answer-options">{props.name}</h1>
+            </div>
+        
+
     )
 }
 
