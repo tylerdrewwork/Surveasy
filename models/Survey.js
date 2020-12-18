@@ -11,7 +11,7 @@ const SurveySchema = mongoose.Schema({
         choices: [{
             _id: {type: String, default: mongoose.Types.ObjectId()},
             choice: String,
-            votes: Number
+            votes: {type: Number, default: 0}
         }]
     }]
 });
