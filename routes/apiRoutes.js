@@ -26,14 +26,6 @@ router.route("/api/user/")
             // Define request query parameters
             let id = req.query.id;
 
-            // If there are no queries, then get all users
-            if (checkIfObjectIsEmpty(req.query)) {
-                userController.getAllUsers(users => {
-                    res.json(users);
-                    console.log("API: Got all users.");
-                });
-            }
-
             // If there is an 'id' query
             if (id) {
                 userController.getUserById(id, (user) => {
@@ -121,15 +113,11 @@ router.route("/api/survey")
 
             // define query parameters
             let id = req.query.id;
-            let username = req.query.username;
 
             // Get one survey by id
             if (id) {
                 console.log("GET ONE SURVEY BY ID");
-            }
-
-            // Get all surveys of username
-            if (username) {
+            } else {
                 console.log("GET ALL SURVEYS OF USER");
             }
         });
