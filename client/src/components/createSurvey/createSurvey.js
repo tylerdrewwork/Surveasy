@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button/button";
 import Input from "../Input/input";
-import API from "../utils/API";
-import "./style.css";
+import "./createSurvey.css";
 import { Grid, Row, Col } from "react-bootstrap";
 
 function CreateSurvey() {

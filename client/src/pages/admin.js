@@ -5,11 +5,12 @@ import Button from "../components/Button/button";
 //import { List, ListItem } from "../components/List";
 import Input from "../components/Input/input";
 import "./style.css";
+import CreateSurvey from "../components/createSurvey/createSurvey";
 
 function Admin() {
   return (
     <div>
-      <h1>Welcom</h1>
+      <h1>Welcome</h1>
     </div>
   );
 }

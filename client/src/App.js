@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import Admin from "./pages/admin";
-import CreateSurvey from "./pages/createSurvey";
-
 function App() {
   return (
     <Router>
@@ -16,9 +14,6 @@ function App() {
       </Route>
       <Route exact path="/admin">
         <Admin />
-      </Route>
-      <Route exact path="/createsurvey">
-        <CreateSurvey />
       </Route>
     </Router>
   );
