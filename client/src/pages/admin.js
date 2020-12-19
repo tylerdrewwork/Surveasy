@@ -11,6 +11,7 @@ function Admin() {
   return (
     <div>
       <h1>Welcome</h1>
+      <CreateSurvey /> 
     </div>
   );
 }
