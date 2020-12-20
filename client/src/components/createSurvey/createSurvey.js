@@ -22,12 +22,12 @@ function CreateSurvey() {
 
   return (
     <div className="back-div">
-      <Input onChange={handleInputChange} name="Survey-Name" />
-      <Input onChange={handleInputChange} name="Question" />
-      <Input onChange={handleInputChange} name="Option 1" />
-      <Input onChange={handleInputChange} name="Option 2" />
-      <Input onChange={handleInputChange} name="Option 3" />
-      <Input onChange={handleInputChange} name="Option 4" />
+      <Input onChange={handleInputChange} name="SurveyName" />
+      <Input onChange={handleInputChange} name="QuestionTitle" />
+      <Input onChange={handleInputChange} name="Option" />
+      <Input onChange={handleInputChange} name="Option" />
+      <Input onChange={handleInputChange} name="Option" />
+      <Input onChange={handleInputChange} name="Option" />
       <Button onClick={handleFormSubmit} name="Submit" />
     </div>
   );
