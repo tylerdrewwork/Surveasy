@@ -16,8 +16,8 @@ function CreateSurvey() {
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        API.createSurvey()
-        console.log("Testing handle form submit data: " + surveyData)
+        API.createSurvey();
+        console.log("Testing handle form submit data: " + JSON.stringify(surveyData))
     }
 
   return (
