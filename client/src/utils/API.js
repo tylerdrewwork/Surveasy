@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export default {
+
+  // USER Routes
   getUser: function () {
     return axios.get("/api/user");
   },
@@ -21,6 +23,12 @@ export default {
     return axios.get("/api/user/" + username);
   },
 
+  // AUTHORIZATION Routes
+  getAuthToken: function (username, password) {
+    return axios.post("/api/auth/")
+  },
+
+  // SURVEY Routes
     getSurvey: function () {
       return axios.get("/api/survey");
     },
