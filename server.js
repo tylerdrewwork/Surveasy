@@ -1,11 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const apiRoutes = require('./routes/apiRoutes');
 const path = require('path');
-
-// Debug: 
-const controllerTester = require('./controllers/debug/controllerTester');
 
 const app = express();
 
@@ -19,6 +14,10 @@ else {
 
 const PORT = process.env.PORT;
 
+// Set up middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Connect to the Mongo DB
 mongoose.connect(
     // Use MONGODB URI from environment, otherwise use local database
@@ -26,9 +25,8 @@ mongoose.connect(
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 ).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
 
-// Use apiRoutes with express, and allow body parsing
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(apiRoutes);
+// Require Routes
+require('./routes/apiRoutes')(app);
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {

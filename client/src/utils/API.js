@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default {
+const API = {
 
   // USER Routes
   getUser: function () {
@@ -8,12 +8,18 @@ export default {
   },
 
   createUser: function (formCred) {
-    return axios.post("/api/user", {
-      email: formCred.Email,
-      username: formCred.Username,
-      password: formCred.Password
-    }).then(user => {console.log(user)})
-    .catch(err => {console.log(err)});
+    console.log(formCred);
+
+    axios.request({
+      method: 'POST',
+      url: `/api/user/workdammit`,
+      headers: {},
+      data: {
+        username: formCred.Username,
+        password: formCred.Password,
+        email: formCred.Email
+      }
+    });
   },
 
   getUserId: function (id) {
@@ -37,23 +43,25 @@ export default {
   },
 
   // SURVEY Routes
-    getSurvey: function () {
-      return axios.get("/api/survey");
-    },
+  getSurvey: function () {
+    return axios.get("/api/survey");
+  },
 
-    createSurvey: function () {
-      return axios.post("/api/survey");
-    },
+  createSurvey: function () {
+    return axios.post("/api/survey");
+  },
 
-    getSurveyId: function (id) {
-      return axios.get("/api/survey/" + id);
-    },
+  getSurveyId: function (id) {
+    return axios.get("/api/survey/" + id);
+  },
 
-    updateSurvey: function (id) {
-      return axios.put("/api/survey/" + id);
-    },
+  updateSurvey: function (id) {
+    return axios.put("/api/survey/" + id);
+  },
 
-    deleteSurvey: function (id) {
-      return axios.delete("/api/survey/" + id);
-    },
+  deleteSurvey: function (id) {
+    return axios.delete("/api/survey/" + id);
+  },
 };
+
+export default API;
