@@ -151,7 +151,7 @@ router.route("/api/survey")
                 return;
             }
 
-            let surveyData = req.body;
+            let surveyData = req.body.surveyData;
             let userId = authorization.userId;
 
             surveyController.createSurvey(surveyData, survey => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
 import { useHistory } from "react-router-dom";
+import API from "../utils/API";
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
@@ -14,6 +15,7 @@ function SignUp() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
+    API.createUser(formCred);
     history.push("/admin");
   }
 

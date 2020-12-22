@@ -7,8 +7,13 @@ export default {
     return axios.get("/api/user");
   },
 
-  createUser: function () {
-    return axios.post("/api/user");
+  createUser: function (formCred) {
+    return axios.post("/api/user", {
+      email: formCred.Email,
+      username: formCred.Username,
+      password: formCred.Password
+    }).then(user => {console.log(user)})
+    .catch(err => {console.log(err)});
   },
 
   getUserId: function (id) {
