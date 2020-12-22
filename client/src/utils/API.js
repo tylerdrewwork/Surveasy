@@ -25,7 +25,10 @@ export default {
 
   // AUTHORIZATION Routes
   getAuthToken: function (username, password) {
-    return axios.post("/api/auth/")
+    return axios.post("/api/auth/", {
+      username: username,
+      password: password
+    })
   },
 
   // SURVEY Routes
