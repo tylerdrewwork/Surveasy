@@ -12,7 +12,7 @@ const API = {
 
     axios.request({
       method: 'POST',
-      url: `/api/user/workdammit`,
+      url: `/api/user/`,
       headers: {},
       data: {
         username: formCred.Username,

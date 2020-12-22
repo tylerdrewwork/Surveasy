@@ -10,7 +10,7 @@ const authController = new AuthController();
 const apiRoutes = (app) => {
 
     // USER Routes
-    app.route("/api/user/:test")
+    app.route("/api/user")
         // Get Users
         .get((req, res) => {
             // Only allow one query at a time:
@@ -67,7 +67,7 @@ const apiRoutes = (app) => {
             }
         })
         .post((req, res) => {
-            let user = req.params;
+            let user = req.body;
 
             if (checkIfObjectIsEmpty(user) === false) {
                 console.log("API: Creating user: ", req.body);
