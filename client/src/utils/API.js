@@ -55,9 +55,15 @@ const API = {
   },
 
   // SURVEY Routes
-  getSurvey: function () {
-    return axios.get("/api/survey");
-  },
+  getSurvey: function (credentials) {
+    return axios.request({
+      method: "GET",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
+  }
 
   createSurvey: function () {
     return axios.post("/api/survey");
