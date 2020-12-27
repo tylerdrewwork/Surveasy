@@ -25,13 +25,20 @@ const API = {
     });
   },
 
-  removeUser: function (id) {
-    return axios.delete("/api/user/" + id);
+  removeUser: function (credentials) {
+    return axios.request({
+      method: "DELETE",
+      url: "/api/user/",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
-  getUsername: function (username) {
-    return axios.get("/api/user/" + username);
-  },
+  // REMOVE CONCEPT IF TOKEN RETRIEVES ALL INFO NEEDED
+  // getUsername: function (username) {
+  //   return axios.get("/api/user/" + username);
+  // },
 
   // AUTHORIZATION Routes
   getAuthorization: function (credentials) {
@@ -46,8 +53,14 @@ const API = {
   },
 
   // SURVEY Routes
-  getSurvey: function () {
-    return axios.get("/api/survey");
+  getSurvey: function (credentials) {
+    return axios.request({
+      method: "GET",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
   createSurvey: function () {
