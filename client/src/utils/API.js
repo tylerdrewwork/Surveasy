@@ -27,10 +27,6 @@ const API = {
     });
   },
 
-  // removeUser: function (id) {
-  //   return axios.delete("/api/user/" + id);
-  // },
-
   removeUser: function (credentials) {
     return axios.request({
       method: "DELETE",
@@ -41,9 +37,10 @@ const API = {
     });
   },
 
-  getUsername: function (username) {
-    return axios.get("/api/user/" + username);
-  },
+  // REMOVE CONCEPT IF TOKEN RETRIEVES ALL INFO NEEDED
+  // getUsername: function (username) {
+  //   return axios.get("/api/user/" + username);
+  // },
 
   // AUTHORIZATION Routes
   getAuthorization: function (credentials) {
