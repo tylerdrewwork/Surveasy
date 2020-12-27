@@ -135,13 +135,15 @@ const apiRoutes = (app) => {
         .post((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
-                if (authorization === "Error: Authorization is Unsuccessful.") {
-                    res.send("Error: Authorization is Unsuccessful.");
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
                     return;
                 }
 
                 let surveyData = req.body.surveyData;
                 let userId = authorization.userId;
+
+                console.log(surveyData);
 
                 surveyController.createSurvey(surveyData, survey => {
                     userController.addSurveyToUser(userId, survey._id, result => {
@@ -149,7 +151,7 @@ const apiRoutes = (app) => {
                         res.json(survey);
                     });
                 });
-            })
+            });
         });
 
     // Return decrypted authorization if authorized

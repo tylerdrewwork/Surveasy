@@ -67,20 +67,34 @@ const API = {
   //   return axios.post("/api/survey");
   // },
 
-createSurvey: function (credentials) {
-  return axios.request({
-    method: "POST",
-    url: "/api/survey",
-    body: {
-      surveyData: {
-        _id: 1234,
-        title: credentials.title,
-        question: credentials.question,
-        choice: credentials.choice
-      }
+  createSurvey: function (credentials) {
+
+    // testing
+    credentials = {
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MTAwNjI2fQ.4jb_Lgz1Tg0zWx2mQZxy45PDWpYaeopWvt40XXEulHI",
+      title: 'test title',
+      question: 'test question',
+      choice: 'test choices'
     }
-  });
-},
+
+    console.log(credentials);
+
+    return axios.request({
+      method: "POST",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      },
+      data: {
+        surveyData: {
+          _id: 1234,
+          title: credentials.title,
+          question: credentials.question,
+          choice: credentials.choice
+        }
+      }
+    });
+  },
 
   getSurveyId: function (id) {
     return axios.get("/api/survey/" + id);
