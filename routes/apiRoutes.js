@@ -43,16 +43,16 @@ const apiRoutes = (app) => {
                 return;
             }
 
-            // Define request query parameters
-            let id = req.query.id;
+            authorizeRequest(req, authorization => {
+                let userId = authorization.userId;
+                console.log(userId);
 
-            // Delete user by ID
-            if (id) {
-                userController.deleteUserById(id, (result) => {
+                // Delete user by ID
+                userController.deleteUserById(userId, (result) => {
                     res.send(result);
                     console.log("API: Deleting user by id: ", id);
                 });
-            }
+            });
         })
         .post((req, res) => {
             let user = req.body;
