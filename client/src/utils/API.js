@@ -27,8 +27,18 @@ const API = {
     });
   },
 
-  removeUser: function (id) {
-    return axios.delete("/api/user/" + id);
+  // removeUser: function (id) {
+  //   return axios.delete("/api/user/" + id);
+  // },
+
+  removeUser: function (credentials) {
+    return axios.request({
+      method: "DELETE",
+      url: "/api/user/",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
   getUsername: function (username) {
