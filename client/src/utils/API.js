@@ -3,8 +3,16 @@ import axios from "axios";
 const API = {
 
   // USER Routes
-  getUser: function () {
-    return axios.get("/api/user");
+  getUser: function (credentials) {
+    console.log(credentials.token);
+
+    return axios.request({
+      method: "GET",
+      url: "/api/user",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
   createUser: function (credentials) {
@@ -17,10 +25,6 @@ const API = {
         email: credentials.Email
       }
     });
-  },
-
-  getUserId: function (id) {
-    return axios.get("/api/user/" + id);
   },
 
   removeUser: function (id) {

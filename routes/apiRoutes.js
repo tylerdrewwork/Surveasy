@@ -166,14 +166,15 @@ const apiRoutes = (app) => {
 
     // Return decrypted authorization if authorized
     function authorizeRequest(request, cb) {
-        let token = request.body.token;
+        let authHeader = request.headers.authorization;
+        token = authHeader.split(' ')[1];
 
         // If no token, unauthorized
         if (!token) { cb("Error! User is not authorized."); }
 
         authController.verifyAuthSignature(token, authorization => {
             cb(authorization);
-        })
+        });
     }
 
     function checkIfObjectIsEmpty(obj) {
