@@ -97,8 +97,8 @@ const apiRoutes = (app) => {
         .get((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
-                if (authorization === "Error: Authorization is Unsuccessful.") {
-                    res.send("Error: Authorization is Unsuccessful.");
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
                     return;
                 }
 
@@ -116,8 +116,8 @@ const apiRoutes = (app) => {
         .delete((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
-                if (authorization === "Error: Authorization is Unsuccessful.") {
-                    res.send("Error: Authorization is Unsuccessful.");
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
                     return;
                 }
 
@@ -142,8 +142,6 @@ const apiRoutes = (app) => {
 
                 let surveyData = req.body.surveyData;
                 let userId = authorization.userId;
-
-                console.log(surveyData);
 
                 surveyController.createSurvey(surveyData, survey => {
                     userController.addSurveyToUser(userId, survey._id, result => {

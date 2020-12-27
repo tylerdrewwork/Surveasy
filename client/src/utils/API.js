@@ -53,10 +53,20 @@ const API = {
   },
 
   // SURVEY Routes
-  getSurvey: function (credentials) {
+  getUserSurveys: function (credentials) {
     return axios.request({
       method: "GET",
       url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
+  },
+
+  getSurveyById: function (credentials, surveyId) {
+    return axios.request({
+      method: "GET",
+      url: `/api/survey/?id=${surveyId}`,
       headers: {
         Authorization: `Bearer ${credentials.token}`
       }
@@ -67,37 +77,37 @@ const API = {
   //   return axios.post("/api/survey");
   // },
 
-  createSurvey: function (credentials) {
+  createSurvey: function (surveyData, token) {
 
-    // testing
-    credentials = {
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MTAwNjI2fQ.4jb_Lgz1Tg0zWx2mQZxy45PDWpYaeopWvt40XXEulHI",
-      title: 'test title',
-      question: 'test question',
-      choice: 'test choices'
-    }
-
-    console.log(credentials);
+    // TESTING AND DATA MODEL REFERENCE
+    // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MTAwNjI2fQ.4jb_Lgz1Tg0zWx2mQZxy45PDWpYaeopWvt40XXEulHI";
+    // surveyData = {
+    //   title: 'quiz title',
+    //   active: true,
+    //   public: false,
+    //   questions: [{
+    //     question: "Question 1",
+    //     choices: [{
+    //       choice: "Test Choice"
+    //     }]
+    //   }, {
+    //     question: "Question 2",
+    //     choices: [{
+    //       choice: "Test Choice"
+    //     }]
+    //   }]
+    // }
 
     return axios.request({
       method: "POST",
       url: "/api/survey",
       headers: {
-        Authorization: `Bearer ${credentials.token}`
+        Authorization: `Bearer ${token}`
       },
       data: {
-        surveyData: {
-          _id: 1234,
-          title: credentials.title,
-          question: credentials.question,
-          choice: credentials.choice
-        }
+        surveyData: surveyData
       }
     });
-  },
-
-  getSurveyId: function (id) {
-    return axios.get("/api/survey/" + id);
   },
 
   updateSurvey: function (id) {
