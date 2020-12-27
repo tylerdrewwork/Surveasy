@@ -9,9 +9,8 @@ const API = {
 
   createUser: function (credentials) {
     return axios.request({
-      method: 'POST',
-      url: `/api/user/`,
-      headers: {},
+      method: "POST",
+      url: "/api/user/",
       data: {
         username: credentials.Username,
         password: credentials.Password,
@@ -33,10 +32,14 @@ const API = {
   },
 
   // AUTHORIZATION Routes
-  getAuthToken: function (username, password) {
-    return axios.post("/api/auth/", {
-      username: username,
-      password: password
+  getAuthorization: function (credentials) {
+    return axios.request({
+      method: "POST",
+      url: "/api/auth/",
+      data: {
+        username: credentials.username,
+        password: credentials.password
+      }
     });
   },
 

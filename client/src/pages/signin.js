@@ -4,54 +4,56 @@ import Input from "../components/Input/input";
 import API from "../utils/API"
 import { useHistory } from 'react-router-dom';
 import "./style.css";
-import {Grid, Row, Col} from "react-bootstrap"
+import { Grid, Row, Col } from "react-bootstrap"
 
-function SignIn(){
+function SignIn() {
     const [formCred, setFormCred] = useState({})
     const history = useHistory();
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormCred({...formCred, [name]: value})
-        
+        setFormCred({ ...formCred, [name]: value })
+
     };
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        
+
         if (formCred.username && formCred.password) {
-            API.getUsername({
-                username : formCred.username, 
-                password : formCred.password
-            }).then(() => history.push('/admin')
-            ).catch(err => console.log(err));
+            API.getAuthorization({
+                username: formCred.username,
+                password: formCred.password
+            }).then(result => {
+                console.log(result);
+                history.push('/admin');
+            }).catch(err => console.log(err));
         }
     };
 
-    return(
+    return (
 
-     <div className = "back-div">
-        <Row md ={5} float="center">
-            <Col sx={3} md ={12} >
-                <Input 
-                onChange = {handleInputChange}
-                name = "username">
-                </Input>
-            </Col>
-            <Col sx={3} md ={12} >
-                <Input 
-                onChange = {handleInputChange}
-                name = "password">
-                </Input>
-            </Col>
-            <Col sx={3} md ={12} >
-                <Button  
-                name = "Sign In"
-                onClick = {handleFormSubmit}>
-                </Button>
-            </Col>             
-        </Row>
-     </div>
+        <div className="back-div">
+            <Row md={5} float="center">
+                <Col sx={3} md={12} >
+                    <Input
+                        onChange={handleInputChange}
+                        name="username">
+                    </Input>
+                </Col>
+                <Col sx={3} md={12} >
+                    <Input
+                        onChange={handleInputChange}
+                        name="password">
+                    </Input>
+                </Col>
+                <Col sx={3} md={12} >
+                    <Button
+                        name="Sign In"
+                        onClick={handleFormSubmit}>
+                    </Button>
+                </Col>
+            </Row>
+        </div>
 
     );
 }
