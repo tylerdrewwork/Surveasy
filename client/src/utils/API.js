@@ -63,7 +63,7 @@ const API = {
         Authorization: `Bearer ${credentials.token}`
       }
     });
-  }
+  },
 
   createSurvey: function () {
     return axios.post("/api/survey");
