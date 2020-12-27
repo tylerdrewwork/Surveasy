@@ -63,9 +63,24 @@ const API = {
     });
   },
 
-  createSurvey: function () {
-    return axios.post("/api/survey");
-  },
+  // createSurvey: function () {
+  //   return axios.post("/api/survey");
+  // },
+
+createSurvey: function (credentials) {
+  return axios.request({
+    method: "POST",
+    url: "/api/survey",
+    body: {
+      surveyData: {
+        _id: 1234,
+        title: credentials.title,
+        question: credentials.question,
+        choice: credentials.choice
+      }
+    }
+  });
+},
 
   getSurveyId: function (id) {
     return axios.get("/api/survey/" + id);
