@@ -15,7 +15,9 @@ function SignUp() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    API.createUser(formCred);
+    API.createUser(formCred).then(result => {
+      console.log(result);
+    });
     history.push("/admin");
   }
 

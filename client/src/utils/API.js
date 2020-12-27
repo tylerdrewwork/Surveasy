@@ -7,17 +7,15 @@ const API = {
     return axios.get("/api/user");
   },
 
-  createUser: function (formCred) {
-    console.log(formCred);
-
-    axios.request({
+  createUser: function (credentials) {
+    return axios.request({
       method: 'POST',
       url: `/api/user/`,
       headers: {},
       data: {
-        username: formCred.Username,
-        password: formCred.Password,
-        email: formCred.Email
+        username: credentials.Username,
+        password: credentials.Password,
+        email: credentials.Email
       }
     });
   },
@@ -39,7 +37,7 @@ const API = {
     return axios.post("/api/auth/", {
       username: username,
       password: password
-    })
+    });
   },
 
   // SURVEY Routes
