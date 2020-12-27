@@ -4,8 +4,6 @@ const API = {
 
   // USER Routes
   getUser: function (credentials) {
-    console.log(credentials.token);
-
     return axios.request({
       method: "GET",
       url: "/api/user",

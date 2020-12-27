@@ -27,24 +27,12 @@ const apiRoutes = (app) => {
                 }
 
                 // Define request query parameters
-                let id = req.query.id;
+                let userId = authorization.userId;
 
-                // If there is an 'id' query
-                if (id) {
-                    userController.getUserById(id, (user) => {
-                        res.json(user);
-                        console.log("API: Got user by id: ", id);
-                    })
-                }
-                // If there is a 'username' query
-                else {
-                    username = authorization.username;
-                    console.log("USER:", username);
-                    userController.getUserByUsername(username, (user) => {
-                        res.json(user);
-                        console.log("API: Got user by username: ", username);
-                    })
-                }
+                userController.getUserById(userId, (user) => {
+                    res.json(user);
+                    console.log("API: Got user by id: ", userId);
+                });
             });
         })
         // Delete Users
@@ -166,12 +154,12 @@ const apiRoutes = (app) => {
 
     // Return decrypted authorization if authorized
     function authorizeRequest(request, cb) {
-        let authHeader = request.headers.authorization;
-        token = authHeader.split(' ')[1];
+        const authHeader = request.headers.authorization;
 
-        // If no token, unauthorized
-        if (!token) { cb("Error! User is not authorized."); }
+        // If no authorization, unauthorized
+        if (!authHeader) { cb("Error! User is not authorized."); }
 
+        let token = authHeader.split(' ')[1];
         authController.verifyAuthSignature(token, authorization => {
             cb(authorization);
         });
