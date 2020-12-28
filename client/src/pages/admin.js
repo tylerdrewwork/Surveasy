@@ -5,13 +5,12 @@ import Button from "../components/Button/button";
 //import { List, ListItem } from "../components/List";
 import Input from "../components/Input/input";
 import "./style.css";
-import SideBarExample from "../components/NavBar/navbar"
+import Navigation from "../components/NavBar/navbar";
 
 function Admin() {
   return (
     <div>
-      <h1>Proof of Concept NavBar</h1>
-      <SideBarExample />
+      <Navigation />
     </div>
   );
 }
