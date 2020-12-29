@@ -7,7 +7,7 @@ import Input from "../components/Input/input";
 import SurveyList from "../components/SurveyList/surveyList"
 import {Container, Grid, Row, Col} from "react-bootstrap";
 function Admin() {
-
+  const [survey, setSurvey] = useState({});
   
 
   return (
