@@ -8,6 +8,7 @@ import SurveyList from "../components/SurveyList/surveyList"
 import {Container, Grid, Row, Col} from "react-bootstrap";
 function Admin() {
   const [survey, setSurvey] = useState({});
+  const [curSurvey, setCurSurvey] = useState({});
   
   useEffect(() => {
     uploadSurveys()
@@ -21,6 +22,10 @@ function Admin() {
       .catch(err => console.log(err));
   };
 
+  function accessSurvey(id){
+
+  }
+
   return (
     //navbar will be set up here 
     // ---- Have the log out button link here 
@@ -31,7 +36,7 @@ function Admin() {
           <Col sx={3} md ={3}>
               <div className = "back-div">
               {survey.map(survey => (
-                <SurveyList name = "Ice Cream Survey">
+                <SurveyList name = {survey.title} onClick={() => accessSurvey(survey.title)} >
                 </SurveyList>
               ))}
 
