@@ -15,11 +15,46 @@ function Admin() {
   }, [])
 
   function uploadSurveys() {
-    API.getSurvey()
-      .then(res => 
-        setSurvey(res.data)
-      )
-      .catch(err => console.log(err));
+    // API.getSurvey()
+    //   .then(res => 
+    //     setSurvey(res.data)
+    //   )
+    //   .catch(err => console.log(err));
+    setSurvey({
+        title: "Test survey!",
+        active: true,
+        public: true,
+        questions: [
+            {
+                question: "Favorite color?",
+                choices: [
+                    {choice: "Red"},
+                    {choice: "Blue"},
+                    {choice: "Green"},
+                    {choice: "Incandescent Yellow"},
+                ]
+            },
+            {
+                question: "Favorite vehicle?",
+                choices: [
+                    {choice: "car"},
+                    {choice: "truck"},
+                    {choice: "ufo"},
+                ]
+            },
+            {
+                question: "Favorite number?",
+                choices: [
+                    {choice: "5"},
+                    {choice: "5"},
+                    {choice: ""},
+                    {choice: "10000000000000000000000"},
+                    {choice: "what's a number"},
+                ]
+            }
+        ]
+    })
+
   };
 
   function accessSurvey(id){
@@ -35,10 +70,10 @@ function Admin() {
 
           <Col sx={3} md ={3}>
               <div className = "back-div">
-              {survey.map(survey => (
+
+
                 <SurveyList name = {survey.title} onClick={() => accessSurvey(survey.title)} >
                 </SurveyList>
-              ))}
 
 
               </div>
