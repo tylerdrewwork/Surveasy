@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 //import { Link } from "react-router-dom";
-
+import API from "../utils/API"
 import Input from "../components/Input/input";
 
 import SurveyList from "../components/SurveyList/surveyList"
@@ -9,6 +9,17 @@ import {Container, Grid, Row, Col} from "react-bootstrap";
 function Admin() {
   const [survey, setSurvey] = useState({});
   
+  useEffect(() => {
+    uploadSurveys()
+  }, [])
+
+  function uploadSurveys() {
+    API.getSurvey()
+      .then(res => 
+        setSurvey(res.data)
+      )
+      .catch(err => console.log(err));
+  };
 
   return (
     //navbar will be set up here 
