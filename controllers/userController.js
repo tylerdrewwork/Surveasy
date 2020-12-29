@@ -41,8 +41,26 @@ UserController.prototype.getUserById = function (userId, cb) {
     });
 }
 
+UserController.prototype.getUserByIdPopulated = function (userId, cb) {
+    db.User.findOne({ _id: userId }).populate('surveys').then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
+    });
+}
+
 UserController.prototype.getUserByUsername = function (username, cb) {
     db.User.findOne({ username: username }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("ERROR: ", err);
+        cb(err);
+    });
+}
+
+UserController.prototype.getUserByUsernamePopulated = function (username, cb) {
+    db.User.findOne({ username: username }).populate('surveys').then(result => {
         cb(result);
     }).catch(err => {
         console.log("ERROR: ", err);
@@ -59,4 +77,10 @@ UserController.prototype.deleteUserById = function (userId, cb) {
     });
 }
 
-module.exports = UserController
+UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
+    db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
+        cb(result);
+    })
+}
+
+module.exports = UserController;

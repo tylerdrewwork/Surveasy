@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const apiRoutes = require('./routes/apiRoutes');
 const path = require('path');
 
+// Debug: 
+const controllerTester = require('./controllers/debug/controllerTester');
+
 const app = express();
 
 // Define Middleware

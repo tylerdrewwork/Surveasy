@@ -1,3 +1,4 @@
 module.exports = {
-    User: require('../models/User.js')
+    User: require('./User.js'),
+    Survey: require('./Survey.js')
 }

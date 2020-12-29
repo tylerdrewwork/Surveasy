@@ -1,28 +1,21 @@
-// mock model for survey
-const survey = {
-    title: "Food Survey",
-    active: true,
-    public: true,
-    questions: [
-        {
-            id: 0,
-            question: "What is your favorite ice cream",
-            choices: [
-                {id: 1, name: "Rocky Road", votes: 5},
-                {id: 2, name: "Butter Pecan", votes: 0},
-                {id: 3, name: "Mint :(", votes: 0},
-                {id: 4, name: "French Vanilla", votes: 0}
-            ],
-        },
-        {
-            id: 1,
-            question: "What is your favorite italian food",
-            choices: [
-                {name: "Rocky Road", votes: 5},
-                {name: "Butter Pecan", votes: 0},
-                {name: "Mint :(", votes: 0},
-                {name: "French Vanilla", votes: 0}
-            ],
-        }
-    ],   
-}
+const mongoose = require('mongoose');
+
+const SurveySchema = mongoose.Schema({
+    title: String,
+    active: Boolean,
+    public: Boolean,
+    questions: [{
+        // This _id is the MongoDb id for the current question. This is the syntax for creating an ObjectId within a mongoose object!
+        _id: {type: String, default: mongoose.Types.ObjectId()},
+        question: String,
+        choices: [{
+            _id: {type: String, default: mongoose.Types.ObjectId()},
+            choice: String,
+            votes: {type: Number, default: 0}
+        }]
+    }]
+});
+
+const Survey = mongoose.model('Survey', SurveySchema);
+
+module.exports = Survey;
