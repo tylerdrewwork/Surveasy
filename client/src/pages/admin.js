@@ -30,17 +30,12 @@ function Admin() {
 
           <Col sx={3} md ={3}>
               <div className = "back-div">
-                  <SurveyList name = "Ice Cream Survey">
-                  </SurveyList>
+              {survey.map(survey => (
+                <SurveyList name = "Ice Cream Survey">
+                </SurveyList>
+              ))}
 
-                  <SurveyList name = "Italian Food Survey">
-                  </SurveyList>
 
-                  <SurveyList name = "Mexican Food Survey">
-                  </SurveyList>
-
-                  <SurveyList name = "New Survey">
-                  </SurveyList>
               </div>
           </Col>
 
