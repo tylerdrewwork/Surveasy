@@ -4,7 +4,9 @@ import Button from "../components/Button/button";
 import API from "../utils/API"
 import Input from "../components/Input/input";
 import "./style.css";
+import CreateSurvey from "../components/createSurvey/createSurvey";
 import Navigation from "../components/NavBar/navbar";
+
 
 
 
@@ -144,8 +146,6 @@ function Admin() {
           </Col>
 
       </Row>
-
-     
 
     </div>
     
