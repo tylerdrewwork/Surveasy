@@ -41,31 +41,70 @@ mongoose.connect(
         password: "banana123",
         email: "banana@test.com"
     });
-
-    // Create Surveys
-    surveyController.createSurvey({
-        title: "Test Quiz Title",
-        active: true,
-        public: true,
-        questions: [{
-            question: "Question 1",
-            choices: [
-                { choice: "Test Choice 1" },
-                { choice: "Test Choice 2" },
-                { choice: "Test Choice 3" },
-                { choice: "Test Choice 4" }
-            ]
-        }, {
-            question: "Question 2",
-            choices: [
-                { choice: "Test Choice 1" },
-                { choice: "Test Choice 2" },
-                { choice: "Test Choice 3" },
-                { choice: "Test Choice 4" }
-            ]
-        }]
-    }, result => {
-        console.log(result);
+    seedSurvey({
+        title: "Test Survey Title",
+        question1: "Question 1",
+        question2: "Question 2",
+        q1Choice1: "Test Choice 1",
+        q1Choice2: "Test Choice 2",
+        q1Choice3: "Test Choice 3",
+        q1Choice4: "Test Choice 4",
+        q2Choice1: "Test Choice 1",
+        q2Choice2: "Test Choice 2",
+        q2Choice3: "Test Choice 3",
+        q2Choice4: "Test Choice 4"
+    });
+    seedSurvey({
+        title: "Favorite Things",
+        question1: "What is your favorite color?",
+        question2: "What is your favorite food?",
+        q1Choice1: "Red",
+        q1Choice2: "Green",
+        q1Choice3: "Yellow",
+        q1Choice4: "Blue",
+        q2Choice1: "Pizza",
+        q2Choice2: "Ramen Noodles",
+        q2Choice3: "Burritos",
+        q2Choice4: "Cereal"
+    });
+    seedSurvey({
+        title: "Web Dev Quiz",
+        question1: "What is CSS stand for",
+        question2: "Which of these is a framework?",
+        q1Choice1: "Cascading Style Sheets",
+        q1Choice2: "Cascading Style Slips",
+        q1Choice3: "Computer Style Slips",
+        q1Choice4: "Computer Style Sheets",
+        q2Choice1: "React",
+        q2Choice2: "Express",
+        q2Choice3: "jQuery",
+        q2Choice4: "HTML"
+    });
+    seedSurvey({
+        title: "Music Survey",
+        question1: "Which of these genres do you like the most?",
+        question2: "Which of these genres do you like the least?",
+        q1Choice1: "Pop",
+        q1Choice2: "Country",
+        q1Choice3: "Rock",
+        q1Choice4: "Hip Hop",
+        q2Choice1: "Pop",
+        q2Choice2: "Country",
+        q2Choice3: "Rock",
+        q2Choice4: "Hip Hop"
+    });
+    seedSurvey({
+        title: "Meta Survey",
+        question1: "What is the answer to this question?",
+        question2: "What was the answer to the previous question?",
+        q1Choice1: "This answer",
+        q1Choice2: "No, this answer",
+        q1Choice3: "This one!",
+        q1Choice4: "Pick me!",
+        q2Choice1: "The first choice",
+        q2Choice2: "The third choice",
+        q2Choice3: "The second choice",
+        q2Choice4: "None of the above"
     });
 });
 
@@ -75,6 +114,34 @@ function seedUser(userData) {
         username: userData.username,
         password: userData.password,
         email: userData.email
+    }, result => {
+        console.log(result);
+    });
+}
+
+// Create Surveys
+function seedSurvey(surveyData) {
+    surveyController.createSurvey({
+        title: surveyData.title,
+        active: true,
+        public: true,
+        questions: [{
+            question: surveyData.question1,
+            choices: [
+                { choice: surveyData.q1Choice1 },
+                { choice: surveyData.q1Choice2 },
+                { choice: surveyData.q1Choice3 },
+                { choice: surveyData.q1Choice4 }
+            ]
+        }, {
+            question: surveyData.question2,
+            choices: [
+                { choice: surveyData.q2Choice1 },
+                { choice: surveyData.q2Choice2 },
+                { choice: surveyData.q2Choice3 },
+                { choice: surveyData.q2Choice4 }
+            ]
+        }]
     }, result => {
         console.log(result);
     });
