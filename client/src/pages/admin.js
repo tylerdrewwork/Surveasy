@@ -12,6 +12,7 @@ function Admin() {
   
   useEffect(() => {
     uploadSurveys()
+    console.log(survey);
   }, [])
 
   function uploadSurveys() {
@@ -21,45 +22,86 @@ function Admin() {
     //   )
     //   .catch(err => console.log(err));
     setSurvey({
-        title: "Test survey!",
-        active: true,
-        public: true,
-        questions: [
+        id: "shubhi",
+        surveys: [
             {
-                question: "Favorite color?",
-                choices: [
-                    {choice: "Red"},
-                    {choice: "Blue"},
-                    {choice: "Green"},
-                    {choice: "Incandescent Yellow"},
+                title: "Test survey 1!",
+                active: true,
+                public: true,
+                questions: [
+                    {
+                        question: "Favorite color?",
+                        choices: [
+                            {choice: "Red"},
+                            {choice: "Blue"},
+                            {choice: "Green"},
+                            {choice: "Incandescent Yellow"},
+                        ]
+                    },
+                    {
+                        question: "Favorite vehicle?",
+                        choices: [
+                            {choice: "car"},
+                            {choice: "truck"},
+                            {choice: "ufo"},
+                        ]
+                    },
+                    {
+                        question: "Favorite number?",
+                        choices: [
+                            {choice: "5"},
+                            {choice: "5"},
+                            {choice: ""},
+                            {choice: "10000000000000000000000"},
+                            {choice: "what's a number"},
+                        ]
+                    }
                 ]
             },
             {
-                question: "Favorite vehicle?",
-                choices: [
-                    {choice: "car"},
-                    {choice: "truck"},
-                    {choice: "ufo"},
-                ]
-            },
-            {
-                question: "Favorite number?",
-                choices: [
-                    {choice: "5"},
-                    {choice: "5"},
-                    {choice: ""},
-                    {choice: "10000000000000000000000"},
-                    {choice: "what's a number"},
+                title: "Test survey 2!",
+                active: true,
+                public: true,
+                questions: [
+                    {
+                        question: "Favorite color?",
+                        choices: [
+                            {choice: "Red"},
+                            {choice: "Blue"},
+                            {choice: "Green"},
+                            {choice: "Incandescent Yellow"},
+                        ]
+                    },
+                    {
+                        question: "Favorite vehicle?",
+                        choices: [
+                            {choice: "car"},
+                            {choice: "truck"},
+                            {choice: "ufo"},
+                        ]
+                    },
+                    {
+                        question: "Favorite number?",
+                        choices: [
+                            {choice: "5"},
+                            {choice: "5"},
+                            {choice: ""},
+                            {choice: "10000000000000000000000"},
+                            {choice: "what's a number"},
+                        ]
+                    }
                 ]
             }
         ]
     })
+   
 
   };
 
   function accessSurvey(id){
 
   }
+
 
   return (
     //navbar will be set up here 
@@ -70,10 +112,13 @@ function Admin() {
 
           <Col sx={3} md ={3}>
               <div className = "back-div">
+              {Object.keys(survey).map((keyName, i) => (
 
+                    <SurveyList name = {survey[keyName].title} onClick={() => accessSurvey(survey[keyName].title)} >
+                    </SurveyList>
+               ))}
+                
 
-                <SurveyList name = {survey.title} onClick={() => accessSurvey(survey.title)} >
-                </SurveyList>
 
 
               </div>
@@ -96,8 +141,9 @@ function Admin() {
 
       </Row>
 
-
+     
     </div>
+    
   );
 }
 
