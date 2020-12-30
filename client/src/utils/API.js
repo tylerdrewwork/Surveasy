@@ -1,43 +1,128 @@
 import axios from "axios";
 
-export default {
-  getUser: function () {
-    return axios.get("/api/user");
+const API = {
+
+  // USER Routes
+  getUser: function (credentials) {
+    return axios.request({
+      method: "GET",
+      url: "/api/user",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
-  createUser: function () {
-    return axios.post("/api/user");
+  createUser: function (credentials) {
+    return axios.request({
+      method: "POST",
+      url: "/api/user/",
+      data: {
+        username: credentials.Username,
+        password: credentials.Password,
+        email: credentials.Email
+      }
+    });
   },
 
-  getUserId: function (id) {
-    return axios.get("/api/user/" + id);
+  removeUser: function (credentials) {
+    return axios.request({
+      method: "DELETE",
+      url: "/api/user/",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
-  removeUser: function (id) {
-    return axios.delete("/api/user/" + id);
+  // REMOVE CONCEPT IF TOKEN RETRIEVES ALL INFO NEEDED
+  // getUsername: function (username) {
+  //   return axios.get("/api/user/" + username);
+  // },
+
+  // AUTHORIZATION Routes
+  getAuthorization: function (credentials) {
+    return axios.request({
+      method: "POST",
+      url: "/api/auth/",
+      data: {
+        username: credentials.username,
+        password: credentials.password
+      }
+    });
   },
 
-  getUsername: function (username) {
-    return axios.get("/api/user/" + username);
+  // SURVEY Routes
+  getUserSurveys: function (credentials) {
+    return axios.request({
+      method: "GET",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
   },
 
-    getSurvey: function () {
-      return axios.get("/api/survey");
-    },
+  getSurveyById: function (credentials, surveyId) {
+    return axios.request({
+      method: "GET",
+      url: `/api/survey/?id=${surveyId}`,
+      headers: {
+        Authorization: `Bearer ${credentials.token}`
+      }
+    });
+  },
 
-    createSurvey: function () {
-      return axios.post("/api/survey");
-    },
+  // createSurvey: function () {
+  //   return axios.post("/api/survey");
+  // },
 
-    getSurveyId: function (id) {
-      return axios.get("/api/survey/" + id);
-    },
+  createSurvey: function (surveyData, token) {
 
-    updateSurvey: function (id) {
-      return axios.put("/api/survey/" + id);
-    },
+    // TESTING AND DATA MODEL REFERENCE
+    // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MTAwNjI2fQ.4jb_Lgz1Tg0zWx2mQZxy45PDWpYaeopWvt40XXEulHI";
+    // surveyData = {
+    //   title: 'quiz title',
+    //   active: true,
+    //   public: false,
+    //   questions: [{
+    //     question: "Question 1",
+    //     choices: [{
+    //       choice: "Test Choice"
+    //     }]
+    //   }, {
+    //     question: "Question 2",
+    //     choices: [{
+    //       choice: "Test Choice"
+    //     }]
+    //   }]
+    // }
 
-    deleteSurvey: function (id) {
-      return axios.delete("/api/survey/" + id);
-    },
+    return axios.request({
+      method: "POST",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        surveyData: surveyData
+      }
+    });
+  },
+
+  // updateSurvey: function (id) {
+  //   return axios.put("/api/survey/" + id);
+  // },
+
+  deleteSurvey: function (surveyId, token) {
+    return axios.request({
+      method: "DELETE",
+      url: `/api/survey/?id=${surveyId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  }
 };
+
+export default API;
