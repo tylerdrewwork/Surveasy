@@ -6,7 +6,7 @@ import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
 import Navigation from "../components/NavBar/navbar";
-
+import { Line } from "react-chartjs-2";
 
 
 
