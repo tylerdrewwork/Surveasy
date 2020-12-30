@@ -7,6 +7,9 @@ const SurveyController = require('../controllers/surveyController');
 const userController = new UserController();
 const surveyController = new SurveyController();
 
+const userIds = new Array();
+const surveyIds = new Array();
+
 process.env = require('../env.json');
 
 // Connect to the Mongo DB
@@ -115,7 +118,8 @@ function seedUser(userData) {
         password: userData.password,
         email: userData.email
     }, result => {
-        console.log(result);
+        userIds.push(result._id);
+        console.log(userIds);
     });
 }
 
@@ -143,6 +147,7 @@ function seedSurvey(surveyData) {
             ]
         }]
     }, result => {
-        console.log(result);
+        surveyIds.push(result._id);
+        console.log(surveyIds);
     });
 }
