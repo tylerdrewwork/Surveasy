@@ -10,6 +10,7 @@ import Navigation from "../components/NavBar/navbar";
 
 
 
+
 import SurveyList from "../components/SurveyList/surveyList"
 import {Container, Grid, Row, Col} from "react-bootstrap";
 function Admin() {
@@ -37,28 +38,28 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red"},
-                            {choice: "Blue"},
-                            {choice: "Green"},
-                            {choice: "Incandescent Yellow"},
+                            {choice: "Red", votes : 5},
+                            {choice: "Blue", votes : 7},
+                            {choice: "Green", votes : 6},
+                            {choice: "Incandescent Yellow", votes : 2},
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car"},
-                            {choice: "truck"},
-                            {choice: "ufo"},
+                            {choice: "car", votes : 6},
+                            {choice: "truck", votes : 7},
+                            {choice: "ufo", votes : 9},
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5"},
-                            {choice: "5"},
-                            {choice: ""},
-                            {choice: "10000000000000000000000"},
-                            {choice: "what's a number"},
+                            {choice: "5", votes : 4},
+                            {choice: "5", votes : 3},
+                            {choice: "", votes : 7},
+                            {choice: "10000000000000000000000", votes : 6},
+                            {choice: "what's a number", votes : 1},
                         ]
                     }
                 ]
@@ -71,28 +72,28 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red"},
-                            {choice: "Blue"},
-                            {choice: "Green"},
-                            {choice: "Incandescent Yellow"},
+                            {choice: "Red", votes : 3},
+                            {choice: "Blue", votes : 6},
+                            {choice: "Green", votes : 9},
+                            {choice: "Incandescent Yellow", votes : 1},
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car"},
-                            {choice: "truck"},
-                            {choice: "ufo"},
+                            {choice: "car", votes : 9},
+                            {choice: "truck", votes : 5},
+                            {choice: "ufo", votes : 1},
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5"},
-                            {choice: "5"},
-                            {choice: ""},
-                            {choice: "10000000000000000000000"},
-                            {choice: "what's a number"},
+                            {choice: "5", votes : 7},
+                            {choice: "8", votes : 2},
+                            {choice: "", votes : 6},
+                            {choice: "10000000000000000000000", votes : 4},
+                            {choice: "what's a number", votes : 3},
                         ]
                     }
                 ]
