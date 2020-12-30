@@ -147,15 +147,13 @@ function seedSurvey(surveyData) {
 }
 
 function assignSurveys(users, surveys) {
-    console.log("ASSIGN SURVEYS");
-
     let addedSurveys = 0;
     let userIndex = 0;
     let surveyIndex = 0;
 
+    // Loop through and assign surveys and users so all users have 3 surveys
     while (addedSurveys < 3) {
-        console.log("Survey Index:", surveys[surveyIndex]);
-        console.log("User Index:", users[userIndex]);
+        userController.addSurveyToUser(users[userIndex], surveys[surveyIndex], result => { });
 
         surveyIndex++;
         if (surveyIndex >= surveys.length) {
@@ -165,9 +163,7 @@ function assignSurveys(users, surveys) {
         userIndex++;
         if (userIndex >= users.length) {
             userIndex = 0;
-
             addedSurveys++;
-            console.log("Added Surveys:", addedSurveys);
         }
     }
 }
