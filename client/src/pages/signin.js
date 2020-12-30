@@ -19,12 +19,15 @@ function SignIn() {
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // if (formCred.username && formCred.password) {
-        API.getUserSurveys("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MjkyMTI4fQ.w6a7A2gZaC45Q8u3uuf_bPlBzxF_gj83Mk1l_MMvwys").then(result => {
-            console.log(result);
-            history.push('/admin');
-        }).catch(err => console.log(err));
-        // }
+        if (formCred.username && formCred.password) {
+            API.getAuthorization({
+                username: formCred.username,
+                password: formCred.password
+            }).then(result => {
+                console.log(result);
+                history.push('/admin');
+            }).catch(err => console.log(err));
+        }
     };
 
     return (
