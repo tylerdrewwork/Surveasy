@@ -11,24 +11,24 @@ import Navigation from "../components/NavBar/navbar";
 
 
 import SurveyList from "../components/SurveyList/surveyList"
-import {Container, Grid, Row, Col} from "react-bootstrap";
+import { Container, Grid, Row, Col } from "react-bootstrap";
 function Admin() {
-  const [survey, setSurvey] = useState({});
-  const [curSurvey, setCurSurvey] = useState({});
-  
-  useEffect(() => {
-    uploadSurveys()
-    console.log(survey);
-  }, [])
+    const [survey, setSurvey] = useState({});
+    const [curSurvey, setCurSurvey] = useState({});
 
-  function uploadSurveys() {
-    // API.getSurvey()
-    //   .then(res => 
-    //     setSurvey(res.data)
-    //   )
-    //   .catch(err => console.log(err));
-    setSurvey({
-        1:
+    useEffect(() => {
+        uploadSurveys()
+        console.log(survey);
+    }, [])
+
+    function uploadSurveys() {
+        // API.getSurvey()
+        //   .then(res => 
+        //     setSurvey(res.data)
+        //   )
+        //   .catch(err => console.log(err));
+        setSurvey({
+            1:
             {
                 title: "Test survey 1!",
                 active: true,
@@ -37,33 +37,33 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red"},
-                            {choice: "Blue"},
-                            {choice: "Green"},
-                            {choice: "Incandescent Yellow"},
+                            { choice: "Red" },
+                            { choice: "Blue" },
+                            { choice: "Green" },
+                            { choice: "Incandescent Yellow" },
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car"},
-                            {choice: "truck"},
-                            {choice: "ufo"},
+                            { choice: "car" },
+                            { choice: "truck" },
+                            { choice: "ufo" },
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5"},
-                            {choice: "5"},
-                            {choice: ""},
-                            {choice: "10000000000000000000000"},
-                            {choice: "what's a number"},
+                            { choice: "5" },
+                            { choice: "5" },
+                            { choice: "" },
+                            { choice: "10000000000000000000000" },
+                            { choice: "what's a number" },
                         ]
                     }
                 ]
             },
-        2: {
+            2: {
                 title: "Test survey 2!",
                 active: true,
                 public: true,
@@ -71,85 +71,85 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red"},
-                            {choice: "Blue"},
-                            {choice: "Green"},
-                            {choice: "Incandescent Yellow"},
+                            { choice: "Red" },
+                            { choice: "Blue" },
+                            { choice: "Green" },
+                            { choice: "Incandescent Yellow" },
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car"},
-                            {choice: "truck"},
-                            {choice: "ufo"},
+                            { choice: "car" },
+                            { choice: "truck" },
+                            { choice: "ufo" },
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5"},
-                            {choice: "5"},
-                            {choice: ""},
-                            {choice: "10000000000000000000000"},
-                            {choice: "what's a number"},
+                            { choice: "5" },
+                            { choice: "5" },
+                            { choice: "" },
+                            { choice: "10000000000000000000000" },
+                            { choice: "what's a number" },
                         ]
                     }
                 ]
             }
-    })
-   
-
-  };
-
-  function accessSurvey(id){
-
-  }
+        })
 
 
-  return (
-          <Navigation />
-    //navbar will be set up here 
-    // ---- Have the log out button link here 
-    //starting the side survey page 
-    <div>
+    };
 
-      <Row float="center">
+    function accessSurvey(id) {
 
-          <Col sx={3} md ={3}>
-              <div className = "back-div">
-              {Object.keys(survey).map(key => (
+    }
 
-                    <SurveyList name = {survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
+
+    return (
+
+        //navbar will be set up here 
+        // ---- Have the log out button link here 
+        //starting the side survey page 
+        <div>
+            <Navigation />
+            <Row float="center">
+
+                <Col sx={3} md={3}>
+                    <div className="back-div">
+                        {Object.keys(survey).map(key => (
+
+                            <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
+                            </SurveyList>
+                        ))}
+
+
+
+
+                    </div>
+                </Col>
+
+                <Col md={2} float="center">
+                    <SurveyList name="Edit Survey">
                     </SurveyList>
-               ))}
-                
+                </Col>
 
+                <Col md={2} float="center">
+                    <SurveyList name="Analytics">
+                    </SurveyList>
+                </Col>
 
+                <Col md={2} float="center">
+                    <SurveyList name="Admin">
+                    </SurveyList>
+                </Col>
 
-              </div>
-          </Col>
+            </Row>
 
-          <Col md ={2} float="center">
-            <SurveyList name = "Edit Survey">
-            </SurveyList>
-          </Col>
+        </div>
 
-          <Col md ={2} float="center">
-              <SurveyList name = "Analytics">
-              </SurveyList>
-          </Col>
-
-          <Col md ={2} float="center">
-              <SurveyList name = "Admin">
-              </SurveyList>
-          </Col>
-
-      </Row>
-
-    </div>
-    
-  );
+    );
 }
 
 export default Admin;

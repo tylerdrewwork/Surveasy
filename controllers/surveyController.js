@@ -1,6 +1,6 @@
 const db = require('../models');
 
-function SurveyController() {}
+function SurveyController() { }
 
 //
 //  CREATE METHODS
@@ -22,7 +22,7 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
     db.Survey.updateOne({
-        id: surveyId 
+        id: surveyId
     }).then(result => {
         console.log("Update one result: ", result);
     })
@@ -36,8 +36,10 @@ SurveyController.prototype.addChoiceToQuestion = function () {
 //  READ METHODS
 // 
 
-SurveyController.prototype.getSurveyById = function () {
-
+SurveyController.prototype.getSurveyById = function (surveyId, cb) {
+    db.Survey.findOne({ _id: surveyId }).then(result => {
+        cb(result);
+    });
 }
 
 // May be redundant: SurveyController.prototype.getQuestionById = function () {}
