@@ -3,6 +3,10 @@ import Button from "../components/Button/button";
 //import { Link } from "react-router-dom";
 import API from "../utils/API"
 import Input from "../components/Input/input";
+import "./style.css";
+import Navigation from "../components/NavBar/navbar";
+
+
 
 import SurveyList from "../components/SurveyList/surveyList"
 import {Container, Grid, Row, Col} from "react-bootstrap";
@@ -102,10 +106,12 @@ function Admin() {
 
 
   return (
+          <Navigation />
     //navbar will be set up here 
     // ---- Have the log out button link here 
     //starting the side survey page 
     <div>
+
       <Row float="center">
 
           <Col sx={3} md ={3}>
@@ -140,6 +146,7 @@ function Admin() {
       </Row>
 
      
+
     </div>
     
   );
