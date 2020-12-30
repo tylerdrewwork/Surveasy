@@ -103,7 +103,7 @@ function Admin() {
   };
 
   function accessSurvey(id){
-        console.log("this is the key" + id)
+        console.log("this is the key")
   }
 
 
