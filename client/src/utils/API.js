@@ -110,12 +110,18 @@ const API = {
     });
   },
 
-  updateSurvey: function (id) {
-    return axios.put("/api/survey/" + id);
-  },
+  // updateSurvey: function (id) {
+  //   return axios.put("/api/survey/" + id);
+  // },
 
-  deleteSurvey: function (id) {
-    return axios.delete("/api/survey/" + id);
+  deleteSurvey: function (surveyId, token) {
+    return axios.request({
+      method: "DELETE",
+      url: `/api/survey/?id=${surveyId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
 };
 
