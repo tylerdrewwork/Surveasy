@@ -1,4 +1,63 @@
 // Seed used for testing and development
 
-import UserController from '../controllers/userController';
-import SurveyController from '../controllers/surveyController';
+const mongoose = require('mongoose');
+const UserController = require('../controllers/userController');
+const SurveyController = require('../controllers/surveyController');
+
+const userController = new UserController();
+const surveyController = new SurveyController();
+
+process.env = require('../env.json');
+
+// Connect to the Mongo DB
+mongoose.connect(
+    process.env.MONGODB_URI,
+    { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+).then(({ connections }) => {
+    console.log('Database connected on port', connections[0].port + '...');
+
+    // Create Users
+    userController.createUser({
+        username: "bestuser",
+        password: "Password123",
+        email: "bestuser@test.com"
+    }, result => {
+        console.log(result);
+    });
+
+    userController.createUser({
+        username: "smithy4556",
+        password: "smithyP@ssword5",
+        email: "smithy@test.com"
+    }, result => {
+        console.log(result);
+    });
+
+    userController.createUser({
+        username: "mcUser",
+        password: "mcPassword",
+        email: "mcEmail@test.com"
+    }, result => {
+        console.log(result);
+    });
+
+    userController.createUser({
+        username: "testUser4",
+        password: "testPassword4",
+        email: "testEmail4@test.com"
+    }, result => {
+        console.log(result);
+    });
+
+    userController.createUser({
+        username: "bananas",
+        password: "banana123",
+        email: "banana@test.com"
+    }, result => {
+        console.log(result);
+    });
+});
+
+
+
+// Create Surveys
