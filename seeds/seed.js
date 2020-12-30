@@ -16,45 +16,30 @@ mongoose.connect(
 ).then(({ connections }) => {
     console.log('Database connected on port', connections[0].port + '...');
 
-    // Create Users
-    userController.createUser({
+    seedUser({
         username: "bestuser",
         password: "Password123",
         email: "bestuser@test.com"
-    }, result => {
-        console.log(result);
     });
-
-    userController.createUser({
+    seedUser({
         username: "smithy4556",
         password: "smithyP@ssword5",
         email: "smithy@test.com"
-    }, result => {
-        console.log(result);
     });
-
-    userController.createUser({
+    seedUser({
         username: "mcUser",
         password: "mcPassword",
         email: "mcEmail@test.com"
-    }, result => {
-        console.log(result);
     });
-
-    userController.createUser({
+    seedUser({
         username: "testUser4",
         password: "testPassword4",
         email: "testEmail4@test.com"
-    }, result => {
-        console.log(result);
     });
-
-    userController.createUser({
+    seedUser({
         username: "bananas",
         password: "banana123",
         email: "banana@test.com"
-    }, result => {
-        console.log(result);
     });
 
     // Create Surveys
@@ -83,3 +68,14 @@ mongoose.connect(
         console.log(result);
     });
 });
+
+// Create Users
+function seedUser(userData) {
+    userController.createUser({
+        username: userData.username,
+        password: userData.password,
+        email: userData.email
+    }, result => {
+        console.log(result);
+    });
+}
