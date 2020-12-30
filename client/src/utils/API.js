@@ -63,12 +63,12 @@ const API = {
     });
   },
 
-  getSurveyById: function (credentials, surveyId) {
+  getUserSurveyById: function (surveyId, token) {
     return axios.request({
       method: "GET",
       url: `/api/survey/?id=${surveyId}`,
       headers: {
-        Authorization: `Bearer ${credentials.token}`
+        Authorization: `Bearer ${token}`
       }
     });
   },

@@ -106,18 +106,17 @@ const apiRoutes = (app) => {
                 let surveyId = req.query.id;
                 let userId = authorization.userId;
 
-                userController.getUserByIdPopulated(userId, result => {
-                    console.log(result.surveys);
-
-
-                    if (surveyId) {
-                        // Get one user survey by id
-                        console.log("GET ONE SURVEY BY ID");
-                    } else {
-                        // Get all user surveys
+                if (surveyId) {
+                    // Get one user survey by id
+                    surveyController.getSurveyById(surveyId, result => {
+                        console.log(result);
+                    });
+                } else {
+                    // Get all user surveys
+                    userController.getUserByIdPopulated(userId, result => {
                         res.json(result.surveys);
-                    }
-                });
+                    });
+                }
             });
         })
         .delete((req, res) => {
