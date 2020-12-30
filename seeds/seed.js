@@ -34,16 +34,6 @@ mongoose.connect(
         password: "mcPassword",
         email: "mcEmail@test.com"
     });
-    seedUser({
-        username: "testUser4",
-        password: "testPassword4",
-        email: "testEmail4@test.com"
-    });
-    seedUser({
-        username: "bananas",
-        password: "banana123",
-        email: "banana@test.com"
-    });
     seedSurvey({
         title: "Test Survey Title",
         question1: "Question 1",
@@ -119,7 +109,9 @@ function seedUser(userData) {
         email: userData.email
     }, result => {
         userIds.push(result._id);
-        console.log(userIds);
+        if (userIds.length === 3 && surveyIds.length === 5) {
+            assignSurveys(userIds, surveyIds);
+        }
     });
 }
 
@@ -148,6 +140,34 @@ function seedSurvey(surveyData) {
         }]
     }, result => {
         surveyIds.push(result._id);
-        console.log(surveyIds);
+        if (surveyIds.length === 3 && userIds.length === 5) {
+            assignSurveys(userIds, surveyIds);
+        }
     });
+}
+
+function assignSurveys(users, surveys) {
+    console.log("ASSIGN SURVEYS");
+
+    let addedSurveys = 0;
+    let userIndex = 0;
+    let surveyIndex = 0;
+
+    while (addedSurveys < 3) {
+        console.log("Survey Index:", surveys[surveyIndex]);
+        console.log("User Index:", users[userIndex]);
+
+        surveyIndex++;
+        if (surveyIndex >= surveys.length) {
+            surveyIndex = 0;
+        }
+
+        userIndex++;
+        if (userIndex >= users.length) {
+            userIndex = 0;
+
+            addedSurveys++;
+            console.log("Added Surveys:", addedSurveys);
+        }
+    }
 }
