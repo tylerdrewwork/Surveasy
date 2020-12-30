@@ -103,17 +103,17 @@ function Admin() {
   };
 
   function accessSurvey(id){
-
+        console.log("this is the key" + id)
   }
 
 
   return (
-          <Navigation />
+          
     //navbar will be set up here 
     // ---- Have the log out button link here 
     //starting the side survey page 
     <div>
-
+     <Navigation />
       <Row float="center">
 
           <Col sx={3} md ={3}>
