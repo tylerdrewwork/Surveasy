@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const UserController = require('../controllers/UserController');
+const SurveyController = require('../controllers/surveyController.js');
 const AuthController = require('../controllers/AuthController');
 
 // Create a new UserController 
-const userController = new UserController;
+const userController = new UserController();
+const surveyController = new SurveyController();
 const authController = new AuthController();
 
 // USER Routes
@@ -16,31 +18,15 @@ router.route("/api/user/")
             return;
         }
 
-        // Define request query parameters
-        let id = req.query.id;
-        let username = req.query.username;
-        let token = req.body.token;
-
-        // If user is not authorized, do not return user data
-        if (!token) {
-            res.send("Error! User is not authorized.");
-            return;
-        }
-
-        // Verify Authentic Token
-        authController.verifyAuthSignature(token, authorization => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
             if (authorization === 'Error: Authorization is Unsuccessful.') {
                 res.send("Error! User is not authorized.");
                 return;
             }
 
-            // If there are no queries, then get all users
-            if (checkIfObjectIsEmpty(req.query)) {
-                userController.getAllUsers(users => {
-                    res.json(users);
-                    console.log("API: Got all users.");
-                });
-            }
+            // Define request query parameters
+            let id = req.query.id;
 
             // If there is an 'id' query
             if (id) {
@@ -49,9 +35,10 @@ router.route("/api/user/")
                     console.log("API: Got user by id: ", id);
                 })
             }
-
             // If there is a 'username' query
-            if (username) {
+            else {
+                username = authorization.username;
+                console.log("USER:", username);
                 userController.getUserByUsername(username, (user) => {
                     res.json(user);
                     console.log("API: Got user by username: ", username);
@@ -92,7 +79,7 @@ router.route("/api/user/")
         }
     });
 
-// AUTHORIZATION ROUTES
+// AUTHORIZATION Routes
 router.route("/api/auth")
     .post((req, res) => {
 
@@ -118,8 +105,75 @@ router.route("/api/auth")
 
 // SURVEY Routes
 router.route("/api/survey")
-// .get()
-// .post();
+    .get((req, res) => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
+
+            // define query parameters
+            let id = req.query.id;
+
+            // Get one survey by id
+            if (id) {
+                console.log("GET ONE SURVEY BY ID");
+            } else {
+                console.log("GET ALL SURVEYS OF USER");
+            }
+        });
+    })
+    .delete((req, res) => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
+
+            let surveyId = req.query.surveyId;
+            let userId = authorization.userId;
+
+            surveyController.deleteSurvey(surveyId, result => {
+                console.log(result);
+            });
+
+            // NEED TO REMOVE SURVEY FROM USER
+        });
+    })
+    // Create a survey
+    .post((req, res) => {
+        // AUTHORIZATION
+        authorizeRequest(req, authorization => {
+            if (authorization === "Error: Authorization is Unsuccessful.") {
+                res.send("Error: Authorization is Unsuccessful.");
+                return;
+            }
+
+            let surveyData = req.body;
+            let userId = authorization.userId;
+
+            surveyController.createSurvey(surveyData, survey => {
+                userController.addSurveyToUser(userId, survey._id, result => {
+                    console.log(result);
+                    res.json(survey);
+                });
+            });
+        })
+    });
+
+// Return decrypted authorization if authorized
+function authorizeRequest(request, cb) {
+    let token = request.body.token;
+
+    // If no token, unauthorized
+    if (!token) { cb("Error! User is not authorized."); }
+
+    authController.verifyAuthSignature(token, authorization => {
+        cb(authorization);
+    })
+}
 
 function checkIfObjectIsEmpty(obj) {
     // Check if the req.query object is empty!

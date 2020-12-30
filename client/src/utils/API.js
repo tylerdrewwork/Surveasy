@@ -26,7 +26,6 @@ export default {
     },
 
     createSurvey: function () {
-      console.log("Testing CreateSurvey");
       return axios.post("/api/survey");
     },
 
