@@ -56,8 +56,30 @@ mongoose.connect(
     }, result => {
         console.log(result);
     });
+
+    // Create Surveys
+    surveyController.createSurvey({
+        title: "Test Quiz Title",
+        active: true,
+        public: true,
+        questions: [{
+            question: "Question 1",
+            choices: [
+                { choice: "Test Choice 1" },
+                { choice: "Test Choice 2" },
+                { choice: "Test Choice 3" },
+                { choice: "Test Choice 4" }
+            ]
+        }, {
+            question: "Question 2",
+            choices: [
+                { choice: "Test Choice 1" },
+                { choice: "Test Choice 2" },
+                { choice: "Test Choice 3" },
+                { choice: "Test Choice 4" }
+            ]
+        }]
+    }, result => {
+        console.log(result);
+    });
 });
-
-
-
-// Create Surveys
