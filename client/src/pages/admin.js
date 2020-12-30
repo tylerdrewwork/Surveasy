@@ -22,8 +22,7 @@ function Admin() {
     //   )
     //   .catch(err => console.log(err));
     setSurvey({
-        id: "shubhi",
-        surveys: [
+        1:
             {
                 title: "Test survey 1!",
                 active: true,
@@ -58,7 +57,7 @@ function Admin() {
                     }
                 ]
             },
-            {
+        2: {
                 title: "Test survey 2!",
                 active: true,
                 public: true,
@@ -92,7 +91,6 @@ function Admin() {
                     }
                 ]
             }
-        ]
     })
    
 
@@ -112,9 +110,9 @@ function Admin() {
 
           <Col sx={3} md ={3}>
               <div className = "back-div">
-              {Object.keys(survey).map((keyName, i) => (
+              {Object.keys(survey).map(key => (
 
-                    <SurveyList name = {survey[keyName].title} onClick={() => accessSurvey(survey[keyName].title)} >
+                    <SurveyList name = {survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
                     </SurveyList>
                ))}
                 
