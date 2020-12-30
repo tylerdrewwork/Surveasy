@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import Admin from "./pages/admin"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
