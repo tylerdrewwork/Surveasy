@@ -109,7 +109,7 @@ const apiRoutes = (app) => {
                 if (surveyId) {
                     // Get one user survey by id
                     surveyController.getSurveyById(surveyId, result => {
-                        console.log(result);
+                        res.json(result);
                     });
                 } else {
                     // Get all user surveys
