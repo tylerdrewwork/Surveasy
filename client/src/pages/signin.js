@@ -19,20 +19,15 @@ function SignIn() {
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // if (formCred.username && formCred.password) {
-        //     API.getAuthorization({
-        //         username: formCred.username,
-        //         password: formCred.password
-        //     }).then(result => {
-        //         console.log(result);
-        //         history.push('/admin');
-        //     }).catch(err => console.log(err));
-        // }
-
-        API.getUserSurveyById("5fe8f47e5d424746bcce6818", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MjkyODQ4fQ.j3bT5O4S9pkcILBDO50e8fisK3ymrUZqNLx0qNynnvo").then(result => {
-            console.log(result);
-            // history.push('/admin');
-        }).catch(err => console.log(err));
+        if (formCred.username && formCred.password) {
+            API.getAuthorization({
+                username: formCred.username,
+                password: formCred.password
+            }).then(result => {
+                console.log(result);
+                history.push('/admin');
+            }).catch(err => console.log(err));
+        }
     };
 
     return (
