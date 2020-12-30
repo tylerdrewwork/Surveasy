@@ -1,0 +1,31 @@
+
+.div-init{
+    font-size: 25px;
+    font-family: 'Lora', serif;
+    letter-spacing: 3px;
+    color: black;
+    font-weight: 100;
+    padding: 10px;
+
+}
+
+.div-init:hover{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    letter-spacing: 3px;
+    color: black;
+    font-weight: 100;
+    padding: 10px;
+    border: solid;
+    border-color: #D4AF37;
+}
+
+.answer-options{
+    font-size: 25px;
+    font-family: 'Lora', serif;
+    letter-spacing: 3px;
+    color: black;
+    font-weight: 100;
+    padding: 10px;
+
+}

@@ -122,7 +122,7 @@ const API = {
         Authorization: `Bearer ${token}`,
       }
     });
-  },
+  }
 };
 
 export default API;
