@@ -103,14 +103,21 @@ const apiRoutes = (app) => {
                 }
 
                 // define query parameters
-                let id = req.query.id;
+                let surveyId = req.query.id;
+                let userId = authorization.userId;
 
-                // Get one survey by id
-                if (id) {
-                    console.log("GET ONE SURVEY BY ID");
-                } else {
-                    console.log("GET ALL SURVEYS OF USER");
-                }
+                userController.getUserByIdPopulated(userId, result => {
+                    console.log(result.surveys);
+
+
+                    if (surveyId) {
+                        // Get one user survey by id
+                        console.log("GET ONE SURVEY BY ID");
+                    } else {
+                        // Get all user surveys
+                        res.json(result.surveys);
+                    }
+                });
             });
         })
         .delete((req, res) => {

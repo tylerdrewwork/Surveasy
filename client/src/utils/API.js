@@ -53,12 +53,12 @@ const API = {
   },
 
   // SURVEY Routes
-  getUserSurveys: function (credentials) {
+  getUserSurveys: function (token) {
     return axios.request({
       method: "GET",
       url: "/api/survey",
       headers: {
-        Authorization: `Bearer ${credentials.token}`
+        Authorization: `Bearer ${token}`
       }
     });
   },
