@@ -56,8 +56,27 @@ const apiRoutes = (app) => {
                     return;
                 }
 
+                // Update values
                 let userId = authorization.userId;
-                console.log(userId);
+                let username = req.body.username;
+                let email = req.body.email;
+                let password = req.body.password;
+
+                if (username) {
+                    userController.updateUsername(userId, username, result => {
+                        res.json(result);
+                    });
+                }
+                else if (email) {
+                    userController.updateUserEmail(userId, email, result => {
+                        res.json(result);
+                    });
+                }
+                else if (password) {
+                    userController.updateUserPassword(userId, password, result => {
+                        res.json(result);
+                    });
+                }
             })
         })
         // Delete Users

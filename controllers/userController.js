@@ -127,9 +127,3 @@ UserController.prototype.deleteUserById = function (userId, cb) {
 }
 
 module.exports = UserController;
-
-// Testing
-// const controller = new UserController();
-// controller.updateUserPassword("5ff0ba03ea6977380475dcd3", 'Password456', result => {
-//     console.log(result);
-// });
