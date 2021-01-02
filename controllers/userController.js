@@ -5,6 +5,7 @@ function UserController() {
     this.authorize = new AuthController();
 }
 
+// Create Methods
 UserController.prototype.createUser = function (userData, cb) {
     this.authorize.generateSalt(salt => {
         this.authorize.getHash(userData.password, salt, hash => {
@@ -23,6 +24,7 @@ UserController.prototype.createUser = function (userData, cb) {
     });
 }
 
+// Read Methods
 UserController.prototype.getAllUsers = function (cb) {
     db.User.find({}).then(result => {
         cb(result);
@@ -68,6 +70,14 @@ UserController.prototype.getUserByUsernamePopulated = function (username, cb) {
     });
 }
 
+// Update Methods
+UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
+    db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
+        cb(result);
+    })
+}
+
+// Delete Methods
 UserController.prototype.deleteUserById = function (userId, cb) {
     db.User.deleteOne({ _id: userId }).then(result => {
         cb(result);
@@ -75,12 +85,6 @@ UserController.prototype.deleteUserById = function (userId, cb) {
         console.log("ERROR: ", err);
         cb(err);
     });
-}
-
-UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
-    db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
-        cb(result);
-    })
 }
 
 module.exports = UserController;
