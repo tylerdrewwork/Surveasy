@@ -12,41 +12,24 @@ import { Line } from "react-chartjs-2";
 
 
 import SurveyList from "../components/SurveyList/surveyList"
-import {Container, Grid, Row, Col} from "react-bootstrap";
+import { Container, Grid, Row, Col } from "react-bootstrap";
 function Admin() {
-  const [survey, setSurvey] = useState({});
-  const [curSurvey, setCurSurvey] = useState({});
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [
-      {
-        label: "First dataset",
-        data: [33, 53, 85, 41, 44, 65],
-        fill: true,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)"
-      },
-      {
-        label: "Second dataset",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774"
-      }
-    ]
-  };
-  useEffect(() => {
-    uploadSurveys()
-    console.log(survey);
-  }, [])
+    const [survey, setSurvey] = useState({});
+    const [curSurvey, setCurSurvey] = useState({});
 
-  function uploadSurveys() {
-    // API.getSurvey()
-    //   .then(res => 
-    //     setSurvey(res.data)
-    //   )
-    //   .catch(err => console.log(err));
-    setSurvey({
-        1:
+    useEffect(() => {
+        uploadSurveys()
+        console.log(survey);
+    }, [])
+
+    function uploadSurveys() {
+        // API.getSurvey()
+        //   .then(res => 
+        //     setSurvey(res.data)
+        //   )
+        //   .catch(err => console.log(err));
+        setSurvey({
+            1:
             {
                 title: "Test survey 1!",
                 active: true,
@@ -55,33 +38,33 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red", votes : 5},
-                            {choice: "Blue", votes : 7},
-                            {choice: "Green", votes : 6},
-                            {choice: "Incandescent Yellow", votes : 2},
+                            { choice: "Red" },
+                            { choice: "Blue" },
+                            { choice: "Green" },
+                            { choice: "Incandescent Yellow" },
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car", votes : 6},
-                            {choice: "truck", votes : 7},
-                            {choice: "ufo", votes : 9},
+                            { choice: "car" },
+                            { choice: "truck" },
+                            { choice: "ufo" },
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5", votes : 4},
-                            {choice: "5", votes : 3},
-                            {choice: "", votes : 7},
-                            {choice: "10000000000000000000000", votes : 6},
-                            {choice: "what's a number", votes : 1},
+                            { choice: "5" },
+                            { choice: "5" },
+                            { choice: "" },
+                            { choice: "10000000000000000000000" },
+                            { choice: "what's a number" },
                         ]
                     }
                 ]
             },
-        2: {
+            2: {
                 title: "Test survey 2!",
                 active: true,
                 public: true,
@@ -89,86 +72,85 @@ function Admin() {
                     {
                         question: "Favorite color?",
                         choices: [
-                            {choice: "Red", votes : 3},
-                            {choice: "Blue", votes : 6},
-                            {choice: "Green", votes : 9},
-                            {choice: "Incandescent Yellow", votes : 1},
+                            { choice: "Red" },
+                            { choice: "Blue" },
+                            { choice: "Green" },
+                            { choice: "Incandescent Yellow" },
                         ]
                     },
                     {
                         question: "Favorite vehicle?",
                         choices: [
-                            {choice: "car", votes : 9},
-                            {choice: "truck", votes : 5},
-                            {choice: "ufo", votes : 1},
+                            { choice: "car" },
+                            { choice: "truck" },
+                            { choice: "ufo" },
                         ]
                     },
                     {
                         question: "Favorite number?",
                         choices: [
-                            {choice: "5", votes : 7},
-                            {choice: "8", votes : 2},
-                            {choice: "", votes : 6},
-                            {choice: "10000000000000000000000", votes : 4},
-                            {choice: "what's a number", votes : 3},
+                            { choice: "5" },
+                            { choice: "5" },
+                            { choice: "" },
+                            { choice: "10000000000000000000000" },
+                            { choice: "what's a number" },
                         ]
                     }
                 ]
             }
-    })
-   
-
-  };
-
-  function accessSurvey(id){
-        console.log("this is the key")
-  }
+        })
 
 
-  return (
-          
-    //navbar will be set up here 
-    // ---- Have the log out button link here 
-    //starting the side survey page 
-    <div>
-     <Navigation />
-     <Line data={data} />
-      <Row float="center">
+    };
 
-          <Col sx={3} md ={3}>
-              <div className = "back-div">
-              {Object.keys(survey).map(key => (
+    function accessSurvey(id) {
 
-                    <SurveyList name = {survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
+    }
+
+
+    return (
+
+        //navbar will be set up here 
+        // ---- Have the log out button link here 
+        //starting the side survey page 
+        <div>
+            <Navigation />
+            <Row float="center">
+
+                <Col sx={3} md={3}>
+                    <div className="back-div">
+                        {Object.keys(survey).map(key => (
+
+                            <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
+                            </SurveyList>
+                        ))}
+
+
+
+
+                    </div>
+                </Col>
+
+                <Col md={2} float="center">
+                    <SurveyList name="Edit Survey">
                     </SurveyList>
-               ))}
-                
+                </Col>
 
+                <Col md={2} float="center">
+                    <SurveyList name="Analytics">
+                    </SurveyList>
+                </Col>
 
+                <Col md={2} float="center">
+                    <SurveyList name="Admin">
+                    </SurveyList>
+                </Col>
 
-              </div>
-          </Col>
+            </Row>
 
-          <Col md ={2} float="center">
-            <SurveyList name = "Edit Survey">
-            </SurveyList>
-          </Col>
+        </div>
 
-          <Col md ={2} float="center">
-              <SurveyList name = "Analytics">
-              </SurveyList>
-          </Col>
-
-          <Col md ={2} float="center">
-              <SurveyList name = "Admin">
-              </SurveyList>
-          </Col>
-
-      </Row>
-
-    </div>
-    
-  );
+    );
 }
 
 export default Admin;

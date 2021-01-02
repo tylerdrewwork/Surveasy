@@ -1,9 +1,24 @@
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
-    username: String,
-    passToken: String,
-    salt: String,
+    username: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    passToken: {
+        type: String,
+        required: true
+    },
+    salt: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     surveys: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Survey'
