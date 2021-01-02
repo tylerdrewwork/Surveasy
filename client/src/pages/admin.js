@@ -8,7 +8,7 @@ import CreateSurvey from "../components/createSurvey/createSurvey";
 import Navigation from "../components/NavBar/navbar";
 
 import SurveyList from "../components/SurveyList/surveyList";
-import { Container, Grid, Row, Col } from "react-bootstrap";
+import { Container, Grid, Row, Col, ListGroup } from "react-bootstrap";
 function Admin() {
   const [survey, setSurvey] = useState({});
   const [curSurvey, setCurSurvey] = useState({});
@@ -96,7 +96,9 @@ function Admin() {
     });
   }
 
-  function accessSurvey(id) {}
+  function accessSurvey(id) {
+    console.log(id);
+  }
 
   return (
     //navbar will be set up here
@@ -127,6 +129,16 @@ function Admin() {
 
         <Col md={2} float="center">
           <SurveyList name="Admin"></SurveyList>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ListGroup>
+            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+          </ListGroup>
         </Col>
       </Row>
     </div>
