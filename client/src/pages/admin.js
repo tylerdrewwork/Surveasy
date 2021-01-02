@@ -12,6 +12,7 @@ import { Container, Grid, Row, Col, ListGroup } from "react-bootstrap";
 function Admin() {
   const [survey, setSurvey] = useState({});
   const [curSurvey, setCurSurvey] = useState({});
+  //   const [token, setToken] = useState({});
 
   useEffect(() => {
     uploadSurveys();
@@ -19,11 +20,14 @@ function Admin() {
   }, []);
 
   function uploadSurveys() {
-    // API.getSurvey()
-    //   .then(res =>
-    //     setSurvey(res.data)
-    //   )
-    //   .catch(err => console.log(err));
+    let token = localStorage.getItem(`token`);
+
+    API.getUserSurveys(token)
+      .then((res) => {
+        setSurvey(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     setSurvey({
       1: {
         title: "Test survey 1!",
