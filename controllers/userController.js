@@ -2,13 +2,14 @@ AuthController = require('./authController.js');
 const db = require('../models');
 
 function UserController() {
-    this.authorize = new AuthController();
+    this.encryptions = new AuthController();
 }
 
 // Create Methods
 UserController.prototype.createUser = function (userData, cb) {
-    this.authorize.generateSalt(salt => {
-        this.authorize.getHash(userData.password, salt, hash => {
+    this.encryptions.generateSalt(salt => {
+        this.encryptions.getHash(userData.password, salt, hash => {
+
             db.User.create({
                 username: userData.username,
                 passToken: hash,
@@ -20,6 +21,7 @@ UserController.prototype.createUser = function (userData, cb) {
                 console.log("ERROR: ", err);
                 cb(err);
             });
+
         });
     });
 }
@@ -91,6 +93,23 @@ UserController.prototype.updateUserEmail = function (userId, email, cb) {
     })
 }
 
+UserController.prototype.updateUserPassword = function (userId, password, cb) {
+    this.encryptions.generateSalt(salt => {
+        this.encryptions.getHash(password, salt, hash => {
+
+            db.User.updateOne({ _id: userId }, {
+                $set: { passToken: hash, }
+            }).then(result => {
+                cb(result);
+            }).catch(err => {
+                console.log("ERROR: ", err);
+                cb(err);
+            });
+
+        });
+    });
+}
+
 UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
     db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
         cb(result);
@@ -111,6 +130,6 @@ module.exports = UserController;
 
 // Testing
 // const controller = new UserController();
-// controller.updateUserEmail("5ff0ba03ea6977380475dcd3", 'nickstest@gmail.com', result => {
+// controller.updateUserPassword("5ff0ba03ea6977380475dcd3", 'Password456', result => {
 //     console.log(result);
 // });
