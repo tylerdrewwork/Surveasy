@@ -10,6 +10,20 @@ const authController = new AuthController();
 const apiRoutes = (app) => {
     // USER Routes
     app.route("/api/user")
+        // Create Users
+        .post((req, res) => {
+            let user = req.body;
+
+            if (checkIfObjectIsEmpty(user) === false) {
+                console.log("API: Creating user: ", req.body);
+                userController.createUser(req.body, (result) => {
+                    res.send(result);
+                });
+            } else {
+                console.log("API ERROR: Attempted to create user but object was empty.");
+                res.send("Error: object empty");
+            }
+        })
         // Get Users
         .get((req, res) => {
             // Only allow one query at a time:
@@ -34,6 +48,18 @@ const apiRoutes = (app) => {
                 });
             });
         })
+        // Update Users
+        .put((req, res) => {
+            authorizeRequest(req, authorization => {
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
+                    return;
+                }
+
+                let userId = authorization.userId;
+                console.log(userId);
+            })
+        })
         // Delete Users
         .delete((req, res) => {
             // Only allow one query at a time:
@@ -43,6 +69,11 @@ const apiRoutes = (app) => {
             }
 
             authorizeRequest(req, authorization => {
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
+                    return;
+                }
+
                 let userId = authorization.userId;
                 console.log(userId);
 
@@ -52,19 +83,6 @@ const apiRoutes = (app) => {
                     console.log("API: Deleting user by id: ", id);
                 });
             });
-        })
-        .post((req, res) => {
-            let user = req.body;
-
-            if (checkIfObjectIsEmpty(user) === false) {
-                console.log("API: Creating user: ", req.body);
-                userController.createUser(req.body, (result) => {
-                    res.send(result);
-                });
-            } else {
-                console.log("API ERROR: Attempted to create user but object was empty.");
-                res.send("Error: object empty");
-            }
         });
 
     // AUTHORIZATION Routes
