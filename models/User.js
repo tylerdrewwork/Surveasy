@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
-    username: String,
+    username: {
+        type: String,
+        unique: true
+    },
     passToken: String,
     salt: String,
+    email: {
+        type: String,
+        unique: true
+    },
     surveys: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Survey'
