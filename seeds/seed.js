@@ -119,8 +119,6 @@ function seedUser(userData) {
 function seedSurvey(surveyData) {
     surveyController.createSurvey({
         title: surveyData.title,
-        active: true,
-        public: true,
         questions: [{
             question: surveyData.question1,
             choices: [
