@@ -7,14 +7,6 @@ const userController = new UserController();
 const surveyController = new SurveyController();
 const authController = new AuthController();
 
-// Testing
-const testUserId = "5ff0ba03ea6977380475dcd3";
-const testUsername = 'bestuser';
-
-userController.updateUsername(testUserId, testUsername, result => {
-    console.log(result);
-});
-
 const apiRoutes = (app) => {
     // USER Routes
     app.route("/api/user")
