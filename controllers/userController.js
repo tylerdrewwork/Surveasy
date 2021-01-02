@@ -71,6 +71,16 @@ UserController.prototype.getUserByUsernamePopulated = function (username, cb) {
 }
 
 // Update Methods
+UserController.prototype.updateUsername = function (userId, username, cb) {
+    db.User.updateOne({ _id: userId }, {
+        $set: { username: username }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        cb(err);
+    });
+}
+
 UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
     db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
         cb(result);
