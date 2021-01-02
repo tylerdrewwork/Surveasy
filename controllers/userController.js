@@ -81,6 +81,16 @@ UserController.prototype.updateUsername = function (userId, username, cb) {
     });
 }
 
+UserController.prototype.updateUserEmail = function (userId, email, cb) {
+    db.User.updateOne({ _id: userId }, {
+        $set: { email: email }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        cb(err);
+    })
+}
+
 UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
     db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
         cb(result);
@@ -98,3 +108,9 @@ UserController.prototype.deleteUserById = function (userId, cb) {
 }
 
 module.exports = UserController;
+
+// Testing
+// const controller = new UserController();
+// controller.updateUserEmail("5ff0ba03ea6977380475dcd3", 'nickstest@gmail.com', result => {
+//     console.log(result);
+// });
