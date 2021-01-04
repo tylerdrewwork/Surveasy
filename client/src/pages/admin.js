@@ -14,6 +14,7 @@ function Admin() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
     let token;
+    let selectedSurvey; 
     useEffect(() => {
         uploadSurveys()
         console.log(token);
@@ -32,7 +33,7 @@ function Admin() {
     };
 
     function accessSurvey(id) {
-
+        selectedSurvey = id; 
     }
 
 
@@ -48,14 +49,9 @@ function Admin() {
                 <Col sx={3} md={3}>
                     <div className="back-div">
                         {Object.keys(survey).map(key => (
-
-                            <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key].title)} >
+                            <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
                             </SurveyList>
                         ))}
-
-
-
-
                     </div>
                 </Col>
 
