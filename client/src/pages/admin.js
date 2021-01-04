@@ -5,34 +5,38 @@ import API from "../utils/API";
 import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
-import Navigation from "../components/NavBar/navbar";
 
+import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
+import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList";
-import { Container, Grid, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Grid, Row, Col } from "react-bootstrap";
+
 function Admin() {
   const [survey, setSurvey] = useState({});
   const [curSurvey, setCurSurvey] = useState({});
-  //   const [token, setToken] = useState({});
-
+  let token;
+  let selectedSurvey;
   useEffect(() => {
     uploadSurveys();
+    console.log(token);
     console.log(survey);
   }, []);
 
   function uploadSurveys() {
-    let token = localStorage.getItem(`token`);
+    token = localStorage.getItem(`token`);
 
     API.getUserSurveys(token)
       .then((res) => {
         setSurvey(res.data);
         console.log(res.data);
-        console.log(res.data[0].questions[0].question);
       })
       .catch((err) => console.log(err));
   }
 
   function accessSurvey(id) {
-    console.log(id);
+    selectedSurvey = id;
+    console.log(selectedSurvey);
+    localStorage.setItem("currentSurvey", id);
   }
 
   return (
@@ -40,7 +44,7 @@ function Admin() {
     // ---- Have the log out button link here
     //starting the side survey page
     <div>
-      <Navigation />
+      <NavigationSurvey />
 
       <Row float="center">
         <Col sx={3} md={3}>
@@ -48,34 +52,13 @@ function Admin() {
             {Object.keys(survey).map((key) => (
               <SurveyList
                 name={survey[key].title}
-                onClick={() => accessSurvey(survey[key].title)}
+                onClick={() => accessSurvey(survey[key]._id)}
               ></SurveyList>
             ))}
           </div>
         </Col>
-
-        <Col md={2} float="center">
-          <SurveyList name="Edit Survey"></SurveyList>
-        </Col>
-
-        <Col md={2} float="center">
-          <SurveyList name="Analytics"></SurveyList>
-        </Col>
-
-        <Col md={2} float="center">
-          <SurveyList name="Admin"></SurveyList>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {Object.keys(survey).map((key) => (
-            <ListGroup>
-              <ListGroup.Item className={key}>
-                {survey[key].title}
-                <ListGroup.Item> {survey[key]._id}</ListGroup.Item>
-              </ListGroup.Item>
-            </ListGroup>
-          ))}
+        <Col sx={8} md={9}>
+          <div className="back-div" id="displaySurvey"></div>
         </Col>
       </Row>
     </div>

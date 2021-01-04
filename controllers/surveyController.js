@@ -13,18 +13,21 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
         public: surveyData.public,
         questions: surveyData.questions
     }).then(result => {
-        console.log("API: Successfully created survey: ", result);
         cb(result);
     }).catch(err => {
+        console.log("Error:", err);
         cb(err);
     });
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
-    db.Survey.updateOne({
-        id: surveyId
+    db.Survey.updateOne({ _id: surveyId }, {
+        $push: { questions: questionData }
     }).then(result => {
-        console.log("Update one result: ", result);
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
     })
 }
 
@@ -51,28 +54,75 @@ SurveyController.prototype.getSurveyById = function (surveyId, cb) {
 /**
  * @description Updates the survey name, description, etc. Does NOT update question info
  */
-SurveyController.prototype.updateSurveyInfo = function () {
 
+SurveyController.prototype.updateSurveyActive = function (surveyId, setActive, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { active: setActive }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
 }
 
-SurveyController.prototype.updateQuestionTitle = function () {
-
+SurveyController.prototype.updateSurveyPublic = function (surveyId, setPublic, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { public: setPublic }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
 }
 
-SurveyController.prototype.updateChoice = function () {
+SurveyController.prototype.updateSurveyTitle = function (surveyId, setTitle, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { title: setTitle }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
+}
 
+SurveyController.prototype.updateSurveyQuestions = function (surveyId, questionData, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { questions: questionData }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    })
 }
 
 // 
 //  DELETE METHODS
 // 
 
-SurveyController.prototype.deleteSurvey = function () {
-
+SurveyController.prototype.deleteSurvey = function (surveyId, cb) {
+    db.Survey.deleteOne({
+        _id: surveyId
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        cb(err);
+    })
 }
 
-SurveyController.prototype.deleteQuestion = function () {
-
+SurveyController.prototype.deleteQuestion = function (surveyId, questionId, cb) {
+    // db.Survey.updateOne(
+    //     { _id: surveyId },
+    //     { $pull: { questions: { _id: questionId } } }
+    // ).then(result => {
+    //     cb(result);
+    // }).catch(err => {
+    //     console.log("Error:", err);
+    //     cb(err);
+    // })
 }
 
 SurveyController.prototype.deleteChoice = function () {

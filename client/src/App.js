@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import Admin from "./pages/admin"
+import Edit from "./pages/edit"
+import Analytics from "./pages/analytics"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -16,6 +18,12 @@ function App() {
       </Route>
       <Route exact path="/admin">
         <Admin />
+      </Route>
+      <Route exact path="/edit">
+        <Edit />
+      </Route>
+      <Route exact path="/analytics">
+        <Analytics />
       </Route>
     </Router>
   );
