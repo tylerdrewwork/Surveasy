@@ -191,6 +191,7 @@ const apiRoutes = (app) => {
                 let active = req.body.active;
                 let public = req.body.public;
                 let title = req.body.title;
+                let questionData = req.body.questionData;
 
                 if (active) {
                     // Update Active
@@ -208,7 +209,12 @@ const apiRoutes = (app) => {
                     // Update Title
                     surveyController.updateSurveyTitle(surveyId, title, result => {
                         res.json(result);
-                    })
+                    });
+                }
+                if (questionData) {
+                    surveyController.updateSurveyQuestions(surveyId, questionData, result => {
+                        res.json(result);
+                    });
                 }
             });
         })
