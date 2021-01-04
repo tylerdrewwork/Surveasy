@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 //import { Link } from "react-router-dom";
-import API from "../utils/API";
+import API from "../utils/API"
 import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
-
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 
-function Admin() {
+function Edit() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
     let token;
@@ -36,8 +35,12 @@ function Admin() {
     function accessSurvey(id) {
         selectedSurvey = id; 
         console.log(selectedSurvey);
-        localStorage.setItem('currentSurvey', id);
     }
+
+    function editSurvey() {
+        
+    }
+
 
     return (
 
@@ -46,6 +49,28 @@ function Admin() {
         //starting the side survey page 
         <div>
             <NavigationSurvey />
+            <Row float="center">
+
+
+
+                <Col md={4} float="center" >
+                    <SurveyList name="Edit Survey" onClick={() => editSurvey()}>
+                    </SurveyList>
+                </Col>
+
+                <Col md={4} float="center">
+                    <SurveyList name="Analytics">
+                    </SurveyList>
+                </Col>
+
+                <Col md={4} float="center">
+                    <SurveyList name="Admin">
+                    </SurveyList>
+                </Col>
+
+
+
+            </Row>
 
             <Row float="center">
             <Col sx={3} md={3}>
@@ -66,7 +91,6 @@ function Admin() {
         </div>
 
     );
-
 }
 
-export default Admin;
+export default Edit;
