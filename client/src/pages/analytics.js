@@ -10,7 +10,7 @@ import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 
-function Admin() {
+function Analytics() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
     let token;
@@ -93,4 +93,4 @@ function Admin() {
     );
 }
 
-export default Admin;
+export default Analytics;
