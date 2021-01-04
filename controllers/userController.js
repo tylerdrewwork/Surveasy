@@ -28,16 +28,19 @@ UserController.prototype.createUser = function (userData, cb) {
 
 // Read Methods
 UserController.prototype.getAllUsers = function (cb) {
-    db.User.find({}).then(result => {
-        cb(result);
-    }).catch(err => {
-        console.log("ERROR: ", err);
-        cb(err);
-    });
+    db.User.find({})
+        .then(result => {
+            cb(result);
+        }).catch(err => {
+            console.log("ERROR: ", err);
+            cb(err);
+        });
 }
 
 UserController.prototype.getUserById = function (userId, cb) {
-    db.User.findOne({ _id: userId }).then(result => {
+    db.User.findOne({
+        _id: userId
+    }).then(result => {
         cb(result);
     }).catch(err => {
         console.log("ERROR: ", err);
@@ -46,16 +49,19 @@ UserController.prototype.getUserById = function (userId, cb) {
 }
 
 UserController.prototype.getUserByIdPopulated = function (userId, cb) {
-    db.User.findOne({ _id: userId }).populate('surveys').then(result => {
-        cb(result);
-    }).catch(err => {
-        console.log("ERROR: ", err);
-        cb(err);
-    });
+    db.User.findOne({ _id: userId }).populate('surveys')
+        .then(result => {
+            cb(result);
+        }).catch(err => {
+            console.log("ERROR: ", err);
+            cb(err);
+        });
 }
 
 UserController.prototype.getUserByUsername = function (username, cb) {
-    db.User.findOne({ username: username }).then(result => {
+    db.User.findOne({
+        username: username
+    }).then(result => {
         cb(result);
     }).catch(err => {
         console.log("ERROR: ", err);
@@ -64,12 +70,13 @@ UserController.prototype.getUserByUsername = function (username, cb) {
 }
 
 UserController.prototype.getUserByUsernamePopulated = function (username, cb) {
-    db.User.findOne({ username: username }).populate('surveys').then(result => {
-        cb(result);
-    }).catch(err => {
-        console.log("ERROR: ", err);
-        cb(err);
-    });
+    db.User.findOne({ username: username }).populate('surveys')
+        .then(result => {
+            cb(result);
+        }).catch(err => {
+            console.log("ERROR: ", err);
+            cb(err);
+        });
 }
 
 // Update Methods
@@ -79,6 +86,7 @@ UserController.prototype.updateUsername = function (userId, username, cb) {
     }).then(result => {
         cb(result);
     }).catch(err => {
+        console.log("Error:", err);
         cb(err);
     });
 }
@@ -89,6 +97,7 @@ UserController.prototype.updateUserEmail = function (userId, email, cb) {
     }).then(result => {
         cb(result);
     }).catch(err => {
+        console.log("Error:", err);
         cb(err);
     })
 }
@@ -111,14 +120,21 @@ UserController.prototype.updateUserPassword = function (userId, password, cb) {
 }
 
 UserController.prototype.addSurveyToUser = function (userId, surveyId, cb) {
-    db.User.updateOne({ _id: userId }, { $push: { surveys: surveyId } }).then(result => {
+    db.User.updateOne({ _id: userId }, {
+        $push: { surveys: surveyId }
+    }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
     })
 }
 
 // Delete Methods
 UserController.prototype.deleteUserById = function (userId, cb) {
-    db.User.deleteOne({ _id: userId }).then(result => {
+    db.User.deleteOne({
+        _id: userId
+    }).then(result => {
         cb(result);
     }).catch(err => {
         console.log("ERROR: ", err);
