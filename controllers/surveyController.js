@@ -63,19 +63,29 @@ SurveyController.prototype.updateSurveyActive = function (surveyId, setActive, c
     }).catch(err => {
         console.log("Error:", err);
         cb(err);
-    })
+    });
 }
 
-SurveyController.prototype.updateSurveyInfo = function () {
-
+SurveyController.prototype.updateSurveyPublic = function (surveyId, setPublic, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { public: setPublic }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
 }
 
-SurveyController.prototype.updateQuestionTitle = function () {
-
-}
-
-SurveyController.prototype.updateChoice = function () {
-
+SurveyController.prototype.updateSurveyTitle = function (surveyId, setTitle, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { title: setTitle }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
 }
 
 // 
@@ -99,6 +109,6 @@ module.exports = SurveyController;
 //Testing
 const surveyController = new SurveyController();
 
-surveyController.updateSurveyActive("5ff0e18d678ec73878d9b89d", false, result => {
+surveyController.updateSurveyTitle("5ff0e18d678ec73878d9b89d", "Test Survey", result => {
     console.log(result);
 });
