@@ -26,7 +26,7 @@ function SignIn() {
             }).then(result => {
                 console.log("This is what is returned");
                 console.log(result);
-                localStorage.setItem('rememberMe', result.data.token);
+                localStorage.setItem('token', result.data.token);
                 history.push('/admin');
             }).catch(err => console.log(err));
         }
