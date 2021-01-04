@@ -113,8 +113,16 @@ SurveyController.prototype.deleteSurvey = function (surveyId, cb) {
     })
 }
 
-SurveyController.prototype.deleteQuestion = function () {
-
+SurveyController.prototype.deleteQuestion = function (surveyId, questionId, cb) {
+    // db.Survey.updateOne(
+    //     { _id: surveyId },
+    //     { $pull: { questions: { _id: questionId } } }
+    // ).then(result => {
+    //     cb(result);
+    // }).catch(err => {
+    //     console.log("Error:", err);
+    //     cb(err);
+    // })
 }
 
 SurveyController.prototype.deleteChoice = function () {
@@ -122,10 +130,3 @@ SurveyController.prototype.deleteChoice = function () {
 }
 
 module.exports = SurveyController;
-
-//Testing
-const surveyController = new SurveyController();
-
-surveyController.deleteSurvey("5ff0e18d678ec73878d9b8a0", result => {
-    console.log(result);
-});
