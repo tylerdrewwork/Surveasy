@@ -103,8 +103,14 @@ SurveyController.prototype.updateSurveyQuestions = function (surveyId, questionD
 //  DELETE METHODS
 // 
 
-SurveyController.prototype.deleteSurvey = function () {
-
+SurveyController.prototype.deleteSurvey = function (surveyId, cb) {
+    db.Survey.deleteOne({
+        _id: surveyId
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        cb(err);
+    })
 }
 
 SurveyController.prototype.deleteQuestion = function () {
@@ -118,45 +124,8 @@ SurveyController.prototype.deleteChoice = function () {
 module.exports = SurveyController;
 
 //Testing
-// const surveyController = new SurveyController();
+const surveyController = new SurveyController();
 
-// surveyController.updateSurveyQuestions("5ff0e18d678ec73878d9b89d", [
-//     {
-//         question: "This is the first question?",
-//         choices: [
-//             { choice: "This is the first choice" },
-//             { choice: "This is the second choice" },
-//             { choice: "This is the third choice" },
-//             { choice: "This is the fourth choice" },
-//         ]
-//     },
-//     {
-//         question: "This is the second question?",
-//         choices: [
-//             { choice: "This is the first choice" },
-//             { choice: "This is the second choice" },
-//             { choice: "This is the third choice" },
-//             { choice: "This is the fourth choice" },
-//         ]
-//     },
-//     {
-//         question: "This is the third question?",
-//         choices: [
-//             { choice: "This is the first choice" },
-//             { choice: "This is the second choice" },
-//             { choice: "This is the third choice" },
-//             { choice: "This is the fourth choice" },
-//         ]
-//     },
-//     {
-//         question: "This is the fourth question?",
-//         choices: [
-//             { choice: "This is the first choice" },
-//             { choice: "This is the second choice" },
-//             { choice: "This is the third choice" },
-//             { choice: "This is the fourth choice" },
-//         ]
-//     }
-// ], result => {
-//     console.log(result);
-// });
+surveyController.deleteSurvey("5ff0e18d678ec73878d9b8a0", result => {
+    console.log(result);
+});
