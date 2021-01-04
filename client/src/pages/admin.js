@@ -37,6 +37,10 @@ function Admin() {
         console.log(selectedSurvey);
     }
 
+    function editSurvey() {
+        
+    }
+
 
     return (
 
@@ -47,7 +51,29 @@ function Admin() {
             <Navigation />
             <Row float="center">
 
-                <Col sx={3} md={3}>
+
+
+                <Col md={4} float="center" >
+                    <SurveyList name="Edit Survey" onClick={() => editSurvey()}>
+                    </SurveyList>
+                </Col>
+
+                <Col md={4} float="center">
+                    <SurveyList name="Analytics">
+                    </SurveyList>
+                </Col>
+
+                <Col md={4} float="center">
+                    <SurveyList name="Admin">
+                    </SurveyList>
+                </Col>
+
+
+
+            </Row>
+
+            <Row float="center">
+            <Col sx={3} md={3}>
                     <div className="back-div">
                         {Object.keys(survey).map(key => (
                             <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
@@ -55,22 +81,14 @@ function Admin() {
                         ))}
                     </div>
                 </Col>
-
-                <Col md={2} float="center">
-                    <SurveyList name="Edit Survey">
-                    </SurveyList>
+            <Col sx={8} md={9}>
+                    <div className="back-div">
+                        {Object.keys(survey).map(key => (
+                            <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
+                            </SurveyList>
+                        ))}
+                    </div>
                 </Col>
-
-                <Col md={2} float="center">
-                    <SurveyList name="Analytics">
-                    </SurveyList>
-                </Col>
-
-                <Col md={2} float="center">
-                    <SurveyList name="Admin">
-                    </SurveyList>
-                </Col>
-
             </Row>
 
         </div>
