@@ -5,7 +5,6 @@ import API from "../utils/API";
 import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
-
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
@@ -37,7 +36,13 @@ function Admin() {
         selectedSurvey = id; 
         console.log(selectedSurvey);
         localStorage.setItem('currentSurvey', id);
+
+        setCurSurvey(res.data);
     }
+
+    function getIndex(id) {
+        return survey.findIndex(obj => obj._id === id);
+      }
 
     return (
 
