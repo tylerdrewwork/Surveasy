@@ -55,6 +55,17 @@ SurveyController.prototype.getSurveyById = function (surveyId, cb) {
  * @description Updates the survey name, description, etc. Does NOT update question info
  */
 
+SurveyController.prototype.updateSurveyActive = function (surveyId, setActive, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { active: setActive }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    })
+}
+
 SurveyController.prototype.updateSurveyInfo = function () {
 
 }
@@ -86,4 +97,8 @@ SurveyController.prototype.deleteChoice = function () {
 module.exports = SurveyController;
 
 //Testing
-// const surveyController = new SurveyController();
+const surveyController = new SurveyController();
+
+surveyController.updateSurveyActive("5ff0e18d678ec73878d9b89d", false, result => {
+    console.log(result);
+});
