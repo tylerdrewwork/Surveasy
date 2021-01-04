@@ -34,6 +34,7 @@ function Admin() {
 
     function accessSurvey(id) {
         selectedSurvey = id; 
+        console.log(selectedSurvey);
     }
 
 
