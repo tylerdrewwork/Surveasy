@@ -130,6 +130,27 @@ const apiRoutes = (app) => {
 
     // SURVEY Routes
     app.route("/api/survey")
+        // Create a survey
+        .post((req, res) => {
+            // AUTHORIZATION
+            authorizeRequest(req, authorization => {
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
+                    return;
+                }
+
+                let surveyData = req.body.surveyData;
+                let userId = authorization.userId;
+
+                surveyController.createSurvey(surveyData, survey => {
+                    userController.addSurveyToUser(userId, survey._id, result => {
+                        console.log(result);
+                        res.json(survey);
+                    });
+                });
+            });
+        })
+        // Read a survey
         .get((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
@@ -155,6 +176,43 @@ const apiRoutes = (app) => {
                 }
             });
         })
+        // Update a survey
+        .put((req, res) => {
+            // AUTHORIZATION
+            authorizeRequest(req, authorization => {
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
+                    return;
+                }
+
+                // Define Parameters
+                let userId = authorization.userId;
+                let surveyId = req.body.surveyId;
+                let active = req.body.active;
+                let public = req.body.public;
+                let title = req.body.title;
+
+                if (active) {
+                    // Update Active
+                    surveyController.updateSurveyActive(surveyId, active, result => {
+                        res.json(result)
+                    });
+                }
+                if (public) {
+                    // Update Public
+                    surveyController.updateSurveyPublic(surveyId, public, result => {
+                        res.json(result);
+                    });
+                }
+                if (title) {
+                    // Update Title
+                    surveyController.updateSurveyTitle(surveyId, title, result => {
+                        res.json(result);
+                    })
+                }
+            });
+        })
+        // Delete a survey
         .delete((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
@@ -171,26 +229,6 @@ const apiRoutes = (app) => {
                 });
 
                 // NEED TO REMOVE SURVEY FROM USER
-            });
-        })
-        // Create a survey
-        .post((req, res) => {
-            // AUTHORIZATION
-            authorizeRequest(req, authorization => {
-                if (authorization === 'Error: Authorization is Unsuccessful.') {
-                    res.send("Error! User is not authorized.");
-                    return;
-                }
-
-                let surveyData = req.body.surveyData;
-                let userId = authorization.userId;
-
-                surveyController.createSurvey(surveyData, survey => {
-                    userController.addSurveyToUser(userId, survey._id, result => {
-                        console.log(result);
-                        res.json(survey);
-                    });
-                });
             });
         });
 
