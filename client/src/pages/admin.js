@@ -26,78 +26,9 @@ function Admin() {
       .then((res) => {
         setSurvey(res.data);
         console.log(res.data);
+        console.log(res.data[0].questions[0].question);
       })
       .catch((err) => console.log(err));
-    setSurvey({
-      1: {
-        title: "Test survey 1!",
-        active: true,
-        public: true,
-        questions: [
-          {
-            question: "Favorite color?",
-            choices: [
-              { choice: "Red" },
-              { choice: "Blue" },
-              { choice: "Green" },
-              { choice: "Incandescent Yellow" },
-            ],
-          },
-          {
-            question: "Favorite vehicle?",
-            choices: [
-              { choice: "car" },
-              { choice: "truck" },
-              { choice: "ufo" },
-            ],
-          },
-          {
-            question: "Favorite number?",
-            choices: [
-              { choice: "5" },
-              { choice: "5" },
-              { choice: "" },
-              { choice: "10000000000000000000000" },
-              { choice: "what's a number" },
-            ],
-          },
-        ],
-      },
-      2: {
-        title: "Test survey 2!",
-        active: true,
-        public: true,
-        questions: [
-          {
-            question: "Favorite color?",
-            choices: [
-              { choice: "Red" },
-              { choice: "Blue" },
-              { choice: "Green" },
-              { choice: "Incandescent Yellow" },
-            ],
-          },
-          {
-            question: "Favorite vehicle?",
-            choices: [
-              { choice: "car" },
-              { choice: "truck" },
-              { choice: "ufo" },
-            ],
-          },
-          {
-            question: "Favorite number?",
-            choices: [
-              { choice: "5" },
-              { choice: "5" },
-              { choice: "" },
-              { choice: "10000000000000000000000" },
-              { choice: "what's a number" },
-            ],
-          },
-        ],
-      },
-    });
   }
 
   function accessSurvey(id) {
@@ -137,12 +68,14 @@ function Admin() {
       </Row>
       <Row>
         <Col>
-          <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          </ListGroup>
+          {Object.keys(survey).map((key) => (
+            <ListGroup>
+              <ListGroup.Item className={key}>
+                {survey[key].title}
+                <ListGroup.Item> {survey[key]._id}</ListGroup.Item>
+              </ListGroup.Item>
+            </ListGroup>
+          ))}
         </Col>
       </Row>
     </div>
