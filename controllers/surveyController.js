@@ -13,18 +13,21 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
         public: surveyData.public,
         questions: surveyData.questions
     }).then(result => {
-        console.log("API: Successfully created survey: ", result);
         cb(result);
     }).catch(err => {
+        console.log("Error:", err);
         cb(err);
     });
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
-    db.Survey.updateOne({
-        id: surveyId
+    db.Survey.updateOne({ _id: surveyId }, {
+        $push: { questions: questionData }
     }).then(result => {
-        console.log("Update one result: ", result);
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
     })
 }
 
@@ -51,6 +54,7 @@ SurveyController.prototype.getSurveyById = function (surveyId, cb) {
 /**
  * @description Updates the survey name, description, etc. Does NOT update question info
  */
+
 SurveyController.prototype.updateSurveyInfo = function () {
 
 }
@@ -80,3 +84,6 @@ SurveyController.prototype.deleteChoice = function () {
 }
 
 module.exports = SurveyController;
+
+//Testing
+// const surveyController = new SurveyController();
