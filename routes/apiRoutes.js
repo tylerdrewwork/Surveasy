@@ -186,12 +186,12 @@ const apiRoutes = (app) => {
                 }
 
                 // Define Parameters
-                let userId = authorization.userId;
                 let surveyId = req.body.surveyId;
                 let active = req.body.active;
                 let public = req.body.public;
                 let title = req.body.title;
                 let questionData = req.body.questionData;
+                let newQuestion = req.body.newQuestion;
 
                 if (active) {
                     // Update Active
@@ -215,6 +215,11 @@ const apiRoutes = (app) => {
                     surveyController.updateSurveyQuestions(surveyId, questionData, result => {
                         res.json(result);
                     });
+                }
+                if (newQuestion) {
+                    surveyController.addQuestionToSurvey(surveyId, newQuestion, result => {
+                        res.json(result);
+                    })
                 }
             });
         })
