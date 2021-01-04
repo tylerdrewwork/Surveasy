@@ -88,6 +88,17 @@ SurveyController.prototype.updateSurveyTitle = function (surveyId, setTitle, cb)
     });
 }
 
+SurveyController.prototype.updateSurveyQuestions = function (surveyId, questionData, cb) {
+    db.Survey.updateOne({ _id: surveyId }, {
+        $set: { questions: questionData }
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    })
+}
+
 // 
 //  DELETE METHODS
 // 
@@ -107,8 +118,45 @@ SurveyController.prototype.deleteChoice = function () {
 module.exports = SurveyController;
 
 //Testing
-const surveyController = new SurveyController();
+// const surveyController = new SurveyController();
 
-surveyController.updateSurveyTitle("5ff0e18d678ec73878d9b89d", "Test Survey", result => {
-    console.log(result);
-});
+// surveyController.updateSurveyQuestions("5ff0e18d678ec73878d9b89d", [
+//     {
+//         question: "This is the first question?",
+//         choices: [
+//             { choice: "This is the first choice" },
+//             { choice: "This is the second choice" },
+//             { choice: "This is the third choice" },
+//             { choice: "This is the fourth choice" },
+//         ]
+//     },
+//     {
+//         question: "This is the second question?",
+//         choices: [
+//             { choice: "This is the first choice" },
+//             { choice: "This is the second choice" },
+//             { choice: "This is the third choice" },
+//             { choice: "This is the fourth choice" },
+//         ]
+//     },
+//     {
+//         question: "This is the third question?",
+//         choices: [
+//             { choice: "This is the first choice" },
+//             { choice: "This is the second choice" },
+//             { choice: "This is the third choice" },
+//             { choice: "This is the fourth choice" },
+//         ]
+//     },
+//     {
+//         question: "This is the fourth question?",
+//         choices: [
+//             { choice: "This is the first choice" },
+//             { choice: "This is the second choice" },
+//             { choice: "This is the third choice" },
+//             { choice: "This is the fourth choice" },
+//         ]
+//     }
+// ], result => {
+//     console.log(result);
+// });
