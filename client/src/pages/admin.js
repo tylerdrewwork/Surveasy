@@ -35,12 +35,8 @@ function Admin() {
     function accessSurvey(id) {
         selectedSurvey = id; 
         console.log(selectedSurvey);
+        localStorage.setItem('currentSurvey', id);
     }
-
-    function editSurvey() {
-        
-    }
-
 
     return (
 
@@ -49,28 +45,6 @@ function Admin() {
         //starting the side survey page 
         <div>
             <NavigationSurvey />
-            <Row float="center">
-
-
-
-                <Col md={4} float="center" >
-                    <SurveyList name="Edit Survey" onClick={() => editSurvey()}>
-                    </SurveyList>
-                </Col>
-
-                <Col md={4} float="center">
-                    <SurveyList name="Analytics">
-                    </SurveyList>
-                </Col>
-
-                <Col md={4} float="center">
-                    <SurveyList name="Admin">
-                    </SurveyList>
-                </Col>
-
-
-
-            </Row>
 
             <Row float="center">
             <Col sx={3} md={3}>
