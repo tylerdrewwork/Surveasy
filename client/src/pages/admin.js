@@ -38,7 +38,6 @@ function Admin() {
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
-
     }
 
     function getIndex(id) {
@@ -64,7 +63,7 @@ function Admin() {
                 </Col>
             <Col sx={8} md={9}>
                     <div className="back-div" id="displaySurvey">
-                        
+                        <h1>{curSurvey.title}</h1>
                     </div>
                 </Col>
             </Row>
