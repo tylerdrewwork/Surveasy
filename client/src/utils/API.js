@@ -78,26 +78,6 @@ const API = {
   // },
 
   createSurvey: function (surveyData, token) {
-
-    // TESTING AND DATA MODEL REFERENCE
-    // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU4ZWQzZmZkY2ZhNTBjODRlODE2M2YiLCJ1c2VybmFtZSI6ImJlc3R1c2VyIiwiaWF0IjoxNjA5MTAwNjI2fQ.4jb_Lgz1Tg0zWx2mQZxy45PDWpYaeopWvt40XXEulHI";
-    // surveyData = {
-    //   title: 'quiz title',
-    //   active: true,
-    //   public: false,
-    //   questions: [{
-    //     question: "Question 1",
-    //     choices: [{
-    //       choice: "Test Choice"
-    //     }]
-    //   }, {
-    //     question: "Question 2",
-    //     choices: [{
-    //       choice: "Test Choice"
-    //     }]
-    //   }]
-    // }
-
     return axios.request({
       method: "POST",
       url: "/api/survey",

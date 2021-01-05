@@ -2,33 +2,83 @@ import React, { useState, useEffect } from "react";
 import Button from "../Button/button";
 import Input from "../Input/input";
 import "./createSurvey.css";
-import { Grid, Row, Col } from "react-bootstrap";
 import API from "../../utils/API";
 
 function CreateSurvey() {
 
-    const [surveyData, setSurveyData] = useState({})
+  const [questionCount, setQuestionCount] = useState([""]);
+  const [surveyData, setSurveyData] = useState(new Array(questionCount.length));
+  const [surveyTitle, setSurveyTitle] = useState({});
 
-    function handleInputChange(event) {
-        const { name, value } = event.target;
-        setSurveyData({...surveyData, [name]: value});
-    } 
+  function handleTitleChange(event) {
+    const { name, value } = event.target;
+    setSurveyTitle({ [name]: value });
+  }
 
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        API.createSurvey();
-        console.log("Testing handle form submit data: " + JSON.stringify(surveyData))
+  function handleInputChange(event) {
+    const { name, value, parentElement } = event.target;
+    const key = parentElement.getAttribute('data-key');
+    const surveyDataArray = surveyData;
+
+    surveyDataArray[key] = { ...surveyDataArray[key], [name]: value };
+    setSurveyData({ ...surveyData, surveyDataArray });
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const token = localStorage.getItem('token');
+    const formattedData = formatSurveyData(surveyData, surveyTitle.SurveyName);
+
+    API.createSurvey(formattedData, token).then(result => {
+      console.log(result);
+    });
+  }
+
+  function handleIncreaseCount(event) {
+    event.preventDefault();
+
+    const increaseCountArray = [...questionCount, ""];
+    setQuestionCount(increaseCountArray);
+  }
+
+  function formatSurveyData(data, title) {
+
+    const formattedData = {
+      title: title,
+      questions: []
+    };
+
+    for (let i = 0; i < questionCount.length; i++) {
+      formattedData.questions[i] = {
+        question: data[i].QuestionName,
+        choices: [
+          { choice: data[i].Option1 },
+          { choice: data[i].Option2 },
+          { choice: data[i].Option3 },
+          { choice: data[i].Option4 }
+        ]
+      }
     }
+
+    return formattedData;
+  }
 
   return (
     <div className="back-div">
-      <Input onChange={handleInputChange} name="SurveyName" />
-      <Input onChange={handleInputChange} name="QuestionTitle" />
-      <Input onChange={handleInputChange} name="Option" />
-      <Input onChange={handleInputChange} name="Option" />
-      <Input onChange={handleInputChange} name="Option" />
-      <Input onChange={handleInputChange} name="Option" />
+      <Input onChange={handleTitleChange} name="SurveyName" />
+
+      {questionCount.map((input, index) => {
+        return <div data-key={index} key={index}>
+          <Input onChange={handleInputChange} name={`QuestionName`} />
+          <Input onChange={handleInputChange} name={`Option1`} />
+          <Input onChange={handleInputChange} name={`Option2`} />
+          <Input onChange={handleInputChange} name={`Option3`} />
+          <Input onChange={handleInputChange} name={`Option4`} />
+        </div>
+      })}
+
       <Button onClick={handleFormSubmit} name="Submit" />
+      <Button onClick={handleIncreaseCount} name="Add a Question" />
     </div>
   );
 }
