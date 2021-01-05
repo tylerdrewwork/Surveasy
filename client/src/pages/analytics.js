@@ -49,35 +49,45 @@ function Analytics() {
     }
 
     function getCharts(){
+        const stateSet = {};
+        for(var i = 0; i < curSurvey.question.length; i++){
+            var countChoice = [];
+            var labelChoice = [];
+            for( var j = 0; j < curSurvey.question[i].choices.length; j++){
 
-        const stateSet = {
-        set1: {
-            labels: ['January', 'February', 'March',
-            'April', 'May'],
-            datasets: [
-                {
-                label: 'Rainfall',
-                backgroundColor: '#533540',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: [65, 59, 80, 81, 56]
-                }
-            ]
-        },set2: {
-            labels: ['June', 'July', 'August',
-            'Sept', 'Oct'],
-            datasets: [
-                {
-                label: 'Rainfall',
-                backgroundColor: '#533540',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: [52, 70, 90, 60, 74]
-                }
-            ]
+            }
+            stateSet[i] = {
+                labels: []
+            }
         }
+        // const stateSet = {
+        // set1: {
+        //     labels: ['January', 'February', 'March',
+        //     'April', 'May'],
+        //     datasets: [
+        //         {
+        //         label: 'Rainfall',
+        //         backgroundColor: '#533540',
+        //         borderColor: 'rgba(0,0,0,1)',
+        //         borderWidth: 2,
+        //         data: [65, 59, 80, 81, 56]
+        //         }
+        //     ]
+        // },set2: {
+        //     labels: ['June', 'July', 'August',
+        //     'Sept', 'Oct'],
+        //     datasets: [
+        //         {
+        //         label: 'Rainfall',
+        //         backgroundColor: '#533540',
+        //         borderColor: 'rgba(0,0,0,1)',
+        //         borderWidth: 2,
+        //         data: [52, 70, 90, 60, 74]
+        //         }
+        //     ]
+        // }
             
-        }
+        // }
 
         setState(stateSet);
 
