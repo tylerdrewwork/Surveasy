@@ -54,40 +54,20 @@ function Analytics() {
             var countChoice = [];
             var labelChoice = [];
             for( var j = 0; j < curSurvey.question[i].choices.length; j++){
-
+                countChoice.push(curSurvey.question[i].choices[j].votes);
+                labelChoice.push(curSurvey.question[i].choices[j].choice)
             }
             stateSet[i] = {
-                labels: []
+                labels: labelChoice, 
+                datasets: [{
+                    label: curSurvey.question[i].question,
+                    backgroundColor: '#533540',
+                    borderColor: 'rgba(0,0,0,1)',
+                    borderWidth: 2,
+                    data: countChoice
+                }]
             }
         }
-        // const stateSet = {
-        // set1: {
-        //     labels: ['January', 'February', 'March',
-        //     'April', 'May'],
-        //     datasets: [
-        //         {
-        //         label: 'Rainfall',
-        //         backgroundColor: '#533540',
-        //         borderColor: 'rgba(0,0,0,1)',
-        //         borderWidth: 2,
-        //         data: [65, 59, 80, 81, 56]
-        //         }
-        //     ]
-        // },set2: {
-        //     labels: ['June', 'July', 'August',
-        //     'Sept', 'Oct'],
-        //     datasets: [
-        //         {
-        //         label: 'Rainfall',
-        //         backgroundColor: '#533540',
-        //         borderColor: 'rgba(0,0,0,1)',
-        //         borderWidth: 2,
-        //         data: [52, 70, 90, 60, 74]
-        //         }
-        //     ]
-        // }
-            
-        // }
 
         setState(stateSet);
 
