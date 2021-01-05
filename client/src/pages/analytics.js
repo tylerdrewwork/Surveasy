@@ -51,17 +51,32 @@ function Analytics() {
     function getCharts(){
 
         const stateSet = {
+        set1: {
             labels: ['January', 'February', 'March',
-                     'April', 'May'],
+            'April', 'May'],
             datasets: [
-              {
+                {
                 label: 'Rainfall',
                 backgroundColor: '#533540',
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 2,
                 data: [65, 59, 80, 81, 56]
-              }
+                }
             ]
+        },set2: {
+            labels: ['June', 'July', 'August',
+            'Sept', 'Oct'],
+            datasets: [
+                {
+                label: 'Rainfall',
+                backgroundColor: '#533540',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [52, 70, 90, 60, 74]
+                }
+            ]
+        }
+            
         }
 
         setState(stateSet);
@@ -83,12 +98,11 @@ function Analytics() {
                 </Col>
                 <Col sx={8} md={9}>
                     <div className="back-div">
-                    <Col sx={8} md={6}>
-                        <Bar data={state} />
-                    </Col>
-                    <Col sx={8} md={6}>
-                        <Bar data={state} />
-                    </Col>
+                        {Object.keys(state).map(key => (
+                            <Col sx={8} md={6}>
+                            <Bar data={state[key]} />
+                        </Col>
+                        ))}
                     </div>
                 </Col>
             </Row>
