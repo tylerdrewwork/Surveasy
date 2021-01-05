@@ -192,6 +192,7 @@ const apiRoutes = (app) => {
                 let title = req.body.title;
                 let questionData = req.body.questionData;
                 let newQuestion = req.body.newQuestion;
+                let deleteQuestion = req.body.deleteQuestion;
 
                 if (active) {
                     // Update Active
@@ -218,6 +219,11 @@ const apiRoutes = (app) => {
                 }
                 if (newQuestion) {
                     surveyController.addQuestionToSurvey(surveyId, newQuestion, result => {
+                        res.json(result);
+                    })
+                }
+                if (deleteQuestion) {
+                    surveyController.deleteQuestion(surveyId, deleteQuestion, result => {
                         res.json(result);
                     })
                 }

@@ -123,6 +123,15 @@ SurveyController.prototype.deleteQuestion = function (surveyId, questionId, cb) 
     //     console.log("Error:", err);
     //     cb(err);
     // })
+    db.Survey.updateOne(
+            { _id: surveyId },
+            { $pull: { questions: { _id: questionId } } },
+            { multi: true }
+        ).then(result => {
+            console.log("result: ", result);
+        }).catch(err => {
+            console.log("error: ", err);
+        })
 }
 
 SurveyController.prototype.deleteChoice = function () {
