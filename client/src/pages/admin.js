@@ -64,6 +64,7 @@ function Admin() {
             <Col sx={8} md={9}>
                     <div className="back-div" id="displaySurvey">
                         <h1>{curSurvey.title}</h1>
+                        <h3>Active : {curSurvey.active.toString()}</h3>
                     </div>
                 </Col>
             </Row>
