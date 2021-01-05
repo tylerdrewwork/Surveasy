@@ -19,39 +19,35 @@ function Analytics() {
             console.log(survey);
         }, [])
 
-    const data = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-          {
-            label: "First dataset",
-            data: [33, 53, 85, 41, 44, 65],
-            fill: true,
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)"
-          },
-          {
-            label: "Second dataset",
-            data: [33, 25, 35, 51, 54, 76],
-            fill: false,
-            borderColor: "#742774"
+        const state = {
+            labels: ['January', 'February', 'March',
+                     'April', 'May'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [65, 59, 80, 81, 56]
+              }
+            ]
           }
-        ]
-      };
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
+        selectedSurvey = localStorage.getItem(`currentSurvey`);
 
         API.getUserSurveys(token)
           .then((res) => {
             setSurvey(res.data);
             console.log(res.data);
+            accessSurvey(selectedSurvey);
           })
           .catch((err) => console.log(err));
     };
 
     function accessSurvey(id) {
         selectedSurvey = id; 
-        console.log(selectedSurvey);
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
@@ -76,7 +72,12 @@ function Analytics() {
                 </Col>
                 <Col sx={8} md={9}>
                     <div className="back-div">
-                    <Line data={data} />
+                    <Col sx={8} md={6}>
+                        <Bar data={state} />
+                    </Col>
+                    <Col sx={8} md={6}>
+                        <Bar data={state} />
+                    </Col>
                     </div>
                 </Col>
             </Row>
