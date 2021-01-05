@@ -11,8 +11,7 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     salt: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
         type: String,
