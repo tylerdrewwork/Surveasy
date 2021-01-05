@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
-//import { Link } from "react-router-dom";
 import API from "../utils/API"
-import Input from "../components/Input/input";
 import "./style.css";
-import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line, Bar, Pie} from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
@@ -66,14 +63,10 @@ function Analytics() {
 
 
     return (
-
-        //navbar will be set up here 
-        // ---- Have the log out button link here 
-        //starting the side survey page 
         <div>
             <NavigationSurvey />
             <Row float="center">
-            <Col sx={3} md={3}>
+                <Col sx={3} md={3}>
                     <div className="back-div">
                         {Object.keys(survey).map(key => (
                             <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
@@ -81,7 +74,7 @@ function Analytics() {
                         ))}
                     </div>
                 </Col>
-            <Col sx={8} md={9}>
+                <Col sx={8} md={9}>
                     <div className="back-div">
                     <Line data={data} />
                     </div>
