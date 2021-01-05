@@ -9,7 +9,12 @@ function CreateSurvey() {
 
   const [questionInputs, setQuestionInputs] = useState(["", ""]);
   const [surveyData, setSurveyData] = useState(new Array(questionInputs.length));
+  const [surveyTitle, setSurveyTitle] = useState({});
 
+  function handleTitleChange(event) {
+    const { name, value } = event.target;
+    setSurveyTitle({ [name]: value });
+  }
 
   function handleInputChange(event) {
     const { name, value, parentElement } = event.target;
@@ -23,30 +28,30 @@ function CreateSurvey() {
   function handleFormSubmit(event) {
     event.preventDefault();
     const token = localStorage.getItem('token');
+    const formattedData = formatSurveyData(surveyData, surveyTitle.SurveyName);
 
-    console.log(surveyData);
-
-    // API.createSurvey(formatSurveyData(surveyData), token).then(result => {
-    //   console.log(result);
-    // });
+    API.createSurvey(formattedData, token).then(result => {
+      console.log(result);
+    });
   }
 
-  function formatSurveyData(data) {
-
+  function formatSurveyData(data, title) {
 
     const formattedData = {
-      title: data.SurveyName,
-      questions: [
-        {
-          question: data.QuestionTitle,
-          choices: [
-            { choice: data.Option1 },
-            { choice: data.Option2 },
-            { choice: data.Option3 },
-            { choice: data.Option4 }
-          ]
-        }
-      ]
+      title: title,
+      questions: []
+    };
+
+    for (let i = 0; i < questionInputs.length; i++) {
+      formattedData.questions[i] = {
+        question: data[i].QuestionName,
+        choices: [
+          { choice: data[i].Option1 },
+          { choice: data[i].Option2 },
+          { choice: data[i].Option3 },
+          { choice: data[i].Option4 }
+        ]
+      }
     }
 
     return formattedData;
@@ -54,7 +59,7 @@ function CreateSurvey() {
 
   return (
     <div className="back-div">
-      <Input onChange={handleInputChange} name="SurveyName" />
+      <Input onChange={handleTitleChange} name="SurveyName" />
 
       {questionInputs.map((input, index) => {
         return <div data-key={index} key={index}>
@@ -65,14 +70,6 @@ function CreateSurvey() {
           <Input onChange={handleInputChange} name={`Option4`} />
         </div>
       })}
-
-      {/* <div>
-        <Input onChange={handleInputChange} name="QuestionTitle" />
-        <Input onChange={handleInputChange} name="Option1" />
-        <Input onChange={handleInputChange} name="Option2" />
-        <Input onChange={handleInputChange} name="Option3" />
-        <Input onChange={handleInputChange} name="Option4" />
-      </div> */}
 
       <Button onClick={handleFormSubmit} name="Submit" />
     </div>
