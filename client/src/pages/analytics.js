@@ -68,7 +68,6 @@ function Analytics() {
                 }]
             }
         }
-
         setState(stateSet);
 
     }
