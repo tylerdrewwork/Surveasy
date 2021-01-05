@@ -19,6 +19,9 @@ export default function NavigationSurvey() {
         <Nav.Link as={Link} to="/admin">
           Admin
         </Nav.Link>
+        <Nav.Link as={Link} to="/create">
+          Create Survey
+        </Nav.Link>
       </Nav>
       <Nav className="ml-auto">
         <Nav.Link as={Link} to="/">
