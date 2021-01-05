@@ -36,8 +36,9 @@ function Admin() {
         selectedSurvey = id; 
         console.log(selectedSurvey);
         localStorage.setItem('currentSurvey', id);
+        var r = getIndex(id);
+        setCurSurvey(survey[r]);
 
-        setCurSurvey(res.data);
     }
 
     function getIndex(id) {
