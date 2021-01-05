@@ -27,6 +27,7 @@ function Admin() {
         API.getUserSurveys(token)
           .then((res) => {
             setSurvey(res.data);
+            accessSurvey(localStorage.getItem(`currentSurvey`))
             console.log(res.data);
           })
           .catch((err) => console.log(err));
@@ -64,7 +65,7 @@ function Admin() {
             <Col sx={8} md={9}>
                     <div className="back-div" id="displaySurvey">
                         <h1>{curSurvey.title}</h1>
-                        <h3>Active : {curSurvey.active.toString()}</h3>
+                        <h3>{curSurvey.active == null ? '' : "Active : " + curSurvey.active.toString()}</h3>
                     </div>
                 </Col>
             </Row>

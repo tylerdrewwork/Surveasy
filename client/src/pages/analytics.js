@@ -15,6 +15,13 @@ function Analytics() {
     const [curSurvey, setCurSurvey] = useState({});
     let token;
     let selectedSurvey; 
+    
+        useEffect(() => {
+            uploadSurveys()
+            console.log(token);
+            console.log(survey);
+        }, [])
+
     const data = {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
         datasets: [
@@ -33,11 +40,6 @@ function Analytics() {
           }
         ]
       };
-    useEffect(() => {
-        uploadSurveys()
-        console.log(token);
-        console.log(survey);
-    }, [])
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -53,11 +55,14 @@ function Analytics() {
     function accessSurvey(id) {
         selectedSurvey = id; 
         console.log(selectedSurvey);
+        localStorage.setItem('currentSurvey', id);
+        var r = getIndex(id);
+        setCurSurvey(survey[r]);
     }
 
-    function editSurvey() {
-        
-    }
+    function getIndex(id) {
+        return survey.findIndex(obj => obj._id === id);
+      }
 
 
     return (
