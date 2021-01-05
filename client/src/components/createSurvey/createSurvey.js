@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import Button from "../Button/button";
 import Input from "../Input/input";
 import "./createSurvey.css";
-import { Grid, Row, Col } from "react-bootstrap";
 import API from "../../utils/API";
 
 function CreateSurvey() {
 
-  const [questionInputs, setQuestionInputs] = useState(["", ""]);
-  const [surveyData, setSurveyData] = useState(new Array(questionInputs.length));
+  const [questionCount, setQuestionCount] = useState([""]);
+  const [surveyData, setSurveyData] = useState(new Array(questionCount.length));
   const [surveyTitle, setSurveyTitle] = useState({});
 
   function handleTitleChange(event) {
@@ -35,6 +34,13 @@ function CreateSurvey() {
     });
   }
 
+  function handleIncreaseCount(event) {
+    event.preventDefault();
+
+    const increaseCountArray = [...questionCount, ""];
+    setQuestionCount(increaseCountArray);
+  }
+
   function formatSurveyData(data, title) {
 
     const formattedData = {
@@ -42,7 +48,7 @@ function CreateSurvey() {
       questions: []
     };
 
-    for (let i = 0; i < questionInputs.length; i++) {
+    for (let i = 0; i < questionCount.length; i++) {
       formattedData.questions[i] = {
         question: data[i].QuestionName,
         choices: [
@@ -61,7 +67,7 @@ function CreateSurvey() {
     <div className="back-div">
       <Input onChange={handleTitleChange} name="SurveyName" />
 
-      {questionInputs.map((input, index) => {
+      {questionCount.map((input, index) => {
         return <div data-key={index} key={index}>
           <Input onChange={handleInputChange} name={`QuestionName`} />
           <Input onChange={handleInputChange} name={`Option1`} />
@@ -72,6 +78,7 @@ function CreateSurvey() {
       })}
 
       <Button onClick={handleFormSubmit} name="Submit" />
+      <Button onClick={handleIncreaseCount} name="Add a Question" />
     </div>
   );
 }
