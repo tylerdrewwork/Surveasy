@@ -15,6 +15,24 @@ function Analytics() {
     const [curSurvey, setCurSurvey] = useState({});
     let token;
     let selectedSurvey; 
+    const data = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: [
+          {
+            label: "First dataset",
+            data: [33, 53, 85, 41, 44, 65],
+            fill: true,
+            backgroundColor: "rgba(75,192,192,0.2)",
+            borderColor: "rgba(75,192,192,1)"
+          },
+          {
+            label: "Second dataset",
+            data: [33, 25, 35, 51, 54, 76],
+            fill: false,
+            borderColor: "#742774"
+          }
+        ]
+      };
     useEffect(() => {
         uploadSurveys()
         console.log(token);
@@ -49,8 +67,6 @@ function Analytics() {
         //starting the side survey page 
         <div>
             <NavigationSurvey />
-
-
             <Row float="center">
             <Col sx={3} md={3}>
                     <div className="back-div">
@@ -61,8 +77,8 @@ function Analytics() {
                     </div>
                 </Col>
             <Col sx={8} md={9}>
-                    <div className="back-div" id="displaySurvey">
-                        
+                    <div className="back-div">
+                    <Line data={data} />
                     </div>
                 </Col>
             </Row>
