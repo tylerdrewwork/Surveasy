@@ -5,7 +5,6 @@ import API from "../utils/API";
 import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
-
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
@@ -28,6 +27,7 @@ function Admin() {
         API.getUserSurveys(token)
           .then((res) => {
             setSurvey(res.data);
+            accessSurvey(localStorage.getItem(`currentSurvey`))
             console.log(res.data);
           })
           .catch((err) => console.log(err));
@@ -37,7 +37,13 @@ function Admin() {
         selectedSurvey = id; 
         console.log(selectedSurvey);
         localStorage.setItem('currentSurvey', id);
+        var r = getIndex(id);
+        setCurSurvey(survey[r]);
     }
+
+    function getIndex(id) {
+        return survey.findIndex(obj => obj._id === id);
+      }
 
     return (
 
@@ -58,7 +64,8 @@ function Admin() {
                 </Col>
             <Col sx={8} md={9}>
                     <div className="back-div" id="displaySurvey">
-                        
+                        <h1>{curSurvey.title}</h1>
+                        <h3>{curSurvey.active == null ? '' : "Active : " + curSurvey.active.toString()}</h3>
                     </div>
                 </Col>
             </Row>
