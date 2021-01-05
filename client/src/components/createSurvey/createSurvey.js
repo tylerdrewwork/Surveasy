@@ -18,24 +18,28 @@ function CreateSurvey() {
     event.preventDefault();
     const token = localStorage.getItem('token');
 
-    const setData = {
-      title: surveyData.SurveyName,
+    API.createSurvey(formatSurveyData(surveyData), token).then(result => {
+      console.log(result);
+    });
+  }
+
+  function formatSurveyData(data) {
+    const formattedData = {
+      title: data.SurveyName,
       questions: [
         {
-          question: surveyData.QuestionTitle,
+          question: data.QuestionTitle,
           choices: [
-            { choice: surveyData.Option1 },
-            { choice: surveyData.Option2 },
-            { choice: surveyData.Option3 },
-            { choice: surveyData.Option4 }
+            { choice: data.Option1 },
+            { choice: data.Option2 },
+            { choice: data.Option3 },
+            { choice: data.Option4 }
           ]
         }
       ]
     }
 
-    API.createSurvey(setData, token).then(result => {
-      console.log(result);
-    });
+    return formattedData;
   }
 
   return (
