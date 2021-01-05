@@ -5,7 +5,7 @@ import SignUp from "./pages/signup";
 import Admin from "./pages/admin"
 import Edit from "./pages/edit"
 import Analytics from "./pages/analytics"
-import Analytics from "./pages/analytics"
+import CreateSurvey from "./pages/createSurvey"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
       <Route exact path="/analytics">
         <Analytics />
       </Route>
-      <Route exact path="/createSurvey">
-        <Analytics />
+      <Route exact path="/create">
+        <CreateSurvey />
       </Route>
     </Router>
   );
