@@ -12,6 +12,7 @@ function Analytics() {
     const [curSurvey, setCurSurvey] = useState({});
     let token;
     let selectedSurvey; 
+    const [state, setState] = useState({});
 
         useEffect(() => {
             uploadSurveys()
@@ -19,19 +20,7 @@ function Analytics() {
             console.log(survey);
         }, [])
 
-        const state = {
-            labels: ['January', 'February', 'March',
-                     'April', 'May'],
-            datasets: [
-              {
-                label: 'Rainfall',
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: [65, 59, 80, 81, 56]
-              }
-            ]
-          }
+
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -51,11 +40,33 @@ function Analytics() {
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
+        console.log(curSurvey);
+        getCharts();
     }
 
     function getIndex(id) {
         return survey.findIndex(obj => obj._id === id);
-      }
+    }
+
+    function getCharts(){
+
+        const stateSet = {
+            labels: ['January', 'February', 'March',
+                     'April', 'May'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: '#533540',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [65, 59, 80, 81, 56]
+              }
+            ]
+        }
+
+        setState(stateSet);
+
+    }
 
 
     return (
