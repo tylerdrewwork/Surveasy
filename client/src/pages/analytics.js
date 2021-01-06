@@ -76,13 +76,14 @@ function Analytics() {
         }
         setState(stateSet);
 
-        const stateSet = {};
+        const stateSet2 = {};
         if(curSurvey.questions === undefined){
 
         }else{
             for(var i = 0; i < curSurvey.questions.length; i++){
             var countChoice = [];
             var labelChoice = [];
+            var backgroundChoice = [];
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
                 countChoice.push(curSurvey.questions[i].choices[j].votes);
                 labelChoice.push(curSurvey.questions[i].choices[j].choice)
