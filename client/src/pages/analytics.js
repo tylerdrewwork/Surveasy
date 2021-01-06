@@ -91,12 +91,12 @@ function Analytics() {
                 backgroundChoice.push('rgba(83,53,64,' + count + ')');
                 count = count + 10;
             }
-            stateSet[i] = {
+            stateSet2[i] = {
                 labels: labelChoice, 
                 datasets: [{
                     label: curSurvey.questions[i].question,
                     backgroundColor: '#533540',
-                    borderColor: 'rgba(0,0,0,1)',
+                    borderColor: backgroundChoice,
                     borderWidth: 2,
                     data: countChoice
                 }]
@@ -104,7 +104,7 @@ function Analytics() {
         }
 
         }
-        setState(stateSet);
+        setState2(stateSet2);
     }
 
 
