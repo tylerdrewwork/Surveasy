@@ -1,10 +1,10 @@
 import React from "react";
 import "./answer.css";
 
-function Answer(answer) {
+function Answer(props) {
     return (
-      <div onClick="#">
-        {answer}
+      <div >
+        {props.answer}
       </div>
     );
 };

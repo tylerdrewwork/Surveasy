@@ -1,8 +1,8 @@
 import React from "react";
 import "./question.css";
 
-function Question(question) {
-  return <div>{question}</div>;
+function Question(props) {
+  return <div>{props.question}</div>;
 }
 
 export default Question;
