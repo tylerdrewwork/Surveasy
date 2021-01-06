@@ -17,7 +17,7 @@ function Analytics() {
     let selectedSurvey;
     const [state, setState] = useState({});
 
-    const graphRef = useRef();
+    const graphRefs = useRef([React.createRef(), React.createRef()]);
 
     useEffect(() => {
         uploadSurveys()
@@ -29,13 +29,15 @@ function Analytics() {
         if (curSurvey._id) {
             const pdfSurvey = curSurvey;
 
+            console.log(graphRefs);
+
             setPdfLinkComponent(
-                <PDFDownloadLink document={<GraphsPdf survey={pdfSurvey} graph={graphRef} />} fileName='analytics.pdf'>
+                <PDFDownloadLink document={<GraphsPdf survey={pdfSurvey} graphs={graphRefs} />} fileName='analytics.pdf'>
                     {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
                 </PDFDownloadLink>
             )
         }
-    }, [curSurvey])
+    }, [state])
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -107,11 +109,9 @@ function Analytics() {
                     <div className="back-div">
                         {Object.keys(state).map(key => (
                             <Col sx={8} md={6}>
-                                <Bar data={state[key]} />
+                                <Bar data={state[key]} ref={graphRefs.current[key]} />
                             </Col>
                         ))}
-
-                        <Bar data={state[0]} ref={graphRef} />
 
                         {pdfLinkComponent}
 

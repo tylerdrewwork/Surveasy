@@ -2,10 +2,25 @@ import React from 'react';
 import { Page, Text, Image, View, Document, Stylesheet } from '@react-pdf/renderer';
 
 const GraphPdf = (props) => {
-    function renderGraphImage() {
-        const graphImage = props.graph.current.chartInstance.toBase64Image();
 
-        return <Image src={graphImage} />;
+    function renderGraphImage(graphReferences) {
+
+        const graphImages = []
+
+        for (let i = 0; i < graphReferences.length; i++) {
+            if (graphReferences[i].current) {
+                graphImages.push(graphReferences[i].current.chartInstance.toBase64Image());
+            }
+        }
+
+        return (
+            <View>
+                {graphImages.map(image => {
+                    console.log(image);
+                    return <Image src={image} />
+                })}
+            </View>
+        );
     }
 
     return (
@@ -14,7 +29,7 @@ const GraphPdf = (props) => {
                 <View>
                     <Text>{props.survey.title}</Text>
 
-                    {renderGraphImage()}
+                    {renderGraphImage(props.graphs.current)}
                 </View>
             </Page>
         </Document>
