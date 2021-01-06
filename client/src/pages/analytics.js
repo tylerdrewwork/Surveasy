@@ -3,7 +3,7 @@ import Button from "../components/Button/button";
 import API from "../utils/API"
 import "./style.css";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
-import { Line, Bar, Pie} from "react-chartjs-2";
+import { Line, Bar, Pie } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 
@@ -11,32 +11,34 @@ function Analytics() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
     let token;
-    let selectedSurvey; 
+    let selectedSurvey;
     const [state, setState] = useState({});
 
-        useEffect(() => {
-            uploadSurveys()
-            console.log(token);
-            console.log(survey);
-        }, [])
+    useEffect(() => {
+        uploadSurveys()
+        console.log(token);
+        console.log(survey);
+    }, [])
 
-
+    function handleDownloadPdf() {
+        console.log("Download PDF");
+    }
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
         selectedSurvey = localStorage.getItem(`currentSurvey`);
 
         API.getUserSurveys(token)
-          .then((res) => {
-            setSurvey(res.data);
-            console.log(res.data);
-            accessSurvey(selectedSurvey);
-          })
-          .catch((err) => console.log(err));
+            .then((res) => {
+                setSurvey(res.data);
+                console.log(res.data);
+                accessSurvey(selectedSurvey);
+            })
+            .catch((err) => console.log(err));
     };
 
     function accessSurvey(id) {
-        selectedSurvey = id; 
+        selectedSurvey = id;
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
@@ -48,17 +50,17 @@ function Analytics() {
         return survey.findIndex(obj => obj._id === id);
     }
 
-    function getCharts(){
+    function getCharts() {
         const stateSet = {};
-        for(var i = 0; i < curSurvey.questions.length; i++){
+        for (var i = 0; i < curSurvey.questions.length; i++) {
             var countChoice = [];
             var labelChoice = [];
-            for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
+            for (var j = 0; j < curSurvey.questions[i].choices.length; j++) {
                 countChoice.push(curSurvey.questions[i].choices[j].votes);
                 labelChoice.push(curSurvey.questions[i].choices[j].choice)
             }
             stateSet[i] = {
-                labels: labelChoice, 
+                labels: labelChoice,
                 datasets: [{
                     label: curSurvey.questions[i].question,
                     backgroundColor: '#533540',
@@ -89,9 +91,10 @@ function Analytics() {
                     <div className="back-div">
                         {Object.keys(state).map(key => (
                             <Col sx={8} md={6}>
-                            <Bar data={state[key]} />
-                        </Col>
+                                <Bar data={state[key]} />
+                            </Col>
                         ))}
+                        <Button onClick={handleDownloadPdf} name="Download" />
                     </div>
                 </Col>
             </Row>
