@@ -65,25 +65,28 @@ function Analytics() {
 
     function getCharts() {
         const stateSet = {};
-        for (var i = 0; i < curSurvey.questions.length; i++) {
-            var countChoice = [];
-            var labelChoice = [];
-            for (var j = 0; j < curSurvey.questions[i].choices.length; j++) {
-                countChoice.push(curSurvey.questions[i].choices[j].votes);
-                labelChoice.push(curSurvey.questions[i].choices[j].choice)
-            }
-            stateSet[i] = {
-                labels: labelChoice,
-                datasets: [{
-                    label: curSurvey.questions[i].question,
-                    backgroundColor: '#533540',
-                    borderColor: 'rgba(0,0,0,1)',
-                    borderWidth: 2,
-                    data: countChoice
-                }]
+
+        if (curSurvey._id) {
+            for (var i = 0; i < curSurvey.questions.length; i++) {
+                var countChoice = [];
+                var labelChoice = [];
+                for (var j = 0; j < curSurvey.questions[i].choices.length; j++) {
+                    countChoice.push(curSurvey.questions[i].choices[j].votes);
+                    labelChoice.push(curSurvey.questions[i].choices[j].choice)
+                }
+                stateSet[i] = {
+                    labels: labelChoice,
+                    datasets: [{
+                        label: curSurvey.questions[i].question,
+                        backgroundColor: '#533540',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: countChoice
+                    }]
+                }
             }
         }
-        console.log(curSurvey);
+
         setState(stateSet);
 
     }

@@ -12,8 +12,9 @@ const GraphPdf = (props) => {
             <Page>
                 <View>
                     <Text>Hello World</Text>
-
                     <Text>Survey Title {props.survey.title}</Text>
+
+                    {/* {"Hello World"} */}
                 </View>
             </Page>
         </Document>
