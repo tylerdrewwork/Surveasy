@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import Button from "../components/Button/button";
 import API from "../utils/API"
 import "./style.css";
@@ -6,6 +7,7 @@ import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
+import GraphsPdf from '../components/GraphsPdf/GraphsPdf.js';
 
 function Analytics() {
     const [survey, setSurvey] = useState({});
@@ -19,10 +21,6 @@ function Analytics() {
         console.log(token);
         console.log(survey);
     }, [])
-
-    function handleDownloadPdf() {
-        console.log("Download PDF");
-    }
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -42,7 +40,6 @@ function Analytics() {
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
-        console.log(curSurvey);
         getCharts();
     }
 
@@ -94,7 +91,11 @@ function Analytics() {
                                 <Bar data={state[key]} />
                             </Col>
                         ))}
-                        <Button onClick={handleDownloadPdf} name="Download" />
+
+                        <PDFDownloadLink document={<GraphsPdf />} fileName='analytics.pdf'>
+                            {({ loading }) => (loading ? 'Loading document...' : 'Download now!')}
+                        </PDFDownloadLink>
+
                     </div>
                 </Col>
             </Row>
