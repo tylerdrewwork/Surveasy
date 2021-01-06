@@ -84,7 +84,10 @@ function Analytics() {
             var countChoice = [];
             var labelChoice = [];
             var backgroundChoice = [];
-            var count = 33;
+            var countR = 83;
+            var countG = 53;
+            var countB = 64;
+            var countA = 33;
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
                 countChoice.push(curSurvey.questions[i].choices[j].votes);
                 labelChoice.push(curSurvey.questions[i].choices[j].choice);
@@ -95,14 +98,14 @@ function Analytics() {
                 labels: labelChoice, 
                 datasets: [{
                     label: curSurvey.questions[i].question,
-                    backgroundColor: '#533540',
+                    backgroundColor: backgroundChoice,
                     borderColor: backgroundChoice,
                     borderWidth: 2,
                     data: countChoice
                 }]
             }
         }
-
+            console.log(backgroundChoice);
         }
         setState2(stateSet2);
     }
@@ -126,6 +129,13 @@ function Analytics() {
                         {Object.keys(state).map(key => (
                            <Col sx={8} md={6}>
                             <Bar data={state[key]} />
+                           </Col>
+                        ))}
+                    </Row>
+                    <Row float="center">
+                        {Object.keys(state2).map(key => (
+                           <Col sx={8} md={6}>
+                            <Pie data={state2[key]} />
                            </Col>
                         ))}
                     </Row>
