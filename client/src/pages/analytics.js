@@ -53,7 +53,7 @@ function Analytics() {
         if(curSurvey.questions === undefined){
 
         }else{
-                    for(var i = 0; i < curSurvey.questions.length; i++){
+            for(var i = 0; i < curSurvey.questions.length; i++){
             var countChoice = [];
             var labelChoice = [];
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
@@ -73,29 +73,7 @@ function Analytics() {
         }
 
         }
- 
-        //if (curSurvey.questions.length === )
-        // for(var i = 0; i < curSurvey.questions.length; i++){
-        //     var countChoice = [];
-        //     var labelChoice = [];
-        //     for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
-        //         countChoice.push(curSurvey.questions[i].choices[j].votes);
-        //         labelChoice.push(curSurvey.questions[i].choices[j].choice)
-        //     }
-        //     stateSet[i] = {
-        //         labels: labelChoice, 
-        //         datasets: [{
-        //             label: curSurvey.questions[i].question,
-        //             backgroundColor: '#533540',
-        //             borderColor: 'rgba(0,0,0,1)',
-        //             borderWidth: 2,
-        //             data: countChoice
-        //         }]
-        //     }
-        // }
-
         setState(stateSet);
-
     }
 
 
@@ -113,11 +91,13 @@ function Analytics() {
                 </Col>
                 <Col sx={8} md={9}>
                     <div className="back-div">
+                    <Row float="center">
                         {Object.keys(state).map(key => (
-                            <Col sx={8} md={6}>
+                           <Col sx={8} md={6}>
                             <Bar data={state[key]} />
-                        </Col>
+                           </Col>
                         ))}
+                    </Row>
                     </div>
                 </Col>
             </Row>
