@@ -23,6 +23,7 @@
     "url": "https://github.com/Sakiskid/Unnamed-Survey-App/issues"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^1.6.12",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "env.json": "^2.0.1",
