@@ -13,6 +13,7 @@ function Analytics() {
     let token;
     let selectedSurvey; 
     const [state, setState] = useState({});
+    const [state2, setState2] = useState({});
 
         useEffect(() => {
             uploadSurveys()
@@ -49,6 +50,32 @@ function Analytics() {
 
     function getCharts(){
         console.log(curSurvey);
+        const stateSet = {};
+        if(curSurvey.questions === undefined){
+
+        }else{
+            for(var i = 0; i < curSurvey.questions.length; i++){
+            var countChoice = [];
+            var labelChoice = [];
+            for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
+                countChoice.push(curSurvey.questions[i].choices[j].votes);
+                labelChoice.push(curSurvey.questions[i].choices[j].choice)
+            }
+            stateSet[i] = {
+                labels: labelChoice, 
+                datasets: [{
+                    label: curSurvey.questions[i].question,
+                    backgroundColor: '#533540',
+                    borderColor: 'rgba(0,0,0,1)',
+                    borderWidth: 2,
+                    data: countChoice
+                }]
+            }
+        }
+
+        }
+        setState(stateSet);
+
         const stateSet = {};
         if(curSurvey.questions === undefined){
 
