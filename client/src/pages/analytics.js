@@ -91,8 +91,11 @@ function Analytics() {
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
                 countChoice.push(curSurvey.questions[i].choices[j].votes);
                 labelChoice.push(curSurvey.questions[i].choices[j].choice);
-                backgroundChoice.push('rgba(83,53,64,' + count + ')');
-                count = count + 10;
+                backgroundChoice.push('rgba(' + countR + ',' + countG + ',' + countB + ',' + countA + ')');
+                countR = countR + 40;
+                countG = countG + 40;
+                countB = countB + 40;
+                countA = countA + 40;
             }
             stateSet2[i] = {
                 labels: labelChoice, 
@@ -132,7 +135,7 @@ function Analytics() {
                            </Col>
                         ))}
                     </Row>
-                    <Row float="center">
+                    <Row float="center" style = "">
                         {Object.keys(state2).map(key => (
                            <Col sx={8} md={6}>
                             <Pie data={state2[key]} />
