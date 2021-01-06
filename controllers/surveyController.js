@@ -42,6 +42,9 @@ SurveyController.prototype.addChoiceToQuestion = function () {
 SurveyController.prototype.getSurveyById = function (surveyId, cb) {
     db.Survey.findOne({ _id: surveyId }).then(result => {
         cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
     });
 }
 
@@ -114,15 +117,6 @@ SurveyController.prototype.deleteSurvey = function (surveyId, cb) {
 }
 
 SurveyController.prototype.deleteQuestion = function (surveyId, questionId, cb) {
-    // db.Survey.updateOne(
-    //     { _id: surveyId },
-    //     { $pull: { questions: { _id: questionId } } }
-    // ).then(result => {
-    //     cb(result);
-    // }).catch(err => {
-    //     console.log("Error:", err);
-    //     cb(err);
-    // })
     db.Survey.updateOne(
             { _id: surveyId },
             { $pull: { questions: { _id: questionId } } },
@@ -135,7 +129,10 @@ SurveyController.prototype.deleteQuestion = function (surveyId, questionId, cb) 
 }
 
 SurveyController.prototype.deleteChoice = function () {
-
+    db.Survey.updateOne(
+        { _id: surveyId },
+        { $pull: { }}
+    )
 }
 
 module.exports = SurveyController;
