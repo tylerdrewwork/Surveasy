@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import Button from "../components/Button/button";
 import API from "../utils/API"
@@ -17,26 +17,25 @@ function Analytics() {
     let selectedSurvey;
     const [state, setState] = useState({});
 
-
+    const graphRef = useRef();
 
     useEffect(() => {
         uploadSurveys()
     }, [])
 
     useEffect(() => {
-        console.log(state);
 
         // Set new link when curSurvey Updates
         if (curSurvey._id) {
             const pdfSurvey = curSurvey;
-            const pdfGraph = state;
+
             setPdfLinkComponent(
-                <PDFDownloadLink document={<GraphsPdf survey={pdfSurvey} graph={pdfGraph} />} fileName='analytics.pdf'>
+                <PDFDownloadLink document={<GraphsPdf survey={pdfSurvey} graph={graphRef} />} fileName='analytics.pdf'>
                     {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
                 </PDFDownloadLink>
             )
         }
-    }, [state])
+    }, [curSurvey])
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -111,6 +110,8 @@ function Analytics() {
                                 <Bar data={state[key]} />
                             </Col>
                         ))}
+
+                        <Bar data={state[0]} ref={graphRef} />
 
                         {pdfLinkComponent}
 
