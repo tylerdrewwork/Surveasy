@@ -30,7 +30,7 @@ function App() {
       <Route exact path="/create">
         <CreateSurvey />
       </Route>
-      <Route path="/survey">
+      <Route path="/survey/:id">
         <TakeSurvey />
       </Route>
     </Router>
