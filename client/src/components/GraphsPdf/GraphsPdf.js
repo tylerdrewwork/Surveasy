@@ -1,12 +1,11 @@
 import React from 'react';
-import { Page, Text, View, Document, Stylesheet } from '@react-pdf/renderer';
+import { Page, Text, Image, View, Document, Stylesheet } from '@react-pdf/renderer';
 
 const GraphPdf = (props) => {
+    function renderGraphImage() {
+        const graphImage = props.graph.current.chartInstance.toBase64Image();
 
-    console.log(props.graph)
-
-    function renderGraphData() {
-        return <Text>Graph Data</Text>
+        return <Image src={graphImage} />;
     }
 
     return (
@@ -15,7 +14,7 @@ const GraphPdf = (props) => {
                 <View>
                     <Text>{props.survey.title}</Text>
 
-                    {renderGraphData()}
+                    {renderGraphImage()}
                 </View>
             </Page>
         </Document>
