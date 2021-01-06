@@ -20,37 +20,40 @@ function Analytics() {
             console.log(survey);
         }, [])
 
+        useEffect(() => {
+            getCharts();
+        }, [curSurvey])
 
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
-        selectedSurvey = localStorage.getItem(`currentSurvey`);
-
         API.getUserSurveys(token)
           .then((res) => {
             setSurvey(res.data);
             console.log(res.data);
-            accessSurvey(selectedSurvey);
           })
           .catch((err) => console.log(err));
     };
 
     function accessSurvey(id) {
-        selectedSurvey = id; 
-        localStorage.setItem('currentSurvey', id);
+        selectedSurvey = id;
         var r = getIndex(id);
-        setCurSurvey(survey[r]);
-        console.log(curSurvey);
-        getCharts();
+        console.log(r);
+        setCurSurvey(survey[r]);       
     }
+    
 
     function getIndex(id) {
         return survey.findIndex(obj => obj._id === id);
     }
 
     function getCharts(){
+        console.log(curSurvey);
         const stateSet = {};
-        for(var i = 0; i < curSurvey.questions.length; i++){
+        if(curSurvey.questions === undefined){
+
+        }else{
+                    for(var i = 0; i < curSurvey.questions.length; i++){
             var countChoice = [];
             var labelChoice = [];
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
@@ -68,6 +71,29 @@ function Analytics() {
                 }]
             }
         }
+
+        }
+ 
+        //if (curSurvey.questions.length === )
+        // for(var i = 0; i < curSurvey.questions.length; i++){
+        //     var countChoice = [];
+        //     var labelChoice = [];
+        //     for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
+        //         countChoice.push(curSurvey.questions[i].choices[j].votes);
+        //         labelChoice.push(curSurvey.questions[i].choices[j].choice)
+        //     }
+        //     stateSet[i] = {
+        //         labels: labelChoice, 
+        //         datasets: [{
+        //             label: curSurvey.questions[i].question,
+        //             backgroundColor: '#533540',
+        //             borderColor: 'rgba(0,0,0,1)',
+        //             borderWidth: 2,
+        //             data: countChoice
+        //         }]
+        //     }
+        // }
+
         setState(stateSet);
 
     }
