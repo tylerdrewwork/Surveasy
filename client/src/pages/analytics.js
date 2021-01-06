@@ -84,9 +84,12 @@ function Analytics() {
             var countChoice = [];
             var labelChoice = [];
             var backgroundChoice = [];
+            var count = 33;
             for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
                 countChoice.push(curSurvey.questions[i].choices[j].votes);
-                labelChoice.push(curSurvey.questions[i].choices[j].choice)
+                labelChoice.push(curSurvey.questions[i].choices[j].choice);
+                backgroundChoice.push('rgba(83,53,64,' + count + ')');
+                count = count + 10;
             }
             stateSet[i] = {
                 labels: labelChoice, 
