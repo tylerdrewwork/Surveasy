@@ -135,7 +135,7 @@ function Analytics() {
                            </Col>
                         ))}
                     </Row>
-                    <Row float="center" style = "">
+                    <Row float="center" style={{ padding: 40 }}>
                         {Object.keys(state2).map(key => (
                            <Col sx={8} md={6}>
                             <Pie data={state2[key]} />
