@@ -18,12 +18,12 @@ function TakeSurvey() {
     getSurveyById();
   }, []);
 
-  // useEffect(() => {
-  //     if(!survey == {}) {
-  //         currentQuestion = survey.questions[curQuestionIndex];
-  //         console.log("This is current question: " + currentQuestion);
-  //     }
-  // }, [curQuestionIndex]);
+//   useEffect(() => {
+//       if(!survey == {}) {
+//           currentQuestion = survey.questions[curQuestionIndex];
+//           console.log("This is current question: " + currentQuestion);
+//       }
+//   }, [curQuestionIndex]);
 
   function getSurveyById() {
     API.getUserSurveyById(id)
@@ -45,10 +45,11 @@ function TakeSurvey() {
           <React.Fragment>
             {survey.title}
             <Question question={survey.questions[0].question} />
-            <Answer answer={survey.questions[0].choices[0].choice} />
+            {renderAnswers()}
+            {/* <Answer answer={survey.questions[0].choices[0].choice} />
             <Answer answer={survey.questions[0].choices[1].choice} />
             <Answer answer={survey.questions[0].choices[2].choice} />
-            <Answer answer={survey.questions[0].choices[3].choice} />
+            <Answer answer={survey.questions[0].choices[3].choice} /> */}
           </React.Fragment>
         );
       }
@@ -59,7 +60,18 @@ function TakeSurvey() {
           <h1>No data found</h1>
           
       )
-  }
+  };
+
+  function renderAnswers() {
+      const firstQuestion = survey.questions[0];
+
+      if (firstQuestion.choices) {
+          return firstQuestion.choices.map( ({ choice }) => {
+              return <Answer answer={choice} />
+          })
+      }
+      return null;
+  };
 
   return (
     <div>
