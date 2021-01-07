@@ -35,18 +35,39 @@ function TakeSurvey() {
       .catch((err) => console.log(err));
   }
 
-  return (
-    <div>
-      <NavigationSurvey />
-      <Container>
-        <Row>
-          <Col>
+  if (!survey) {
+      return <h1>Loading...</h1>
+  }
+
+  function renderQuestion() {
+      if (survey.questions && survey.questions[0] && survey.questions[0].question) {
+        return (
+          <React.Fragment>
             {survey.title}
             <Question question={survey.questions[0].question} />
             <Answer answer={survey.questions[0].choices[0].choice} />
             <Answer answer={survey.questions[0].choices[1].choice} />
             <Answer answer={survey.questions[0].choices[2].choice} />
             <Answer answer={survey.questions[0].choices[3].choice} />
+          </React.Fragment>
+        );
+      }
+      console.log("Data not found on page load")
+        console.log(survey);
+
+      return (
+          <h1>No data found</h1>
+          
+      )
+  }
+
+  return (
+    <div>
+      <NavigationSurvey />
+      <Container>
+        <Row>
+          <Col>
+          {renderQuestion()}
             {/* Survey Question
                     Answer
                     Answer
