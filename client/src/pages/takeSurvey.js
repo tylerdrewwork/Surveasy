@@ -10,7 +10,7 @@ import { get } from "mongoose";
 
 function TakeSurvey() {
   const [survey, setSurvey] = useState({});
-  const [curQuestionIndex, setCurQuestionIndex] = useState();
+  const [curQuestionIndex, setCurQuestionIndex] = useState(0);
   let { id } = useParams();
   // let currentQuestion = {};
 
@@ -39,27 +39,41 @@ function TakeSurvey() {
       return <h1>Loading...</h1>
   }
 
-  function renderQuestion() {
-      if (survey.questions && survey.questions[0] && survey.questions[0].question) {
-        return (
-          <React.Fragment>
-            {survey.title}
-            <Question question={survey.questions[0].question} />
-            {renderAnswers()}
-            {/* <Answer answer={survey.questions[0].choices[0].choice} />
-            <Answer answer={survey.questions[0].choices[1].choice} />
-            <Answer answer={survey.questions[0].choices[2].choice} />
-            <Answer answer={survey.questions[0].choices[3].choice} /> */}
-          </React.Fragment>
-        );
-      }
-      console.log("Data not found on page load")
-        console.log(survey);
+  function nextQuestion () {
+    if(curQuestionIndex + 1 >= survey.questions.length) {
+      // The survey has been finished?
+      console.log("Survey has been finished.");
+    } 
 
+    // Otherwise, increment the current question index by one
+    setCurQuestionIndex(curQuestionIndex + 1);
+  }
+
+  function renderQuestion() {
+    console.log("Rendering question. curQuestionIndex: ", curQuestionIndex);
+
+    // If we have a survey with questions, render it
+    if (survey.questions && survey.questions[curQuestionIndex]) {
       return (
-          <h1>No data found</h1>
-          
-      )
+        <React.Fragment>
+          {/* Render Title */}
+          {survey.title}
+          {/* Render Question Name */}
+          <Question question={survey.questions[curQuestionIndex].question} />
+          {/* Render all the choices */}
+          {renderAnswers()}
+          <button onClick={nextQuestion}></button>
+        </React.Fragment>
+      );
+    }
+
+    // Otherwise, return no data found
+    console.log("Data not found on page load")
+    console.log(survey);
+
+    return (
+        <h1>No data found</h1>
+    )
   };
 
   function renderAnswers() {
