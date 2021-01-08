@@ -1,19 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
-import Admin from "./pages/admin"
-import Edit from "./pages/edit"
-import Analytics from "./pages/analytics"
-import CreateSurvey from "./pages/createSurvey"
+import Admin from "./pages/admin";
+import Edit from "./pages/edit";
+import Analytics from "./pages/analytics";
+import CreateSurvey from "./pages/createSurvey";
+import Landing from "./pages/landing";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './pages/style.css';
-import { Container, Grid, Row, Col } from "react-bootstrap";
+
 
 function App() {
   return (
     <Router>
+      <Route exact path="/">
+        <Landing />
+      </Route>
       <Route exact path="/signin">
         <SignIn />
       </Route>
@@ -33,22 +36,7 @@ function App() {
         <CreateSurvey />
       </Route>
 
-      <section className='back-div'>
-        <h1>SurvEasy</h1>
 
-        <section>
-          <Link to='/signin' style={{ margin: '1em' }}>Sign in</Link>
-          <Link to='/signup' style={{ margin: '1em' }}>Sign up</Link>
-        </section>
-
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
-      </section>
     </Router>
   );
 }
