@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Grid, Row, Col } from "react-bootstrap";
+import { Container, Grid, Row, Col,  } from "react-bootstrap";
 import "./style.css";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
@@ -12,7 +12,7 @@ function TakeSurvey() {
   const [survey, setSurvey] = useState({});
   const [curQuestionIndex, setCurQuestionIndex] = useState(0);
   let { id } = useParams();
-  // let currentQuestion = {};
+  let currentQuestion, currentChoiceId;
 
   useEffect(() => {
     getSurveyById();
@@ -26,7 +26,7 @@ function TakeSurvey() {
 //   }, [curQuestionIndex]);
 
   function getSurveyById() {
-    API.getUserSurveyById(id)
+    API.takeSurvey(id)
       .then((res) => {
         console.log(res.data);
         setSurvey(res.data);
@@ -45,8 +45,22 @@ function TakeSurvey() {
       console.log("Survey has been finished.");
     } 
 
-    // Otherwise, increment the current question index by one
+    // TODO if selected choice is undefined don't let them continue
+
+    // Otherwise, send question choice result
+    submitChoice();
+    // and increment the current question index by one
     setCurQuestionIndex(curQuestionIndex + 1);
+  }
+
+  function submitChoice () {
+    // TODO make selectedChoice equal the selected choice, 
+    let selectedChoice; 
+    API.updateSurveyVote(
+      survey._id, 
+      survey.questions[curQuestionIndex]._id, 
+      selectedChoice)
+    
   }
 
   function renderQuestion() {
@@ -54,6 +68,7 @@ function TakeSurvey() {
 
     // If we have a survey with questions, render it
     if (survey.questions && survey.questions[curQuestionIndex]) {
+      currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
           {/* Render Title */}
@@ -77,15 +92,24 @@ function TakeSurvey() {
   };
 
   function renderAnswers() {
-      const firstQuestion = survey.questions[0];
+      // const firstQuestion = survey.questions[];
 
-      if (firstQuestion.choices) {
-          return firstQuestion.choices.map( ({ choice }) => {
-              return <Answer answer={choice} />
-          })
+      if (currentQuestion.choices) {
+          return (
+            <form>
+              {currentQuestion.choices.map( ({ choice, _id }) => {
+                return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect}/>
+              })}
+            </form>
+          )
       }
       return null;
   };
+
+  function handleRadioSelect (event) {
+    console.log("Heres the radio event: ", event, "and da target.id be: ", event.target.id);
+    currentChoiceId = event.target.id;
+  }
 
   return (
     <div>
