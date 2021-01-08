@@ -6,12 +6,17 @@ import Admin from "./pages/admin";
 import Edit from "./pages/edit";
 import Analytics from "./pages/analytics";
 import CreateSurvey from "./pages/createSurvey";
-import TakeSurvey from "./pages/takeSurvey";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Landing from "./pages/landing";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 function App() {
   return (
     <Router>
+      <Route exact path="/">
+        <Landing />
+      </Route>
       <Route exact path="/signin">
         <SignIn />
       </Route>
@@ -29,9 +34,6 @@ function App() {
       </Route>
       <Route exact path="/create">
         <CreateSurvey />
-      </Route>
-      <Route path="/survey/:id">
-        <TakeSurvey />
       </Route>
     </Router>
   );
