@@ -1,4 +1,17 @@
 const db = require('../models');
+const generateIds = require('./util/generateUniqueId.js');
+
+function addIds(surveyData) {
+    surveyData.questions.forEach(question => {
+        question._id = generateIds(12);
+
+        question.choices.forEach(choice => {
+            choice._id = generateIds(12);
+        });
+    });
+
+    return surveyData;
+}
 
 function SurveyController() { }
 
@@ -7,17 +20,22 @@ function SurveyController() { }
 //
 
 SurveyController.prototype.createSurvey = function (surveyData, cb) {
-    db.Survey.create({
-        title: surveyData.title,
-        active: surveyData.active,
-        public: surveyData.public,
-        questions: surveyData.questions
-    }).then(result => {
-        cb(result);
-    }).catch(err => {
-        console.log("Error:", err);
-        cb(err);
-    });
+
+    surveyData = addIds(surveyData);
+
+    cb(surveyData.questions);
+
+    // db.Survey.create({
+    //     title: surveyData.title,
+    //     active: surveyData.active,
+    //     public: surveyData.public,
+    //     questions: surveyData.questions
+    // }).then(result => {
+    //     cb(result);
+    // }).catch(err => {
+    //     console.log("Error:", err);
+    //     cb(err);
+    // });
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
