@@ -243,10 +243,12 @@ const apiRoutes = (app) => {
             });
         });
 
-    app.route("/api./taking_survey")
+    app.route("/api/taking_survey")
         // Read survey
         .get((req, res) => {
-            let surveyId = req.query.id;
+            let surveyId = req.query.surveyId;
+
+            console.log('test');
 
             surveyController.getSurveyById(surveyId, result => {
                 res.json(result);
@@ -260,7 +262,7 @@ const apiRoutes = (app) => {
             surveyController.updateSurveyQuestions(surveyId, questionData, result => {
                 res.json(result);
             });
-        })
+        });
 
     // Return decrypted authorization if authorized
     function authorizeRequest(request, cb) {
