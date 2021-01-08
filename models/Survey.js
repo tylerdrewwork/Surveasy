@@ -17,7 +17,7 @@ const SurveySchema = mongoose.Schema({
         // This _id is the MongoDb id for the current question. This is the syntax for creating an ObjectId within a mongoose object!
         _id: {
             type: String,
-            default: mongoose.Types.ObjectId()
+            default: new mongoose.Types.ObjectId()
         },
         question: {
             type: String,
@@ -26,7 +26,7 @@ const SurveySchema = mongoose.Schema({
         choices: [{
             _id: {
                 type: String,
-                default: mongoose.Types.ObjectId()
+                default: new mongoose.Types.ObjectId()
             },
             choice: {
                 type: String,
