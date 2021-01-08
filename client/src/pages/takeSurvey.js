@@ -18,13 +18,6 @@ function TakeSurvey() {
     getSurveyById();
   }, []);
 
-//   useEffect(() => {
-//       if(!survey == {}) {
-//           currentQuestion = survey.questions[curQuestionIndex];
-//           console.log("This is current question: " + currentQuestion);
-//       }
-//   }, [curQuestionIndex]);
-
   function getSurveyById() {
     API.takeSurvey(id)
       .then((res) => {
@@ -44,8 +37,6 @@ function TakeSurvey() {
       // The survey has been finished?
       console.log("Survey has been finished.");
     } 
-
-    // TODO if selected choice is undefined don't let them continue
 
     // Otherwise, send question choice result
     submitChoice();
@@ -92,7 +83,6 @@ function TakeSurvey() {
   };
 
   function renderAnswers() {
-      // const firstQuestion = survey.questions[];
 
       if (currentQuestion.choices) {
           return (
@@ -118,13 +108,6 @@ function TakeSurvey() {
         <Row>
           <Col>
           {renderQuestion()}
-            {/* Survey Question
-                    Answer
-                    Answer
-                    Answer
-                    Answer
-                    Radio Buttons 
-                    Next/Submit Button */}
           </Col>
         </Row>
       </Container>
