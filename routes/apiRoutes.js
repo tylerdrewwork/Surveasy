@@ -256,12 +256,17 @@ const apiRoutes = (app) => {
         })
         // Update a survey
         .put((req, res) => {
-            let surveyId = req.query.id;
-            let questionData = req.body.questionData;
+            let surveyId = req.query.aurveyId;
+            let questionId = req.body.questionId;
+            let choiceId = req.body.choiceId;
 
-            surveyController.updateSurveyQuestions(surveyId, questionData, result => {
-                res.json(result);
-            });
+            console.log('test')
+            console.log(questionId);
+            console.log(choiceId);
+
+            // surveyController.updateSurveyQuestions(surveyId, questionData, result => {
+            //     res.json(result);
+            // });
         });
 
     // Return decrypted authorization if authorized
