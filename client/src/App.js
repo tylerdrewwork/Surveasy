@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import Admin from "./pages/admin"
@@ -9,6 +9,7 @@ import CreateSurvey from "./pages/createSurvey"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './pages/style.css';
+import { Container, Grid, Row, Col } from "react-bootstrap";
 
 function App() {
   return (
@@ -35,8 +36,10 @@ function App() {
       <section className='back-div'>
         <h1>SurvEasy</h1>
 
-        <div>Sign in Link</div>
-        <div>Sign Up Link</div>
+        <section>
+          <Link to='/signin' style={{ margin: '1em' }}>Sign in</Link>
+          <Link to='/signup' style={{ margin: '1em' }}>Sign up</Link>
+        </section>
 
         <p>
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
