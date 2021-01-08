@@ -6,8 +6,10 @@ import API from "../../utils/API";
 
 function CreateSurvey() {
 
-  const [questionCount, setQuestionCount] = useState([""]);
-  const [surveyData, setSurveyData] = useState(new Array(questionCount.length));
+  const [questionCount, setQuestionCount] = useState(1);
+  const [surveyData, setSurveyData] = useState({
+    questions: [{}]
+  });
   const [surveyTitle, setSurveyTitle] = useState({});
 
   function handleTitleChange(event) {
@@ -37,8 +39,11 @@ function CreateSurvey() {
   function handleIncreaseCount(event) {
     event.preventDefault();
 
-    const increaseCountArray = [...questionCount, ""];
-    setQuestionCount(increaseCountArray);
+    // Increase Count
+    setQuestionCount(questionCount + 1);
+
+    const newQuestionArray = [...surveyData.questions, {}]
+    setSurveyData({ ...surveyData, questions: newQuestionArray });
   }
 
   function formatSurveyData(data, title) {
@@ -48,7 +53,7 @@ function CreateSurvey() {
       questions: []
     };
 
-    for (let i = 0; i < questionCount.length; i++) {
+    for (let i = 0; i < questionCount; i++) {
       formattedData.questions[i] = {
         question: data[i].QuestionName,
         choices: [
@@ -67,7 +72,7 @@ function CreateSurvey() {
     <div className="back-div">
       <Input onChange={handleTitleChange} name="SurveyName" />
 
-      {questionCount.map((input, index) => {
+      {surveyData.questions.map((input, index) => {
         return <div data-key={index} key={index}>
           <Input onChange={handleInputChange} name={`QuestionName`} />
           <Input onChange={handleInputChange} name={`Option1`} />

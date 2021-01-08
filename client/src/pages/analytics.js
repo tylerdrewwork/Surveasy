@@ -12,6 +12,8 @@ function Analytics() {
     const [curSurvey, setCurSurvey] = useState({});
     let token;
     let selectedSurvey; 
+    const [state, setState] = useState({});
+    const [state2, setState2] = useState({});
 
         useEffect(() => {
             uploadSurveys()
@@ -19,28 +21,13 @@ function Analytics() {
             console.log(survey);
         }, [])
 
-    const data = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-          {
-            label: "First dataset",
-            data: [33, 53, 85, 41, 44, 65],
-            fill: true,
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)"
-          },
-          {
-            label: "Second dataset",
-            data: [33, 25, 35, 51, 54, 76],
-            fill: false,
-            borderColor: "#742774"
-          }
-        ]
-      };
+        useEffect(() => {
+            getCharts();
+        }, [curSurvey])
+
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
-
         API.getUserSurveys(token)
           .then((res) => {
             setSurvey(res.data);
@@ -50,16 +37,81 @@ function Analytics() {
     };
 
     function accessSurvey(id) {
-        selectedSurvey = id; 
-        console.log(selectedSurvey);
-        localStorage.setItem('currentSurvey', id);
+        selectedSurvey = id;
         var r = getIndex(id);
-        setCurSurvey(survey[r]);
+        console.log(r);
+        setCurSurvey(survey[r]);       
     }
+    
 
     function getIndex(id) {
         return survey.findIndex(obj => obj._id === id);
-      }
+    }
+
+    function getCharts(){
+        console.log(curSurvey);
+        const stateSet = {};
+        if(curSurvey.questions === undefined){
+
+        }else{
+            for(var i = 0; i < curSurvey.questions.length; i++){
+            var countChoice = [];
+            var labelChoice = [];
+            for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
+                countChoice.push(curSurvey.questions[i].choices[j].votes);
+                labelChoice.push(curSurvey.questions[i].choices[j].choice)
+            }
+            stateSet[i] = {
+                labels: labelChoice, 
+                datasets: [{
+                    label: curSurvey.questions[i].question,
+                    backgroundColor: '#533540',
+                    borderColor: 'rgba(0,0,0,1)',
+                    borderWidth: 2,
+                    data: countChoice
+                }]
+            }
+        }
+
+        }
+        setState(stateSet);
+
+        const stateSet2 = {};
+        if(curSurvey.questions === undefined){
+
+        }else{
+            for(var i = 0; i < curSurvey.questions.length; i++){
+            var countChoice = [];
+            var labelChoice = [];
+            var backgroundChoice = [];
+            var countR = 83;
+            var countG = 53;
+            var countB = 64;
+            var countA = 33;
+            for( var j = 0; j < curSurvey.questions[i].choices.length; j++){
+                countChoice.push(curSurvey.questions[i].choices[j].votes);
+                labelChoice.push(curSurvey.questions[i].choices[j].choice);
+                backgroundChoice.push('rgba(' + countR + ',' + countG + ',' + countB + ',' + countA + ')');
+                countR = countR + 40;
+                countG = countG + 40;
+                countB = countB + 40;
+                countA = countA + 40;
+            }
+            stateSet2[i] = {
+                labels: labelChoice, 
+                datasets: [{
+                    label: curSurvey.questions[i].question,
+                    backgroundColor: backgroundChoice,
+                    borderColor: backgroundChoice,
+                    borderWidth: 2,
+                    data: countChoice
+                }]
+            }
+        }
+            console.log(backgroundChoice);
+        }
+        setState2(stateSet2);
+    }
 
 
     return (
@@ -76,7 +128,20 @@ function Analytics() {
                 </Col>
                 <Col sx={8} md={9}>
                     <div className="back-div">
-                    <Line data={data} />
+                    <Row float="center">
+                        {Object.keys(state).map(key => (
+                           <Col sx={8} md={6}>
+                            <Bar data={state[key]} />
+                           </Col>
+                        ))}
+                    </Row>
+                    <Row float="center" style={{ padding: 40 }}>
+                        {Object.keys(state2).map(key => (
+                           <Col sx={8} md={6}>
+                            <Pie data={state2[key]} />
+                           </Col>
+                        ))}
+                    </Row>
                     </div>
                 </Col>
             </Row>

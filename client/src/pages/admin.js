@@ -47,9 +47,6 @@ function Admin() {
 
     return (
 
-        //navbar will be set up here 
-        // ---- Have the log out button link here 
-        //starting the side survey page 
         <div>
             <NavigationSurvey />
 
