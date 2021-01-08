@@ -19,21 +19,21 @@ mongoose.connect(
 ).then(({ connections }) => {
     console.log('Database connected on port', connections[0].port + '...');
 
-    // seedUser({
-    //     username: "bestuser",
-    //     password: "Password123",
-    //     email: "bestuser@test.com"
-    // });
-    // seedUser({
-    //     username: "smithy4556",
-    //     password: "smithyP@ssword5",
-    //     email: "smithy@test.com"
-    // });
-    // seedUser({
-    //     username: "mcUser",
-    //     password: "mcPassword",
-    //     email: "mcEmail@test.com"
-    // });
+    seedUser({
+        username: "bestuser",
+        password: "Password123",
+        email: "bestuser@test.com"
+    });
+    seedUser({
+        username: "smithy4556",
+        password: "smithyP@ssword5",
+        email: "smithy@test.com"
+    });
+    seedUser({
+        username: "mcUser",
+        password: "mcPassword",
+        email: "mcEmail@test.com"
+    });
     seedSurvey({
         title: "Test Survey Title",
         question1: "Question 1",
