@@ -154,10 +154,10 @@ const apiRoutes = (app) => {
         .get((req, res) => {
             // AUTHORIZATION
             authorizeRequest(req, authorization => {
-                // if (authorization === 'Error: Authorization is Unsuccessful.') {
-                //     res.send("Error! User is not authorized.");
-                //     return;
-                // }
+                if (authorization === 'Error: Authorization is Unsuccessful.') {
+                    res.send("Error! User is not authorized.");
+                    return;
+                }
 
                 // define query parameters
                 let surveyId = req.query.id;
