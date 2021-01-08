@@ -3,9 +3,11 @@ import "./answer.css";
 
 function Answer(props) {
     return (
-      <div >
-        {props.answer}
-      </div>
+      <form>
+        <label>
+          {/* <input type="radio" value={props.answer} /> */}
+          {props.answer}</label>
+      </form>
     );
 };
 
