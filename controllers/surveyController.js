@@ -23,22 +23,22 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
 
     surveyData = addIds(surveyData);
 
-    cb(surveyData.questions);
-
-    // db.Survey.create({
-    //     title: surveyData.title,
-    //     active: surveyData.active,
-    //     public: surveyData.public,
-    //     questions: surveyData.questions
-    // }).then(result => {
-    //     cb(result);
-    // }).catch(err => {
-    //     console.log("Error:", err);
-    //     cb(err);
-    // });
+    db.Survey.create({
+        title: surveyData.title,
+        active: surveyData.active,
+        public: surveyData.public,
+        questions: surveyData.questions
+    }).then(result => {
+        cb(result);
+    }).catch(err => {
+        console.log("Error:", err);
+        cb(err);
+    });
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
+    questionData._id = generateIds(12);
+
     db.Survey.updateOne({ _id: surveyId }, {
         $push: { questions: questionData }
     }).then(result => {
