@@ -99,6 +99,29 @@ SurveyController.prototype.updateSurveyQuestions = function (surveyId, questionD
     })
 }
 
+SurveyController.prototype.updateSurveyChoiceVote = function (surveyId, questionId, choiceId, cb) {
+    db.Survey.findOne({
+        _id: surveyId
+    }).then(result => {
+        const questionData = result.questions;
+
+        result.questions.forEach((question, qI) => {
+
+            if (question._id === questionId) {
+                question.choices.forEach((choice, cI) => {
+                    if (choice._id === choiceId) {
+                        questionData[qI].choices[cI].votes += 1;
+
+                        this.updateSurveyQuestions(surveyId, questionData, cb)
+                    }
+                })
+            }
+        });
+    }).catch(err => {
+        cb(err);
+    });
+}
+
 // 
 //  DELETE METHODS
 // 
