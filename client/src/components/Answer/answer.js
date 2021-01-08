@@ -1,11 +1,12 @@
 import React from "react";
 import "./answer.css";
 
-function Answer(answer) {
+function Answer(props) {
     return (
-      <div onClick="#">
-        {answer}
-      </div>
+      <>
+        <input type="radio" id={props.choiceId} name="choice" value={props.answer} onClick={props.handleSelectFunction}/>
+        <label for={props.choiceId}>{props.answer}</label>
+      </>
     );
 };
 

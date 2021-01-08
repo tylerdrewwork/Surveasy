@@ -35,8 +35,6 @@ function App() {
       <Route exact path="/create">
         <CreateSurvey />
       </Route>
-
-
     </Router>
   );
 }

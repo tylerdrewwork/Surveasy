@@ -102,6 +102,25 @@ const API = {
         Authorization: `Bearer ${token}`,
       }
     });
+  },
+
+  // Take Survey Routes
+  takeSurvey: function (surveyId) {
+    return axios.request({
+      method: 'GET',
+      url: `/api/taking_survey/?surveyId=${surveyId}`
+    });
+  },
+
+  updateSurveyVote: function (surveyId, questionId, choiceId) {
+    return axios.request({
+      method: 'PUT',
+      url: `/api/taking_survey/?surveyId=${surveyId}`,
+      body: {
+        questionId: questionId,
+        choiceId: choiceId
+      }
+    })
   }
 };
 

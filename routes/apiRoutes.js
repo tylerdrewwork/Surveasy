@@ -243,6 +243,28 @@ const apiRoutes = (app) => {
             });
         });
 
+    app.route("/api/taking_survey")
+        // Read survey
+        .get((req, res) => {
+            let surveyId = req.query.surveyId;
+
+            console.log('test');
+
+            surveyController.getSurveyById(surveyId, result => {
+                res.json(result);
+            });
+        })
+        // Update a survey
+        .put((req, res) => {
+            let surveyId = req.query.surveyId;
+            let questionId = req.body.questionId;
+            let choiceId = req.body.choiceId;
+
+            surveyController.updateSurveyChoiceVote(surveyId, questionId, choiceId, result => {
+                res.json(result);
+            });
+        });
+
     // Return decrypted authorization if authorized
     function authorizeRequest(request, cb) {
         const authHeader = request.headers.authorization;

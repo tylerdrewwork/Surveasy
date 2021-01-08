@@ -1,4 +1,17 @@
 const db = require('../models');
+const generateIds = require('./util/generateUniqueId.js');
+
+function addIds(surveyData) {
+    surveyData.questions.forEach(question => {
+        question._id = generateIds(12);
+
+        question.choices.forEach(choice => {
+            choice._id = generateIds(12);
+        });
+    });
+
+    return surveyData;
+}
 
 function SurveyController() { }
 
@@ -7,6 +20,9 @@ function SurveyController() { }
 //
 
 SurveyController.prototype.createSurvey = function (surveyData, cb) {
+
+    surveyData = addIds(surveyData);
+
     db.Survey.create({
         title: surveyData.title,
         active: surveyData.active,
@@ -21,6 +37,8 @@ SurveyController.prototype.createSurvey = function (surveyData, cb) {
 }
 
 SurveyController.prototype.addQuestionToSurvey = function (surveyId, questionData, cb) {
+    questionData._id = generateIds(12);
+
     db.Survey.updateOne({ _id: surveyId }, {
         $push: { questions: questionData }
     }).then(result => {
@@ -97,6 +115,29 @@ SurveyController.prototype.updateSurveyQuestions = function (surveyId, questionD
         console.log("Error:", err);
         cb(err);
     })
+}
+
+SurveyController.prototype.updateSurveyChoiceVote = function (surveyId, questionId, choiceId, cb) {
+    db.Survey.findOne({
+        _id: surveyId
+    }).then(result => {
+        const questionData = result.questions;
+
+        result.questions.forEach((question, qI) => {
+
+            if (question._id === questionId) {
+                question.choices.forEach((choice, cI) => {
+                    if (choice._id === choiceId) {
+                        questionData[qI].choices[cI].votes += 1;
+
+                        this.updateSurveyQuestions(surveyId, questionData, cb)
+                    }
+                })
+            }
+        });
+    }).catch(err => {
+        cb(err);
+    });
 }
 
 // 
