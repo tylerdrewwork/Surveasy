@@ -3,10 +3,14 @@ const db = require('../models');
 
 function UserController() {
     this.encryptions = new AuthController();
+    this.passwordRequirements = require('./util/checkMinimumPasswordRequirements.js');
 }
 
 // Create Methods
 UserController.prototype.createUser = function (userData, cb) {
+
+    console.log(this.passwordRequirements());
+
     this.encryptions.generateSalt(salt => {
         this.encryptions.getHash(userData.password, salt, hash => {
 
