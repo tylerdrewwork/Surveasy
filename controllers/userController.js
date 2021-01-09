@@ -9,7 +9,7 @@ function UserController() {
 // Create Methods
 UserController.prototype.createUser = function (userData, cb) {
 
-    console.log(this.passwordRequirements());
+    console.log(this.passwordRequirements(userData.password));
 
     this.encryptions.generateSalt(salt => {
         this.encryptions.getHash(userData.password, salt, hash => {
