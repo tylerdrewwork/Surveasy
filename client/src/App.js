@@ -7,6 +7,7 @@ import Edit from "./pages/edit";
 import Analytics from "./pages/analytics";
 import CreateSurvey from "./pages/createSurvey";
 import Landing from "./pages/landing";
+import TakeSurvey from "./pages/takeSurvey";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <Route exact path="/create">
         <CreateSurvey />
+      </Route>
+      <Route exact path="/survey/:id">
+        <TakeSurvey />
       </Route>
     </Router>
   );
