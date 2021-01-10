@@ -260,6 +260,11 @@ const apiRoutes = (app) => {
             let questionId = req.body.questionId;
             let choiceId = req.body.choiceId;
 
+            console.log(surveyId);
+            console.log(questionId);
+            console.log(choiceId);
+
+
             surveyController.updateSurveyChoiceVote(surveyId, questionId, choiceId, result => {
                 res.json(result);
             });
