@@ -46,7 +46,8 @@ function TakeSurvey() {
 
   function submitChoice () {
     // TODO make selectedChoice equal the selected choice, 
-    let selectedChoice; 
+    let selectedChoice = currentChoiceId; 
+    console.log(selectedChoice);
     API.updateSurveyVote(
       survey._id, 
       survey.questions[curQuestionIndex]._id, 
