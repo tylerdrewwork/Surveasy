@@ -116,7 +116,7 @@ const API = {
     return axios.request({
       method: 'PUT',
       url: `/api/taking_survey/?surveyId=${surveyId}`,
-      body: {
+      data: {
         questionId: questionId,
         choiceId: choiceId
       }

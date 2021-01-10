@@ -43,7 +43,6 @@ const apiRoutes = (app) => {
 
                 userController.getUserById(userId, (user) => {
                     res.json(user);
-                    console.log("API: Got user by id: ", userId);
                 });
             });
         })
@@ -93,12 +92,10 @@ const apiRoutes = (app) => {
                 }
 
                 let userId = authorization.userId;
-                console.log(userId);
 
                 // Delete user by ID
                 userController.deleteUserById(userId, (result) => {
                     res.send(result);
-                    console.log("API: Deleting user by id: ", id);
                 });
             });
         });
@@ -143,7 +140,6 @@ const apiRoutes = (app) => {
 
                 surveyController.createSurvey(surveyData, survey => {
                     userController.addSurveyToUser(userId, survey._id, result => {
-                        console.log(result);
                         res.json(survey);
                     });
                 });
@@ -235,7 +231,6 @@ const apiRoutes = (app) => {
                 let userId = authorization.userId;
 
                 surveyController.deleteSurvey(surveyId, result => {
-                    console.log(result);
                 });
 
                 // NEED TO REMOVE SURVEY FROM USER
@@ -247,8 +242,6 @@ const apiRoutes = (app) => {
         .get((req, res) => {
             let surveyId = req.query.surveyId;
 
-            console.log('test');
-
             surveyController.getSurveyById(surveyId, result => {
                 res.json(result);
             });
@@ -258,11 +251,6 @@ const apiRoutes = (app) => {
             let surveyId = req.query.surveyId;
             let questionId = req.body.questionId;
             let choiceId = req.body.choiceId;
-
-            console.log(surveyId);
-            console.log(questionId);
-            console.log(choiceId);
-
 
             surveyController.updateSurveyChoiceVote(surveyId, questionId, choiceId, result => {
                 res.json(result);
