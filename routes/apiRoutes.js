@@ -15,7 +15,6 @@ const apiRoutes = (app) => {
             let user = req.body;
 
             if (checkIfObjectIsEmpty(user) === false) {
-                console.log("API: Creating user: ", req.body);
                 userController.createUser(req.body, (result) => {
                     res.send(result);
                 });

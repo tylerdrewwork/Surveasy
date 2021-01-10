@@ -29,7 +29,7 @@ AuthController.prototype.validatePasswordToken = function (passwordInput, user, 
         }
         else if (response) {
             // Validation Successful
-            const jwtSignature = jwt.sign({ userId: user._id, username: user.username }, process.env.JWT_SECRET);
+            const jwtSignature = jwt.sign({ userId: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '12h' });
             cb(jwtSignature);
         }
     });

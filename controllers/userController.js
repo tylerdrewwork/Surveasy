@@ -3,27 +3,34 @@ const db = require('../models');
 
 function UserController() {
     this.encryptions = new AuthController();
+    this.passwordRequirements = require('./util/checkMinimumPasswordRequirements.js');
 }
 
 // Create Methods
 UserController.prototype.createUser = function (userData, cb) {
-    this.encryptions.generateSalt(salt => {
-        this.encryptions.getHash(userData.password, salt, hash => {
 
-            db.User.create({
-                username: userData.username,
-                passToken: hash,
-                email: userData.email,
-                surveys: new Array()
-            }).then(result => {
-                cb(result);
-            }).catch(err => {
-                console.log("ERROR: ", err);
-                cb(err);
+    if (this.passwordRequirements(userData.password) === false) {
+        cb("Error: Does not meet minimum requirements.");
+    } else {
+
+        this.encryptions.generateSalt(salt => {
+            this.encryptions.getHash(userData.password, salt, hash => {
+
+                db.User.create({
+                    username: userData.username,
+                    passToken: hash,
+                    email: userData.email,
+                    surveys: new Array()
+                }).then(result => {
+                    cb(result);
+                }).catch(err => {
+                    console.log("ERROR: ", err);
+                    cb(err);
+                });
+
             });
-
         });
-    });
+    }
 }
 
 // Read Methods
