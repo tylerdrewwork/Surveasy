@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
+import {Modal} from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
-import { useHistory } from "react-router-dom";
 import API from "../utils/API";
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
-  const history = useHistory();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -16,9 +21,30 @@ function SignUp() {
   function handleFormSubmit(event) {
     event.preventDefault();
     API.createUser(formCred).then(result => {
-      console.log(result);
+      if("Error: Does not meet minimum requirements.") {
+        handleShow();
+        console.log("User does not meet the requirements");
+      }
     });
-    history.push("/admin");
+  }
+
+  function handleModal() {
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>;
   }
 
   return (
@@ -31,6 +57,7 @@ function SignUp() {
         type="password"
       ></Input>
       <Button onClick={handleFormSubmit} name="Sign Up"></Button>
+      {handleModal()};
     </div>
   );
 }
