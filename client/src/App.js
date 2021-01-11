@@ -14,32 +14,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Router>
-      <Route exact path="/">
-        <Landing />
-      </Route>
-      <Route exact path="/signin">
-        <SignIn />
-      </Route>
-      <Route exact path="/signup">
-        <SignUp />
-      </Route>
-      <Route exact path="/admin">
-        <Admin />
-      </Route>
-      <Route exact path="/edit">
-        <Edit />
-      </Route>
-      <Route exact path="/analytics">
-        <Analytics />
-      </Route>
-      <Route exact path="/create">
-        <CreateSurvey />
-      </Route>
-      <Route exact path="/survey/:id">
-        <TakeSurvey />
-      </Route>
-    </Router>
+    // <Router>
+    //   <Route exact path="/">
+    //     <Landing />
+    //   </Route>
+    //   <Route exact path="/signin">
+    //     <SignIn />
+    //   </Route>
+    //   <Route exact path="/signup">
+    //     <SignUp />
+    //   </Route>
+    //   <Route exact path="/admin">
+    //     <Admin />
+    //   </Route>
+    //   <Route exact path="/edit">
+    //     <Edit />
+    //   </Route>
+    //   <Route exact path="/analytics">
+    //     <Analytics />
+    //   </Route>
+    //   <Route exact path="/create">
+    //     <CreateSurvey />
+    //   </Route>
+    //   <Route exact path="/survey/:id">
+    //     <TakeSurvey />
+    //   </Route>
+    // </Router>
+
+    <div>Hello World</div>
   );
 }
 

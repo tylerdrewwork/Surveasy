@@ -8,25 +8,25 @@ const app = express();
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('./client/build'));
 }
-else {
-    process.env = require('./env.json');
-}
+// else {
+//     process.env = require('./env.json');
+// }
 
 const PORT = process.env.PORT;
 
 // Set up middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 // Connect to the Mongo DB
-mongoose.connect(
-    // Use MONGODB URI from environment, otherwise use local database
-    process.env.MONGODB_URI,
-    { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
-).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
+// mongoose.connect(
+//     // Use MONGODB URI from environment, otherwise use local database
+//     process.env.MONGODB_URI,
+//     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+// ).then(({ connections }) => { console.log('Database connected on port', connections[0].port + '...'); });
 
 // Require Routes
-require('./routes/apiRoutes')(app);
+// require('./routes/apiRoutes')(app);
 
 // Send every HTML route to React App
 app.get('*', (req, res) => {
