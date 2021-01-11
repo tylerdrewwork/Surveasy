@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
@@ -6,11 +7,8 @@ import API from "../utils/API";
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
-  const [showRequirementError, setShowRequirementError] = useState(true);
-  // const [show, setShow] = useState(false);
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+  const [showRequirementError, setShowRequirementError] = useState(false);
+  const history = useHistory();
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -20,31 +18,16 @@ function SignUp() {
   function handleFormSubmit(event) {
     event.preventDefault();
     API.createUser(formCred).then(result => {
-      if ("Error: Does not meet minimum requirements.") {
-        // handleShow();
-        console.log("User does not meet the requirements");
+      console.log(result);
+
+      if (result.data === "Error: Does not meet minimum requirements.") {
+        setShowRequirementError(true);
+      }
+      else {
+        history.push("/admin");
       }
     });
   }
-
-  // function handleModal() {
-  //   <>
-  //     <Modal show={true} onHide={handleClose}>
-  //       <Modal.Header closeButton>
-  //         <Modal.Title>Modal heading</Modal.Title>
-  //       </Modal.Header>
-  //       <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-  //       <Modal.Footer>
-  //         <Button variant="secondary" onClick={handleClose}>
-  //           Close
-  //         </Button>
-  //         <Button variant="primary" onClick={handleClose}>
-  //           Save Changes
-  //         </Button>
-  //       </Modal.Footer>
-  //     </Modal>
-  //   </>;
-  // }
 
   return (
     <div>
