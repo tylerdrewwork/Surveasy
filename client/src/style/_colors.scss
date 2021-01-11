@@ -1,0 +1,17 @@
+// The underscore _ in this files naming convention defines it as a SCSS Partial. This way, we can use it in other scss styles
+// In other scss files, you can use "@import" to import this file, where you can use SCSS variables like you would normally
+
+$color-secondary: #533549;
+$color-primary: #F6B042;
+$color-primary-light: #F9ED4E;
+
+// This is the gradient for the primary color, with compatibility
+// Reference it by importing _colors.scss and then using the following line inside of a selector:
+// @include gradient-primary;
+@mixin gradient-primary {
+    background: rgb(246,176,66);
+    background: -moz-linear-gradient(112deg, rgba(246,176,66,1) 0%, rgba(249,237,78,1) 100%);
+    background: -webkit-linear-gradient(112deg, rgba(246,176,66,1) 0%, rgba(249,237,78,1) 100%);
+    background: linear-gradient(112deg, rgba(246,176,66,1) 0%, rgba(249,237,78,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6b042",endColorstr="#f9ed4e",GradientType=1);
+}
