@@ -5,7 +5,7 @@ import "./navbarSurvey.css";
 
 export default function NavigationSurvey() {
   function handleLogout() {
-    console.log('log out');
+    localStorage.removeItem('token');
   }
 
   return (
