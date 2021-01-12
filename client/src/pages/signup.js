@@ -24,6 +24,7 @@ function SignUp() {
         setShowRequirementError(true);
       }
       else {
+        localStorage.setItem('token', result.data.token)
         history.push("/admin");
       }
     });
