@@ -4,6 +4,10 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap/";
 import "./navbarSurvey.css";
 
 export default function NavigationSurvey() {
+  function handleLogout() {
+    localStorage.removeItem('token');
+  }
+
   return (
     <Navbar className="navStyle" bg="dark" variant="dark">
       <Navbar.Brand as={Link} href="#home">
@@ -24,7 +28,7 @@ export default function NavigationSurvey() {
         </Nav.Link>
       </Nav>
       <Nav className="ml-auto">
-        <Nav.Link as={Link} to="/">
+        <Nav.Link as={Link} to="/" onClick={handleLogout}>
           Sign Out
         </Nav.Link>
       </Nav>
