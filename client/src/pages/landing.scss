@@ -1,8 +1,12 @@
 @import '../style/colors';
 
+.sign-link {
+    margin: 1em;
+}
+
 .description {
     color: white;
-    margin: 5% 0;
+    margin-top: 3%;
 
     &#credits {
         font-style: italic;

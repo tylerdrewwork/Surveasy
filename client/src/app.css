@@ -35,6 +35,10 @@ h1.title {
   border: 2px solid rgba(246, 176, 66, 0.5);
 }
 
+.anim-fade {
+  opacity: 0;
+}
+
 .back-div {
   height: 100%;
   max-width: 70%;
