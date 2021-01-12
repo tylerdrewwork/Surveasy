@@ -26,7 +26,7 @@ function Landing() {
             <h1 className="title">SurvEasy</h1>
 
             <p className="description" id="about">
-                Providing quality surveys, and detailed analytics.
+                Make sure you know what your target audience needs. We make it easy to create surveys and get results.
             </p>
 
             <section>
@@ -43,7 +43,7 @@ function Landing() {
                 <p>
                     It is important to know what your target market is thinking. That is why SurvEasy provides a simple
                     solution for creating and providing surveys to your target audience. Simply fill in your questions,
-                    provide options and answers, and you are provided a link to share your survey. Anyone with this link
+                    create options and answers, and you are given a link to share your survey. Anyone with this link
                     can take your survey, and their answers are saved for your feedback.
                 </p>
             </section>
@@ -51,8 +51,9 @@ function Landing() {
             <section className="description-section">
                 <h3>Get Results</h3>
                 <p>
-                    When surveys are taken, we store and display that information for you. Our easy to read graphs help
-                    you view and understand your target audience responses, allowing you to meet their goals!
+                    Survey results are easy to see. When surveys are taken, we store and display that information for
+                    you. Our easy to read graphs help you view and understand your target audience responses, allowing
+                    you to meet their goals!
                 </p>
                 <img src="https://via.placeholder.com/600x450" />
             </section>
