@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
 import API from "../utils/API";
-import Input from "../components/Input/input";
 import "./style.css";
-import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
-import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList";
-import { Container, Grid, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 function Admin() {
   const [survey, setSurvey] = useState({});
@@ -92,18 +88,6 @@ function Admin() {
             <Col>
               <div className="back-div" id="displaySurvey">
                 <h3>{displayLink()}</h3>
-                {/* <NavLink
-                  to={{
-                    pathname: `survey/${curSurvey._id}`,
-                  }}
-                >
-                  https://surveasy.herokuapp.com/survey/${curSurvey._id}
-                </NavLink> */}
-                <h3>
-                  {curSurvey.active == null
-                    ? ""
-                    : "Active : " + curSurvey.active.toString()}
-                </h3>
               </div>
             </Col>
           </Col>
