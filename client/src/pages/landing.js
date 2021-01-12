@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Button from "../components/Button/button";
 import './landing.css';
 import { gsap } from 'gsap';
 
@@ -29,8 +30,12 @@ function Landing() {
             </p>
 
             <section>
-                <Link to='/signin' className="btn-link">Sign in</Link>
-                <Link to='/signup' className="btn-link">Sign up</Link>
+                <Link to='/signup' className="btn-link">
+                    <Button name="Sign Up"></Button>
+                </Link>
+                <Link to='/signin' className="btn-link">
+                    <Button name="Sign In"></Button>
+                </Link>
             </section>
 
             <p className="description" id="credits">
