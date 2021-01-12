@@ -21,7 +21,6 @@ const apiRoutes = (app) => {
                         res.json(userResult);
                     }
                     else {
-
                         authController.validatePasswordToken(user.password, userResult, authResult => {
                             res.json({
                                 token: authResult,
