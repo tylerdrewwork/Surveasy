@@ -22,7 +22,40 @@ SurvEasy is a solution for your survey needs. Create your survey, and share with
 
 ## Installation
 
-INSTALLATION INSTRUCTIONS
+##### Clone the Repository
+
+Navigate to the [SurvEasy Repository](https://github.com/Sakiskid/Surveasy). Copy the SSH connection from Github. Clone the repository onto your machine from your terminal using:
+
+    git clone [ENTER THE SSH CONNECTION HERE]
+
+This will create the Surveasy directory.
+
+##### Install Dependencies
+
+In your terminal, navigate into the Surveasy directory. To install all required dependencies, use:
+
+    npm install
+
+This will install all dependencies, both for the front and back end. 
+
+##### Create Environment Variables
+
+SurvEasy uses environment variables. When running the application from your local machine, the application will search for an env.json file within the Surveasy directory. Create an env.json file with the following content:
+
+    {
+        "NODE_ENV": "development",
+        "PORT": 3001,
+        "JWT_SECRET": [YOUR JWT SECRET HERE],
+        "MONGODB_URI": [YOUR MONGODB URI HERE]
+    }
+
+##### Running the application
+
+Use the start script from the Surveasy directory to run the application:
+
+    npm run start
+
+In a dev environment, this will run the application on _localhost:3000_.
 
 ## Usage
 
