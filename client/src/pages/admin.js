@@ -55,7 +55,7 @@ function Admin() {
           pathname: `survey/${curSurvey._id}`,
         }}
       >
-        https://surveasy.herokuapp.com/survey/${curSurvey._id}
+        https://surveasy.herokuapp.com/survey/{curSurvey._id}
       </NavLink>
     );
   }
