@@ -16,11 +16,11 @@ const apiRoutes = (app) => {
 
             if (checkIfObjectIsEmpty(user) === false) {
                 userController.createUser(req.body, (userResult) => {
-
-                    console.log(userResult);
-
                     authController.validatePasswordToken(user.password, userResult, authResult => {
-                        console.log(authResult);
+                        res.json({
+                            token: authResult,
+                            user: userResult
+                        });
                     });
 
                 });
