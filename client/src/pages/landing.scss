@@ -1,9 +1,10 @@
 @import '../style/colors';
 
+$header-font: 'Martel', serif;
 $margin-size: 3rem;
 
 .title {
-    font-family: 'Martel', serif;
+    font-family: $header-font;
 }
 
 .description {
