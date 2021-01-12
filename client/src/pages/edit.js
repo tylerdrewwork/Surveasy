@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 import API from "../utils/API";
-import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList";

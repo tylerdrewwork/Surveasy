@@ -1,0 +1,8 @@
+.description {
+  color: white;
+  margin: 5% 0;
+}
+
+.description#credits {
+  font-style: italic;
+}

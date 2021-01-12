@@ -1,0 +1,10 @@
+@import '../style/colors';
+
+.description {
+    color: white;
+    margin: 5% 0;
+
+    &#credits {
+        font-style: italic;
+    }
+}
