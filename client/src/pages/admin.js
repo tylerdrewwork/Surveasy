@@ -49,6 +49,21 @@ function Admin() {
     return survey.findIndex((obj) => obj._id === id);
   }
 
+  function displayLink() {
+    if (curSurvey._id == null) {
+      return "";
+    }
+    return (
+      <NavLink
+        to={{
+          pathname: `survey/${curSurvey._id}`,
+        }}
+      >
+        https://surveasy.herokuapp.com/survey/${curSurvey._id}
+      </NavLink>
+    );
+  }
+
   return (
     <div>
       <NavigationSurvey />
@@ -76,13 +91,14 @@ function Admin() {
             </div>
             <Col>
               <div className="back-div" id="displaySurvey">
-                <NavLink
+                <h3>{displayLink()}</h3>
+                {/* <NavLink
                   to={{
                     pathname: `survey/${curSurvey._id}`,
                   }}
                 >
                   https://surveasy.herokuapp.com/survey/${curSurvey._id}
-                </NavLink>
+                </NavLink> */}
                 <h3>
                   {curSurvey.active == null
                     ? ""
