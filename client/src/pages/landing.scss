@@ -1,11 +1,28 @@
 @import '../style/colors';
 
+$margin-size: 3rem;
+
 .description {
     color: white;
-    margin: 5% 0;
+    margin: $margin-size 0;
 
     &#credits {
         font-style: italic;
+    }
+}
+
+.description-section {
+    padding: 5rem;
+    margin: $margin-size 0;
+
+    border-radius: 6px;
+
+    background: #533549;
+    color: #ffffff;
+
+    p {
+        margin-top: $margin-size;
+        margin-bottom: $margin-size;
     }
 }
 
