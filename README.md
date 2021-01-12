@@ -59,7 +59,50 @@ In a dev environment, this will run the application on _localhost:3000_.
 
 ## Usage
 
-USAGE INSTRUCTIONS
+##### Creating a User Account
+
+From the landing page, click the _Sign Up_ link. This will direct you to a sign up form. Enter your email, username and password. Password requirements include:
+
+* At least 8 characters
+* At least 1 lowercase letter
+* At least 1 uppercase letter
+* At least 1 number
+
+Click submit. If your user account is successfully created, you will be directed to the _Admin_ page.
+
+##### Sign In with Existing User Account
+
+From the landing page, click the _Sign In_ link. This will direct you to a sign in form. Enter your username and password. If successful, you will be directed to the _Admin_ page.
+
+##### Creating a Survey
+
+Using the navigation bar, click _Create Survey_.
+
+You will be directed to a survey form. First, enter the survey name. Next fill in the question and options for your first survey question.
+
+If you would like to add an additional question to your survey, click _Add A Question_.
+
+When you are finished, click _Submit_.
+
+##### Admin Page
+
+You can view your surveys by navigating to _Admin_ from the top navigation bar. First you will see a list of your current surveys. Click on any of your surveys to view admin information.
+
+From this view, you can view survey information, and a survey link. You will use this survey link when sharing your survey with others.
+
+You can also set your survey as active and public.
+
+##### Analytics Page
+
+You can see your survey analytics by navigating to _Analytics_ from the top navigation bar. First you will see a list of your current surveys. Click on any of your surveys to view survey analytics.
+
+From here you can view the surveys results as charts and graphs.
+
+##### Sign Out
+
+When you are finished, you can sign out of the application using the sign out link at the top right of the navigation bar. This will sign you out of the application. In order to access your account, you will need to sign in again from the landing page.
+
+If you do not sign out of your account, the application will remember you for 12 hours.
 
 ## Technologies
 
