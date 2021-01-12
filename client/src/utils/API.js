@@ -86,7 +86,7 @@ const API = {
     });
   },
 
-  updateSurvey: function (surveyData, token) {
+  updateSurvey: function (surveyId, surveyData, token) {
     return axios.request({
       method: "PUT",
       url: "/api/survey",
@@ -94,6 +94,7 @@ const API = {
         Authorization: `Bearer ${token}`
       },
       data: {
+        surveyId: surveyId,
         title: surveyData.title,
         active: surveyData.active,
         public: surveyData.public
