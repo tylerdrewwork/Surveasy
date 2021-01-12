@@ -1,6 +1,6 @@
-const UserController = require('../controllers/UserController');
+const UserController = require('../controllers/userController');
 const SurveyController = require('../controllers/surveyController.js');
-const AuthController = require('../controllers/AuthController');
+const AuthController = require('../controllers/authController');
 
 // Initialize Controller
 const userController = new UserController();
