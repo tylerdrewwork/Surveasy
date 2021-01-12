@@ -18,8 +18,6 @@ function SignUp() {
   function handleFormSubmit(event) {
     event.preventDefault();
     API.createUser(formCred).then(result => {
-      console.log(result);
-
       if (result.data === "Error: Does not meet minimum requirements.") {
         setShowRequirementError(true);
       }

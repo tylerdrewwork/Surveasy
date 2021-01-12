@@ -16,12 +16,19 @@ const apiRoutes = (app) => {
 
             if (checkIfObjectIsEmpty(user) === false) {
                 userController.createUser(req.body, (userResult) => {
-                    authController.validatePasswordToken(user.password, userResult, authResult => {
-                        res.json({
-                            token: authResult,
-                            user: userResult
+
+                    if (userResult === "Error: Does not meet minimum requirements.") {
+                        res.json(userResult);
+                    }
+                    else {
+
+                        authController.validatePasswordToken(user.password, userResult, authResult => {
+                            res.json({
+                                token: authResult,
+                                user: userResult
+                            });
                         });
-                    });
+                    }
 
                 });
             } else {
