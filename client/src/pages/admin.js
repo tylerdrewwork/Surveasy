@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
-//import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import API from "../utils/API";
 import Input from "../components/Input/input";
 import "./style.css";
@@ -20,6 +20,10 @@ function Admin() {
         console.log(token);
         console.log(survey);
     }, [])
+
+    useEffect(() => {
+        console.log(curSurvey);
+    }, [curSurvey])
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -50,6 +54,7 @@ function Admin() {
         <div>
             <NavigationSurvey />
 
+        <Container fluid>
             <Row float="center">
             <Col sx={3} md={3}>
                     <div className="back-div">
@@ -59,13 +64,23 @@ function Admin() {
                         ))}
                     </div>
                 </Col>
-            <Col sx={8} md={9}>
+            <Col>
                     <div className="back-div" id="displaySurvey">
                         <h1>{curSurvey.title}</h1>
                         <h3>{curSurvey.active == null ? '' : "Active : " + curSurvey.active.toString()}</h3>
                     </div>
+                    <Col>
+                <div className="back-div" id="displaySurvey">
+                    <NavLink
+                        to={{
+                            pathname: `survey/${curSurvey._id}`,
+                        }}>survey/${curSurvey._id}</NavLink> 
+                    <h3>{curSurvey.active == null ? '' : "Active : " + curSurvey.active.toString()}</h3>
+                </div>
+            </Col>
                 </Col>
             </Row>
+        </Container>
 
         </div>
 
