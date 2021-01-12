@@ -39,7 +39,7 @@ function SignIn() {
           <Input onChange={handleInputChange} name="username"></Input>
         </Col>
         <Col sx={3} md={12}>
-          <Input onChange={handleInputChange} name="password"></Input>
+          <Input onChange={handleInputChange} type="password" name="password"></Input>
         </Col>
         <Col sx={3} md={12}>
           <Button name="Sign In" onClick={handleFormSubmit}></Button>
