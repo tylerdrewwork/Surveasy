@@ -1,11 +1,15 @@
 import React from "react";
-import "./input.css";
 
-function Input(props){
+
+function Radio(props){
     return(
+        <div>
         <input {...props} id = {props.name} placeholder = {props.name} type="radio">
-        <label for={props.name} >{props.name} </label></input>
+        </input>
+        <label for = {props.name}>{props.name}</label>
+        
+        </div>
     )
 }
 
-export default Input;
+export default Radio;

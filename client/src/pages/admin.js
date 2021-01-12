@@ -9,6 +9,7 @@ import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Input from "../components/Input/input";
+import Radio from "../components/RadioButton/radio";
 
 function Admin() {
     const [survey, setSurvey] = useState({});
@@ -88,6 +89,7 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
+                        <Radio name={curSurvey.title}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
