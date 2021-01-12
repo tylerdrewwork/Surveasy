@@ -55,19 +55,26 @@ function Admin() {
 
       function handleFormSubmit(event) {
         event.preventDefault();
-    
-        // if (formCred.username && formCred.password) {
-        //   API.getAuthorization({
-        //     username: formCred.username,
-        //     password: formCred.password,
-        //   })
-        //     .then((result) => {
-        //       console.log(result);
-        //       localStorage.setItem("token", result.data.token);
-        //       history.push("/admin");
-        //     })
-        //     .catch((err) => console.log(err));
-        // }
+        const formattedData = formatSurveyData(formCred, curSurvey);
+          API.updateSurvey({
+            username: formCred.username,
+            password: formCred.password,
+          })
+            .then((result) => {
+              console.log(result);
+              localStorage.setItem("token", result.data.token);
+              history.push("/admin");
+            })
+            .catch((err) => console.log(err));
+      }
+
+      function formatAdmin(){
+          const adminData = {
+            surveyId: surveyId,
+            title: surveyData.title,
+            active: surveyData.active,
+            public: surveyData.public
+          }
       }
     return (
 
