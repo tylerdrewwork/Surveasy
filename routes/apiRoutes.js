@@ -15,8 +15,14 @@ const apiRoutes = (app) => {
             let user = req.body;
 
             if (checkIfObjectIsEmpty(user) === false) {
-                userController.createUser(req.body, (result) => {
-                    res.send(result);
+                userController.createUser(req.body, (userResult) => {
+
+                    console.log(userResult);
+
+                    authController.validatePasswordToken(user.password, userResult, authResult => {
+                        console.log(authResult);
+                    });
+
                 });
             } else {
                 console.log("API ERROR: Attempted to create user but object was empty.");
