@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import './landing.css';
 import {gsap} from 'gsap';
 
 function Landing() {
-    function beginAnimation () {
-        gsap.fromTo(".title", 
-        {rotation: 1000},
-        {rotation: 0, duration: 3});
-    }
+    useEffect( () => {
+        function beginAnimation () {
+            gsap.fromTo(".title", 
+            {scale: 0.8, x: -50, opacity: 0,},
+            {scale: 0.8, x: 0, opacity: 1, duration: 1});
+        }
+
+        beginAnimation();
+    })
+    
 
     return (
         <section className='back-div'>
