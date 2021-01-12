@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Grid, Row, Col,  } from "react-bootstrap";
+import { Container, Row, Col,  } from "react-bootstrap";
 import "./style.css";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
@@ -22,15 +22,13 @@ function TakeSurvey() {
   function getSurveyById() {
     API.takeSurvey(id)
       .then((res) => {
-        console.log(res.data);
         setSurvey(res.data);
-        //   setCurQuestionIndex(0);
       })
       .catch((err) => console.log(err));
   }
 
   if (!survey) {
-      return <h1>Loading...</h1>
+      return <div className="back-div"><h1>Loading...</h1></div>
   }
 
   function nextQuestion () {
@@ -48,37 +46,30 @@ function TakeSurvey() {
   function submitChoice () {
     // TODO make selectedChoice equal the selected choice, 
     let selectedChoice = currentChoiceId; 
-    console.log(selectedChoice);
+
     API.updateSurveyVote(
       survey._id, 
       survey.questions[curQuestionIndex]._id, 
       selectedChoice)
-    
   }
 
   function renderQuestion() {
-    console.log("Rendering question. curQuestionIndex: ", curQuestionIndex);
 
     // If we have a survey with questions, render it
     if (survey.questions && survey.questions[curQuestionIndex]) {
       currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
-          {/* Render Title */}
           {survey.title}
-          {/* Render Question Name */}
           <Question question={survey.questions[curQuestionIndex].question} />
-          {/* Render all the choices */}
           {renderAnswers()}
           <button onClick={nextQuestion}></button>
         </React.Fragment>
       );
     }
 
-    // Otherwise, return no data found
-    console.log("Data not found on page load")
-    console.log(survey);
-
+    // Once the user reaches the end of the survey,
+    // display link back to landing page
     return (
       <div className="back-div">
         <h1>Thank you for taking this survey!</h1>
@@ -106,7 +97,6 @@ function TakeSurvey() {
   };
 
   function handleRadioSelect (event) {
-    console.log("Heres the radio event: ", event, "and da target.id be: ", event.target.id);
     currentChoiceId = event.target.id;
   }
 
