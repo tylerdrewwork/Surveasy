@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 //import { Link } from "react-router-dom";
 import API from "../utils/API";
-import Input from "../components/Input/input";
 import "./style.css";
 import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
+import Input from "../components/Input/input";
 
 function Admin() {
     const [survey, setSurvey] = useState({});
@@ -44,6 +44,10 @@ function Admin() {
     function getIndex(id) {
         return survey.findIndex(obj => obj._id === id);
       }
+      function handleInputChange(event) {
+        // const { name, value } = event.target;
+        // setFormCred({ ...formCred, [name]: value });
+      }
 
     return (
 
@@ -61,8 +65,11 @@ function Admin() {
                 </Col>
             <Col sx={8} md={9}>
                     <div className="back-div" id="displaySurvey">
-                        <h1>{curSurvey.title}</h1>
-                        <h3>{curSurvey.active == null ? '' : "Active : " + curSurvey.active.toString()}</h3>
+                        
+                        <h3>Edit Title:</h3>
+                        <Input onChange={handleInputChange} name={curSurvey.title}></Input>
+                        <h3>Edit Active:</h3>
+                        <Input onChange={handleInputChange} name={curSurvey.active.toString()}></Input>
                     </div>
                 </Col>
             </Row>
