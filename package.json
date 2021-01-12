@@ -28,6 +28,7 @@
     "concurrently": "^5.3.0",
     "env.json": "^2.0.1",
     "express": "^4.17.1",
+    "gsap": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.9",
     "react-gsap": "^2.2.1"

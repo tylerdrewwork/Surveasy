@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './landing.css';
+import {gsap} from 'gsap';
 
 function Landing() {
+    function beginAnimation () {
+        gsap.fromTo(".title", 
+        {rotation: 1000},
+        {rotation: 0, duration: 3});
+    }
+
     return (
         <section className='back-div'>
             <h1 className="title">SurvEasy</h1>
