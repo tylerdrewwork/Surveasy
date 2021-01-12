@@ -13,6 +13,9 @@ import Input from "../components/Input/input";
 function Admin() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
+    const [formCred, setFormCred] = useState({});
+
+
     let token;
     let selectedSurvey; 
     useEffect(() => {
@@ -45,8 +48,8 @@ function Admin() {
         return survey.findIndex(obj => obj._id === id);
       }
       function handleInputChange(event) {
-        // const { name, value } = event.target;
-        // setFormCred({ ...formCred, [name]: value });
+        const { name, value } = event.target;
+        setFormCred({ ...formCred, [name]: value });
       }
 
       function handleFormSubmit(event) {
@@ -85,7 +88,6 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Input onChange={handleInputChange} name={curSurvey.active.toString()}></Input>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
