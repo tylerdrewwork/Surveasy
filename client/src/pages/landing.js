@@ -38,6 +38,26 @@ function Landing() {
                 </Link>
             </section>
 
+            <section className="description-section">
+                <h3>Create Surveys</h3>
+                <p>
+                    It is important to know what your target market is thinking. That is why SurvEasy provides a simple
+                    solution for creating and providing surveys to your target audience. Simply fill in your questions,
+                    provide options and answers, and you are provided a link to share your survey. Anyone with this link
+                    can take your survey, and their answers are saved for your feedback.
+                </p>
+            </section>
+
+            <section className="description-section">
+                <h3>Get Results</h3>
+                <p>
+                    When surveys are taken, we store and display that information for you. Our easy to read graphs help
+                    you view and understand your target audience responses, allowing you to meet their goals!
+                </p>
+                <img src="https://via.placeholder.com/600x450" />
+            </section>
+
+
             <p className="description" id="credits">
                 Created By:
                 <br /><a href="https://github.com/smundhada">Shubhangi Mundhada</a>
