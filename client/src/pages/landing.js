@@ -42,9 +42,9 @@ function Landing() {
                 <h3>Create Surveys</h3>
                 <p>
                     It is important to know what your target market is thinking. That is why SurvEasy provides a simple
-                    solution for creating and providing surveys to your target audience. Simply fill in your questions,
+                    solution for creating and providing surveys to your intended audience. Simply fill in your questions,
                     create options and answers, and you are given a link to share your survey. Anyone with this link
-                    can take your survey, and their answers are saved for your feedback.
+                    can take your survey, and their answers are saved for you.
                 </p>
             </section>
 
@@ -52,7 +52,7 @@ function Landing() {
                 <h3>Get Results</h3>
                 <p>
                     Survey results are easy to see. When surveys are taken, we store and display that information for
-                    you. Our easy to read graphs help you view and understand your target audience responses, allowing
+                    you to review. Our easy to read graphs help you visualize and understand your market, allowing
                     you to meet their goals!
                 </p>
                 <img src="https://via.placeholder.com/600x450" />
