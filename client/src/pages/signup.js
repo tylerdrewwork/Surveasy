@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
-import { useHistory } from "react-router-dom";
 import API from "../utils/API";
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
+  const [showRequirementError, setShowRequirementError] = useState(false);
   const history = useHistory();
 
   function handleInputChange(event) {
@@ -16,9 +18,14 @@ function SignUp() {
   function handleFormSubmit(event) {
     event.preventDefault();
     API.createUser(formCred).then(result => {
-      console.log(result);
+      if (result.data === "Error: Does not meet minimum requirements.") {
+        setShowRequirementError(true);
+      }
+      else {
+        localStorage.setItem('token', result.data.token)
+        history.push("/admin");
+      }
     });
-    history.push("/admin");
   }
 
   return (
@@ -31,6 +38,9 @@ function SignUp() {
         type="password"
       ></Input>
       <Button onClick={handleFormSubmit} name="Sign Up"></Button>
+      {/* {handleModal}; */}
+
+      {showRequirementError ? <p>Password does not meet requirements.</p> : null}
     </div>
   );
 }

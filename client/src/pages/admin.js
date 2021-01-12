@@ -89,8 +89,8 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Radio name={curSurvey.active == null ? '' : "Active"} checked={curSurvey.active.toString() == "true"} ></Radio>
-                        <Radio name={curSurvey.active == null ? '' : "Deactive"} checked={curSurvey.active.toString() == "false"} ></Radio>
+                        <Radio name={curSurvey.active == null ? '' : "Active"} checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "true"} ></Radio>
+                        <Radio name={curSurvey.active == null ? '' : "Deactive"} checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "false"} ></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
