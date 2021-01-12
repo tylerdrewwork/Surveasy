@@ -49,6 +49,22 @@ function Admin() {
         // setFormCred({ ...formCred, [name]: value });
       }
 
+      function handleFormSubmit(event) {
+        event.preventDefault();
+    
+        // if (formCred.username && formCred.password) {
+        //   API.getAuthorization({
+        //     username: formCred.username,
+        //     password: formCred.password,
+        //   })
+        //     .then((result) => {
+        //       console.log(result);
+        //       localStorage.setItem("token", result.data.token);
+        //       history.push("/admin");
+        //     })
+        //     .catch((err) => console.log(err));
+        // }
+      }
     return (
 
         <div>
@@ -70,6 +86,9 @@ function Admin() {
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.active.toString()}></Input>
+                        <Col sx={3} md={12}>
+                        <Button name="Submit" onClick={handleFormSubmit}></Button>
+                        </Col>
                     </div>
                 </Col>
             </Row>
