@@ -6,9 +6,14 @@ import {gsap} from 'gsap';
 function Landing() {
     useEffect( () => {
         function beginAnimation () {
-            gsap.fromTo(".title", 
-            {scale: 0.8, x: -50, opacity: 0,},
-            {scale: 0.8, x: 0, opacity: 1, duration: 1});
+            let timeline = gsap.timeline();
+            timeline.fromTo(".title", 
+                {scale: 0.8, x: -50, opacity: 0,},
+                {scale: 1, x: 0, opacity: 1, duration: 1})
+                .fromTo("#about",
+                {scale: 0.8, x: -50, opacity: 0,},
+                {scale: 1, x: 0, opacity: 1, duration: 1})
+
         }
 
         beginAnimation();
