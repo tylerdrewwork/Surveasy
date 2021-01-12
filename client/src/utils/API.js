@@ -73,10 +73,6 @@ const API = {
     });
   },
 
-  // createSurvey: function () {
-  //   return axios.post("/api/survey");
-  // },
-
   createSurvey: function (surveyData, token) {
     return axios.request({
       method: "POST",
@@ -90,9 +86,20 @@ const API = {
     });
   },
 
-  // updateSurvey: function (id) {
-  //   return axios.put("/api/survey/" + id);
-  // },
+  updateSurvey: function (surveyData, token) {
+    return axios.request({
+      method: "PUT",
+      url: "/api/survey",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        title: surveyData.title,
+        active: surveyData.active,
+        public: surveyData.public
+      }
+    });
+  },
 
   deleteSurvey: function (surveyId, token) {
     return axios.request({
