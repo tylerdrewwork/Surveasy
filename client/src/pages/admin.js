@@ -18,8 +18,6 @@ function Admin() {
     const [formCred, setFormCred] = useState({});
     const [activeSur, setActiveSur] = useState({});
     const [deactiveSur, setDeactiveSur] = useState({});
-    const [publicSur, setPublicSur] = useState({});
-    const [privateSur, setPrivateSur] = useState({});
 
     let token;
     let selectedSurvey; 
@@ -29,8 +27,6 @@ function Admin() {
         console.log(survey);
         setActiveSur(false);
         setDeactiveSur(false);
-        setPublicSur(false);
-        setPrivateSur(false);
     }, [])
 
     function uploadSurveys() {
@@ -60,14 +56,6 @@ function Admin() {
             setDeactiveSur(true);
             setActiveSur(false);
         }
-        if(survey[r].public.toString() == "true"){
-            setPublicSur(true);
-            setPrivateSur(false);
-        }
-        if(survey[r].public.toString() == "false"){
-            setPrivateSur(true);
-            setPublicSur(false);
-        }
     }
 
     function getIndex(id) {
@@ -83,6 +71,7 @@ function Admin() {
         event.preventDefault();
         const adminData = formatAdmin();
         console.log(adminData);
+        token = localStorage.getItem(`token`);
           API.updateSurvey(curSurvey._id, adminData, token)
             .then((result) => {
               console.log(result);
@@ -98,7 +87,7 @@ function Admin() {
             surveyId: curSurvey._id,
             title: curSurvey.title,
             active: activeSur,
-            public: publicSur
+            public: true
           }
 
           return adminDataFormat;
@@ -123,24 +112,6 @@ function Admin() {
           
       }
 
-      function handleRadioSelectVisible (event) {
-        console.log( event.target.checked)
-        console.log(event.target.id)
-        if(event.target.checked === true && event.target.id === "Public"){
-          setPublicSur(true);
-          setPrivateSur(false);
-        } else if(event.target.checked === false && event.target.id === "Public"){
-          setPublicSur(false);
-          setPrivateSur(true);
-        }else if(event.target.checked === true && event.target.id === "Private"){
-          setPrivateSur(true);
-          setPublicSur(false);
-        }else if(event.target.checked === false && event.target.id === "Private"){
-          setPrivateSur(false);
-          setPublicSur(true);
-        }
-        
-    }
 
     return (
 
@@ -164,9 +135,6 @@ function Admin() {
                         <h3>Edit Active:</h3>
                         <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
                         <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
-                        <h3>Visibility:</h3>
-                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Public"}  checked={publicSur}></Radio>
-                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Private"}  checked={privateSur}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
