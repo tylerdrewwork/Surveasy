@@ -51,30 +51,31 @@ function Admin() {
       function handleInputChange(event) {
         const { name, value } = event.target;
         setFormCred({ ...formCred, [name]: value });
+        formatAdmin();
       }
 
       function handleFormSubmit(event) {
         event.preventDefault();
-        const formattedData = formatSurveyData(formCred, curSurvey);
+        const formattedData = formatAdmin();
           API.updateSurvey({
             username: formCred.username,
             password: formCred.password,
           })
             .then((result) => {
               console.log(result);
-              localStorage.setItem("token", result.data.token);
-              history.push("/admin");
+
             })
             .catch((err) => console.log(err));
       }
 
       function formatAdmin(){
-          const adminData = {
-            surveyId: surveyId,
-            title: surveyData.title,
-            active: surveyData.active,
-            public: surveyData.public
-          }
+          console.log(formCred)
+        //   const adminData = {
+        //     surveyId: surveyId,
+        //     title: surveyData.title,
+        //     active: surveyData.active,
+        //     public: surveyData.public
+        //   }
       }
     return (
 
@@ -96,8 +97,8 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Radio name={curSurvey.active == null ? '' : "Active"} checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "true"} ></Radio>
-                        <Radio name={curSurvey.active == null ? '' : "Deactive"} checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "false"} ></Radio>
+                        <Radio onChange={handleInputChange} name={curSurvey.active == null ? '' : "Active"} ></Radio>
+                        <Radio onChange={handleInputChange} name={curSurvey.active == null ? '' : "Deactive"} ></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
