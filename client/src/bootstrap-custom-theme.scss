@@ -1,0 +1,10 @@
+// Changes the bootstrap theme colors
+$theme-colors: (
+    // "white": #000000,
+    // "light": tomato,
+    // "danger": teal,
+    // "dark": #ffffff,
+);
+@import "~bootstrap/scss/bootstrap";
+
+// NOTE: this won't compile correctly, that's fine. App will import the .scss, not .css

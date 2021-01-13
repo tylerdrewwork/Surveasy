@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap/";
-import "./navbar.css";
+import "./navbarSurvey.css";
 
 export default function NavigationSurvey() {
   function handleLogout() {
@@ -9,7 +9,7 @@ export default function NavigationSurvey() {
   }
 
   return (
-    <Navbar className="navStyle">
+    <Navbar className="navStyle" bg="dark" variant="dark">
       <Navbar.Brand as={Link} href="#home">
         Surveasy
       </Navbar.Brand>

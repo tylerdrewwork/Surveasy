@@ -1,6 +1,8 @@
 @import '../../style/_colors.scss';
 @import '../../style/_responsive.scss';
 
+
+
 .navStyle {
     color: white;
     background-color: $color-navbar;
@@ -14,8 +16,4 @@
         font-weight: 300;
         text-transform: uppercase;
     }
-}
-
-.nav-link {
-    color: red;
 }

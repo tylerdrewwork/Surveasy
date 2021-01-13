@@ -8,10 +8,9 @@ import Analytics from "./pages/analytics";
 import CreateSurvey from "./pages/createSurvey";
 import Landing from "./pages/landing";
 import TakeSurvey from "./pages/takeSurvey";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap-custom-theme.scss';
 import './app.scss';
-
-
 
 function App() {
   return (

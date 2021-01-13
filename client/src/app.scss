@@ -54,20 +54,7 @@ h1.title {
     padding : 60px 0;
 }
 
-.navStyle {
-    color: white;
-    background-color: $color-navbar;
 
-    .navbar-brand, .nav-link {
-        @include gradient-primary(color);
-        // Some cool brand styling... but it offsets the navbar. if you can get it working, go for it!
-        // @include responsive-static(font-size, 20, 30);
-        // letter-spacing: 4px;
-        // margin-right: 0;
-        font-weight: 300;
-        text-transform: uppercase;
-    }
-}
 
 // 
 // PAGE SPECIFIC
