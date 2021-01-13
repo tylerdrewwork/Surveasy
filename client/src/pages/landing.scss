@@ -1,0 +1,36 @@
+@import '../style/colors';
+
+$header-font: 'Martel', serif;
+$margin-size: 3rem;
+
+.title {
+    font-family: $header-font;
+}
+
+.description {
+    color: white;
+    margin: $margin-size 0;
+
+    &#credits {
+        font-style: italic;
+    }
+}
+
+.description-section {
+    padding: 5rem;
+    margin: $margin-size 0;
+
+    border-radius: 6px;
+
+    background: #533549;
+    color: #ffffff;
+
+    p {
+        margin-top: $margin-size;
+        margin-bottom: $margin-size;
+    }
+}
+
+.btn-link {
+    margin: 1em;
+}

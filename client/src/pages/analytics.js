@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 import API from "../utils/API"
-import "./style.css";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line, Bar, Pie} from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"

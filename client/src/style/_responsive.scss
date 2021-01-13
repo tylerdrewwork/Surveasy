@@ -1,0 +1,21 @@
+@mixin responsive ($property, $sizeMin, $sizeMax, $vpMin, $vpMax) {
+    #{$property}: $sizeMin;
+    @media screen and (min-width: #{$vpMin}px) {
+            #{$property}: calc(#{$sizeMin}px + (#{$sizeMax} - #{$sizeMin}) * ((100vw - #{$vpMin}px) / (#{$vpMax} - #{$vpMin})));
+    }
+    @media screen and (min-width: #{$vpMax}px) {
+        #{$property}: #{$sizeMax}px;
+    }
+}
+
+@mixin responsive-static ($property, $sizeMin, $sizeMax) {
+    $vpMin: 320;
+    $vpMax: 1000;
+    #{$property}: #{$sizeMin}px;
+    @media screen and (min-width: #{$vpMin}px) {
+        #{$property}: calc(#{$sizeMin}px + (#{$sizeMax} - #{$sizeMin}) * ((100vw - #{$vpMin}px) / (#{$vpMax} - #{$vpMin})));
+    }
+    @media screen and (min-width: #{$vpMax}px) {
+        #{$property}: #{$sizeMax}px;
+    }
+}

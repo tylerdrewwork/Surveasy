@@ -9,6 +9,7 @@ import CreateSurvey from "./pages/createSurvey";
 import Landing from "./pages/landing";
 import TakeSurvey from "./pages/takeSurvey";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.scss';
 
 
 

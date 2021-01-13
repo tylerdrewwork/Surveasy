@@ -29,18 +29,21 @@ function SignUp() {
   }
 
   return (
-    <div>
-      <Input onChange={handleInputChange} name="Email"></Input>
-      <Input onChange={handleInputChange} name="Username"></Input>
-      <Input
-        onChange={handleInputChange}
-        name="Password"
-        type="password"
-      ></Input>
-      <Button onClick={handleFormSubmit} name="Sign Up"></Button>
-      {/* {handleModal}; */}
+    <div className="back-div">
+      <div className="sign-form-wrapper">
+        <div className="sign-form-content">
 
-      {showRequirementError ? <p>Password does not meet requirements.</p> : null}
+          <Input onChange={handleInputChange} name="Email" className="border-field"></Input>
+          <Input onChange={handleInputChange} name="Username" className="border-field"></Input>
+          <Input
+            onChange={handleInputChange}
+            name="Password"
+            type="password"
+            className="border-field"
+            ></Input>
+          <Button onClick={handleFormSubmit} name="Sign Up"></Button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Row, Col,  } from "react-bootstrap";
-import "./style.css";
+import { Container, Grid, Row, Col,  } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
 import Question from "../components/Question/question";

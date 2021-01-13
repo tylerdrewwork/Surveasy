@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import API from "../utils/API";
-import "./style.css";
+import Input from "../components/Input/input";
+import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList";
 import { Container, Row, Col } from "react-bootstrap";
