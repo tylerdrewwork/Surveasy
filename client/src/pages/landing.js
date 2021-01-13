@@ -25,7 +25,7 @@ function Landing() {
         <section className='back-div'>
             <h1 className="title anim-fade">SurvEasy</h1>
 
-            <p className="description" id="about">
+            <p className="description anim-fade" id="about">
                 Make sure you know what your target audience needs. We make it easy to create surveys and get results.
             </p>
 
