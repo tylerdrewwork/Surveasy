@@ -29,6 +29,8 @@ function Admin() {
         console.log(survey);
         setActiveSur(false);
         setDeactiveSur(false);
+        setPublicSur(false);
+        setPrivateSur(false);
     }, [])
 
     function uploadSurveys() {
@@ -49,6 +51,24 @@ function Admin() {
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
+        getcheck();
+        if(survey[r].active.toString() == "true"){
+            setActiveSur(true);
+            
+        }
+        if(survey[r].active.toString() == "false"){
+            setDeactiveSur(true);
+        }
+        if(survey[r].public.toString() == "true"){
+            setPublicSur(true);
+        }
+        if(survey[r].public.toString() == "false"){
+            setPrivateSur(true);
+        }
+    }
+
+    function getcheck(){
+        
     }
 
     function getIndex(id) {
