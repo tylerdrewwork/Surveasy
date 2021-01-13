@@ -54,16 +54,19 @@ function Admin() {
         getcheck();
         if(survey[r].active.toString() == "true"){
             setActiveSur(true);
-            
+            setDeactiveSur(false);
         }
         if(survey[r].active.toString() == "false"){
             setDeactiveSur(true);
+            setActiveSur(false);
         }
         if(survey[r].public.toString() == "true"){
             setPublicSur(true);
+            setPrivateSur(false);
         }
         if(survey[r].public.toString() == "false"){
             setPrivateSur(true);
+            setPublicSur(false);
         }
     }
 
