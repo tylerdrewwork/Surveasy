@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
+import './signup.css';
 import API from "../utils/API";
 
 function SignUp() {
@@ -45,7 +45,7 @@ function SignUp() {
         </div>
       </div>
       <div>
-        <p style={{ color: 'white', display: showRequirementError ? 'block' : 'none' }}>Error: Password does not meet minimum requirements.</p>
+        <p className="err-msg" style={{ display: showRequirementError ? 'block' : 'none' }}>Error: Password does not meet minimum requirements.</p>
       </div>
     </div>
   );
