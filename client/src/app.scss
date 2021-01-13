@@ -32,7 +32,7 @@ h1.title {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.border-field {
+.form-field {
     border: 2px solid rgba($color: $color-primary, $alpha: 0.5);
 }
 
@@ -57,28 +57,3 @@ h1.title {
 // PAGE SPECIFIC
 // 
 
-// Sign up and Sign in pages
-.sign-form-wrapper {
-    position: relative;
-    width: 40%;
-    height: auto;
-    padding: 1% 4%;
-    // Style
-    background-color: rgba($color: $color-primary, $alpha: 1.0);
-    border: 2px solid $color-primary;
-    border-radius: 5%;
-    @include pattern-primary;
-
-    .sign-form-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        width: 70%;
-        margin: 0 auto;
-
-        & > * {
-            margin: 5px 0px;
-        }
-    }
-}

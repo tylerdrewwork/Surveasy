@@ -1,0 +1,28 @@
+@import '../style/_responsive.scss';
+@import '../style/_colors.scss';
+
+// Sign up and Sign in pages
+.sign-form-wrapper {
+    @include responsive-static(width, 300, 400);
+    position: relative;
+    height: auto;
+    padding: 1% 0%;
+    // Style
+    background-color: rgba($color: $color-primary, $alpha: 1.0);
+    @include pattern-primary;
+    border: 2px solid $color-primary;
+    border-radius: 5%;
+
+    .sign-form-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 70%;
+        margin: 0 auto;
+
+        & > * {
+            margin: 5px 0px;
+        }
+    }
+}
