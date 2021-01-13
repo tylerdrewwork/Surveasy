@@ -1,9 +1,11 @@
+@import './style/colors.scss';
+
 // Changes the bootstrap theme colors
 $theme-colors: (
     // "white": #000000,
     // "light": tomato,
     // "danger": teal,
-    // "dark": #ffffff,
+    // "light": $color-navbar,
 );
 @import "~bootstrap/scss/bootstrap";
 

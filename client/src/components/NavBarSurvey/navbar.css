@@ -1,14 +1,9 @@
 .navStyle {
-  color: white;
-  background-color: #24212B;
+  background-color: #24212B !important;
 }
 
 .navStyle .navbar-brand, .navStyle .nav-link {
-  color: #f6b042;
-  color: -moz-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
-  color: -webkit-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
-  color: linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6b042",endColorstr="#f9ed4e",GradientType=1);
+  color: #F6B042 !important;
   font-weight: 300;
   text-transform: uppercase;
 }
