@@ -23,6 +23,11 @@
 
 label {
   color: #F6B042;
+  color: #f6b042;
+  color: -moz-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
+  color: -webkit-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
+  color: linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6b042",endColorstr="#f9ed4e",GradientType=1);
 }
 
 .form-input {

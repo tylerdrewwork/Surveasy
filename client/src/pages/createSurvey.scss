@@ -15,6 +15,7 @@
 
 label {
     color: $color-primary;
+    @include gradient-primary(color); // gradient the text if possible, otherwise use color fallback
 }
 
 .form-input {

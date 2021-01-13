@@ -2,6 +2,7 @@
 
 button {
     background: #533549;
+    @include gradient-secondary(background);
     color: #ffffff !important;
     font-weight: 100;
     padding: 20px;
