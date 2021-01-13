@@ -12,3 +12,7 @@
   font-weight: 300;
   text-transform: uppercase;
 }
+
+.nav-link {
+  color: red;
+}
