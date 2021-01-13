@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Grid, Row, Col, } from "react-bootstrap";
+import { Container, Row, Col, } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
 import './takeSurvey.css';
@@ -8,7 +8,6 @@ import Question from "../components/Question/question";
 import Answer from "../components/Answer/answer";
 import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
-import { get } from "mongoose";
 
 function TakeSurvey() {
   const [survey, setSurvey] = useState({});
@@ -57,7 +56,7 @@ function TakeSurvey() {
   function renderQuestion() {
 
     // If we have a survey with questions, render it
-    if (survey.questions && survey.questions[curQuestionIndex]) {
+    if (survey.questions && survey.questions[curQuestionIndex] && survey.active === true) {
       currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
@@ -92,6 +91,7 @@ function TakeSurvey() {
         <form>
           {currentQuestion.choices.map(({ choice, _id }) => {
             return <Answer className="answer" answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+
           })}
         </form>
       )
