@@ -1,4 +1,4 @@
-<!-- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # SurvEasy
 
@@ -15,7 +15,7 @@ SurvEasy is a solution for your survey needs. Create your survey, and share with
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [Technologies](#Technologies)
-<!-- * [License](#License) -->
+* [License](#License)
 <!-- * [Contribution](#Contribution) -->
 <!-- * [Tests](#Tests) -->
 * [Contributors](#Contributors)
@@ -120,9 +120,9 @@ If you do not sign out of your account, the application will remember you for 12
 * Mongoose
 * JWT
 
-<!-- ## License
+## License
 
-SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) license. -->
+SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
 <!-- ## Contribution
 
