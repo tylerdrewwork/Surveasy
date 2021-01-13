@@ -5,7 +5,7 @@ import "./navbar.css";
 
 export default function Navigation() {
   return (
-    <Navbar className="navStyle" bg="dark" variant="dark">
+    <Navbar className="navStyle">
       <Navbar.Brand as={Link} href="#home">
         Surveasy
       </Navbar.Brand>
