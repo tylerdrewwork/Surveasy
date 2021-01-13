@@ -8,6 +8,7 @@ import './signin-signup.css';
 
 function SignIn() {
   const [formCred, setFormCred] = useState({});
+  const [showRequirementError, setShowRequirementError] = useState(false);
   const history = useHistory();
 
   function handleInputChange(event) {
@@ -24,9 +25,13 @@ function SignIn() {
         password: formCred.password,
       })
         .then((result) => {
-          console.log(result);
-          localStorage.setItem("token", result.data.token);
-          history.push("/admin");
+          if (result.data === "Error: Incorrect Username or Password.") {
+            setShowRequirementError(true);
+          } else {
+            console.log(result);
+            localStorage.setItem("token", result.data.token);
+            history.push("/admin");
+          }
         })
         .catch((err) => console.log(err));
     }
@@ -41,6 +46,9 @@ function SignIn() {
           <Button name="Sign In" className="form-field" onClick={handleFormSubmit}></Button>
           <Link to="/">Go Back</Link>
         </div>
+      </div>
+      <div>
+        <h1 className="title" style={{ display: showRequirementError ? "block" : "none" }}>Please enter your correct Username and Password</h1>
       </div>
     </div>
   );

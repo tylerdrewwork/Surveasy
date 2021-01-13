@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Button from "../components/Button/button";
 import API from "../utils/API";
 import Input from "../components/Input/input";
 import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
-import SurveyList from "../components/SurveyList/surveyList";
-import { Container, Row, Col } from "react-bootstrap";
+import SurveyList from "../components/SurveyList/surveyList"
+import { Container, Grid, Row, Col } from "react-bootstrap";
+import Radio from "../components/RadioButton/radio";
+
 
 function Admin() {
   const [survey, setSurvey] = useState({});
   const [curSurvey, setCurSurvey] = useState({});
+  const [editTitle, setEditTitle] = useState({});
+  const [activeSur, setActiveSur] = useState({});
+  const [deactiveSur, setDeactiveSur] = useState({});
+
   let token;
   let selectedSurvey;
   useEffect(() => {
-    uploadSurveys();
-    console.log(token);
-    console.log(survey);
+    uploadSurveys()
+    setActiveSur(false);
+    setDeactiveSur(false);
   }, []);
-
-  useEffect(() => {
-    console.log(curSurvey);
-  }, [curSurvey]);
 
   function uploadSurveys() {
     token = localStorage.getItem(`token`);
@@ -28,8 +31,7 @@ function Admin() {
     API.getUserSurveys(token)
       .then((res) => {
         setSurvey(res.data);
-        accessSurvey(localStorage.getItem(`currentSurvey`));
-        console.log(res.data);
+        accessSurvey(localStorage.getItem(`currentSurvey`))
       })
       .catch((err) => console.log(err));
   }
@@ -37,31 +39,93 @@ function Admin() {
   function accessSurvey(id) {
     selectedSurvey = id;
     console.log(selectedSurvey);
-    localStorage.setItem("currentSurvey", id);
+    localStorage.setItem('currentSurvey', id);
     var r = getIndex(id);
     setCurSurvey(survey[r]);
+
+    if (survey[r].active.toString() == "true") {
+      setActiveSur(true);
+      setDeactiveSur(false);
+    }
+    if (survey[r].active.toString() == "false") {
+      setDeactiveSur(true);
+      setActiveSur(false);
+    }
+
+    setEditTitle(survey[r].title);
   }
 
   function getIndex(id) {
-    return survey.findIndex((obj) => obj._id === id);
+    return survey.findIndex(obj => obj._id === id);
+  }
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setEditTitle(value);
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const adminData = formatAdmin();
+    console.log(adminData);
+    token = localStorage.getItem(`token`);
+    API.updateSurvey(curSurvey._id, adminData, token)
+      .then((result) => {
+        console.log(result);
+
+      })
+      .catch((err) => console.log(err));
   }
 
   function displayLink() {
-    if (curSurvey._id == null) {
+    if (curSurvey._id === null) {
       return "";
     }
     return (
       <NavLink
         to={{
           pathname: `survey/${curSurvey._id}`,
-        }}
-      >
+        }}>
         https://surveasy.herokuapp.com/survey/{curSurvey._id}
       </NavLink>
-    );
+    )
+  }
+
+  function formatAdmin() {
+
+    console.log(curSurvey);
+    console.log(editTitle);
+    const adminDataFormat = {
+      surveyId: curSurvey._id,
+      title: editTitle,
+      active: activeSur,
+      public: true
+    }
+
+    return adminDataFormat;
+  }
+
+  function handleRadioSelectActive(event) {
+    console.log(event.target.checked)
+    console.log(event.target.id)
+    if (event.target.checked === true && event.target.id === "Active") {
+      setActiveSur(true);
+      setDeactiveSur(false);
+    } else if (event.target.checked === false && event.target.id === "Active") {
+      setActiveSur(false);
+      setDeactiveSur(true);
+    } else if (event.target.checked === true && event.target.id === "Deactive") {
+      setDeactiveSur(true);
+      setActiveSur(false);
+    } else if (event.target.checked === false && event.target.id === "Deactive") {
+      setDeactiveSur(false);
+      setActiveSur(true);
+    }
+
   }
 
   return (
+
     <div>
       <NavigationSurvey />
 
@@ -69,33 +133,37 @@ function Admin() {
         <Row float="center">
           <Col sx={3} md={3}>
             <div className="back-div">
-              {Object.keys(survey).map((key) => (
-                <SurveyList
-                  name={survey[key].title}
-                  onClick={() => accessSurvey(survey[key]._id)}
-                ></SurveyList>
+              {Object.keys(survey).map(key => (
+                <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
+                </SurveyList>
               ))}
             </div>
           </Col>
-          <Col>
-            <div className="back-div" id="displaySurvey">
-              <h1>{curSurvey.title}</h1>
-              <h3>
-                {curSurvey.active == null
-                  ? ""
-                  : "Active : " + curSurvey.active.toString()}
-              </h3>
+          <Col sx={8} md={9}>
+            <div className="back-div" id="displaySurvey"  >
+
+              <h3>Edit Title:</h3>
+              <Input onChange={handleInputChange} name={curSurvey.title}></Input>
+              <h3>Edit Active:</h3>
+              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
+              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
+              <Col sx={3} md={12}>
+                <Button name="Submit" onClick={handleFormSubmit}></Button>
+              </Col>
             </div>
             <Col>
               <div className="back-div" id="displaySurvey">
-                <h3>{displayLink()}</h3>
+                {curSurvey.active == null ? "" : <h3>{displayLink()}</h3>}
               </div>
             </Col>
           </Col>
         </Row>
       </Container>
+
     </div>
+
   );
+
 }
 
 export default Admin;

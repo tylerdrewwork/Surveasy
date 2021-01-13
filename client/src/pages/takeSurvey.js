@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Grid, Row, Col,  } from "react-bootstrap";
+import { Container, Row, Col, } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
+import './takeSurvey.css';
 import Question from "../components/Question/question";
 import Answer from "../components/Answer/answer";
+import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
-import { get } from "mongoose";
 
 function TakeSurvey() {
   const [survey, setSurvey] = useState({});
@@ -27,14 +28,14 @@ function TakeSurvey() {
   }
 
   if (!survey) {
-      return <div className="back-div"><h1>Loading...</h1></div>
+    return <div className="back-div"><h1>Loading...</h1></div>
   }
 
-  function nextQuestion () {
-    if(curQuestionIndex + 1 >= survey.questions.length) {
+  function nextQuestion() {
+    if (curQuestionIndex + 1 >= survey.questions.length) {
       // The survey has been finished?
       console.log("Survey has been finished.");
-    } 
+    }
 
     // Otherwise, send question choice result
     submitChoice();
@@ -42,27 +43,29 @@ function TakeSurvey() {
     setCurQuestionIndex(curQuestionIndex + 1);
   }
 
-  function submitChoice () {
+  function submitChoice() {
     // TODO make selectedChoice equal the selected choice, 
-    let selectedChoice = currentChoiceId; 
+    let selectedChoice = currentChoiceId;
 
     API.updateSurveyVote(
-      survey._id, 
-      survey.questions[curQuestionIndex]._id, 
+      survey._id,
+      survey.questions[curQuestionIndex]._id,
       selectedChoice)
   }
 
   function renderQuestion() {
 
     // If we have a survey with questions, render it
-    if (survey.questions && survey.questions[curQuestionIndex]) {
+    if (survey.questions && survey.questions[curQuestionIndex] && survey.active === true) {
       currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
-          {survey.title}
-          <Question question={survey.questions[curQuestionIndex].question} />
-          {renderAnswers()}
-          <button onClick={nextQuestion}></button>
+          <h2 className='title'>{survey.title}</h2>
+          <section className='question-section'>
+            <Question className="question" question={survey.questions[curQuestionIndex].question} />
+            {renderAnswers()}
+            <Button name="Submit" onClick={nextQuestion}></Button>
+          </section>
         </React.Fragment>
       );
     }
@@ -71,10 +74,10 @@ function TakeSurvey() {
     // display link back to landing page
     return (
       <div className="back-div">
-        <h1>Thank you for taking this survey!</h1>
-        <h1>Follow this link to create your own!</h1>
+        <h1 className="end-msg">Thank you for taking this survey!</h1>
+        <h1 className="end-msg">Visit us to create your own!</h1>
         <h2>
-        <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
+          <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
         </h2>
 
       </div>
@@ -83,29 +86,29 @@ function TakeSurvey() {
 
   function renderAnswers() {
 
-      if (currentQuestion.choices) {
-          return (
-            <form>
-              {currentQuestion.choices.map( ({ choice, _id }) => {
-                return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect}/>
-              })}
-            </form>
-          )
-      }
-      return null;
+    if (currentQuestion.choices) {
+      return (
+        <form>
+          {currentQuestion.choices.map(({ choice, _id }) => {
+            return <Answer className="answer" answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+
+          })}
+        </form>
+      )
+    }
+    return null;
   };
 
-  function handleRadioSelect (event) {
+  function handleRadioSelect(event) {
     currentChoiceId = event.target.id;
   }
 
   return (
     <div>
-      <NavigationSurvey />
       <Container>
         <Row>
           <Col>
-          {renderQuestion()}
+            {renderQuestion()}
           </Col>
         </Row>
       </Container>

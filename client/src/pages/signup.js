@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
+import './signup.css';
 import API from "../utils/API";
 import './signin-signup.css';
 
@@ -45,6 +46,9 @@ function SignUp() {
           <Button onClick={handleFormSubmit} name="Sign Up" className="form-field"></Button>
           <Link to="/">Go Back</Link>
         </div>
+      </div>
+      <div>
+        <p className="err-msg" style={{ display: showRequirementError ? 'block' : 'none' }}>Error: Password does not meet minimum requirements.</p>
       </div>
     </div>
   );
