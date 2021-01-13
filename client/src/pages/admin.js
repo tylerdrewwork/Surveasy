@@ -51,7 +51,7 @@ function Admin() {
         localStorage.setItem('currentSurvey', id);
         var r = getIndex(id);
         setCurSurvey(survey[r]);
-        getcheck();
+
         if(survey[r].active.toString() == "true"){
             setActiveSur(true);
             setDeactiveSur(false);
@@ -68,10 +68,6 @@ function Admin() {
             setPrivateSur(true);
             setPublicSur(false);
         }
-    }
-
-    function getcheck(){
-        
     }
 
     function getIndex(id) {
@@ -99,11 +95,12 @@ function Admin() {
 
       function formatAdmin(){
           console.log(formCred)
+          console.log(curSurvey);
           const adminData = {
-            surveyId: surveyId,
-            title: surveyData.title,
-            active: surveyData.active,
-            public: surveyData.public
+            surveyId: curSurvey._id,
+            title: curSurvey.title,
+            active: activeSur,
+            public: publicSur
           }
 
           return adminData;
