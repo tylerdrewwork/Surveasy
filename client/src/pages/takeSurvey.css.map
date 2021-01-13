@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAA;EACA,KAAK,EAAE,KAAK;CACf",
+    "sources": [
+        "takeSurvey.scss"
+    ],
+    "names": [],
+    "file": "takeSurvey.css"
+}

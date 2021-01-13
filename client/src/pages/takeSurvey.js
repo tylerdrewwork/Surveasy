@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Grid, Row, Col,  } from "react-bootstrap";
+import { Container, Grid, Row, Col, } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
 import Question from "../components/Question/question";
 import Answer from "../components/Answer/answer";
+import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
 import { get } from "mongoose";
+import './takeSurvey.css';
 
 function TakeSurvey() {
   const [survey, setSurvey] = useState({});
@@ -27,14 +29,14 @@ function TakeSurvey() {
   }
 
   if (!survey) {
-      return <div className="back-div"><h1>Loading...</h1></div>
+    return <div className="back-div"><h1>Loading...</h1></div>
   }
 
-  function nextQuestion () {
-    if(curQuestionIndex + 1 >= survey.questions.length) {
+  function nextQuestion() {
+    if (curQuestionIndex + 1 >= survey.questions.length) {
       // The survey has been finished?
       console.log("Survey has been finished.");
-    } 
+    }
 
     // Otherwise, send question choice result
     submitChoice();
@@ -42,13 +44,13 @@ function TakeSurvey() {
     setCurQuestionIndex(curQuestionIndex + 1);
   }
 
-  function submitChoice () {
+  function submitChoice() {
     // TODO make selectedChoice equal the selected choice, 
-    let selectedChoice = currentChoiceId; 
+    let selectedChoice = currentChoiceId;
 
     API.updateSurveyVote(
-      survey._id, 
-      survey.questions[curQuestionIndex]._id, 
+      survey._id,
+      survey.questions[curQuestionIndex]._id,
       selectedChoice)
   }
 
@@ -62,7 +64,8 @@ function TakeSurvey() {
           {survey.title}
           <Question question={survey.questions[curQuestionIndex].question} />
           {renderAnswers()}
-          <button onClick={nextQuestion}></button>
+          {/* <button onClick={nextQuestion}>Submit</button> */}
+          <Button name="Submit" onClick={nextQuestion}></Button>
         </React.Fragment>
       );
     }
@@ -74,7 +77,7 @@ function TakeSurvey() {
         <h1>Thank you for taking this survey!</h1>
         <h1>Follow this link to create your own!</h1>
         <h2>
-        <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
+          <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
         </h2>
 
       </div>
@@ -83,19 +86,19 @@ function TakeSurvey() {
 
   function renderAnswers() {
 
-      if (currentQuestion.choices) {
-          return (
-            <form>
-              {currentQuestion.choices.map( ({ choice, _id }) => {
-                return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect}/>
-              })}
-            </form>
-          )
-      }
-      return null;
+    if (currentQuestion.choices) {
+      return (
+        <form>
+          {currentQuestion.choices.map(({ choice, _id }) => {
+            return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+          })}
+        </form>
+      )
+    }
+    return null;
   };
 
-  function handleRadioSelect (event) {
+  function handleRadioSelect(event) {
     currentChoiceId = event.target.id;
   }
 
@@ -105,7 +108,7 @@ function TakeSurvey() {
       <Container>
         <Row>
           <Col>
-          {renderQuestion()}
+            {renderQuestion()}
           </Col>
         </Row>
       </Container>
