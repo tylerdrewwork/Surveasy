@@ -42,7 +42,6 @@ h1.title {
 
 .back-div {
     height: 100%;
-    // max-width: 70%;
 
     display: flex;
     flex-direction: column;
@@ -67,16 +66,10 @@ h1.title {
     // Style
     background-color: rgba($color: $color-primary, $alpha: 1.0);
     border: 2px solid $color-primary;
+    border-radius: 5%;
     @include pattern-primary;
 
     .sign-form-content {
-        // The following lines are for positioning the content
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        // right: 0;
-        // bottom: 0;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -87,18 +80,5 @@ h1.title {
         & > * {
             margin: 5px 0px;
         }
-    }
-
-    // &::before {
-    //     @include psuedo-element;
-    //     z-index: -1;
-    //     // top: -50%;
-    //     // padding-bottom: 100%;
-    //     border-radius: 100%;
-        
-    // }
-
-    & input {
-        // margin: 5px 0px;
     }
 }
