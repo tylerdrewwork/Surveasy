@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
-//import { Link } from "react-router-dom";
 import API from "../utils/API";
 import "./style.css";
-import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
-import { Line } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Input from "../components/Input/input";
 import Radio from "../components/RadioButton/radio";
-import Answer from "../components/Answer/answer";
+
 
 function Admin() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
-    const [formCred, setFormCred] = useState({});
+    const [editTitle, seteditTitle] = useState({});
     const [activeSur, setActiveSur] = useState({});
     const [deactiveSur, setDeactiveSur] = useState({});
 
@@ -26,8 +23,9 @@ function Admin() {
         console.log(token);
         console.log(survey);
         setActiveSur(false);
-        setDeactiveSur(false);
+        setDeactiveSur(false);    
     }, [])
+
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -56,6 +54,8 @@ function Admin() {
             setDeactiveSur(true);
             setActiveSur(false);
         }
+
+        seteditTitle(survey[r].title);
     }
 
     function getIndex(id) {
@@ -63,8 +63,7 @@ function Admin() {
       }
       function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormCred({ ...formCred, [name]: value });
-        formatAdmin();
+        seteditTitle(value);
       }
 
       function handleFormSubmit(event) {
@@ -81,11 +80,12 @@ function Admin() {
       }
 
       function formatAdmin(){
-          console.log(formCred)
+          
           console.log(curSurvey);
+          console.log(editTitle);
           const adminDataFormat = {
             surveyId: curSurvey._id,
-            title: curSurvey.title,
+            title: editTitle,
             active: activeSur,
             public: true
           }
@@ -128,7 +128,7 @@ function Admin() {
                     </div>
                 </Col>
             <Col sx={8} md={9}>
-                    <div className="back-div" id="displaySurvey">
+                    <div className="back-div" id="displaySurvey"  >
                         
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
