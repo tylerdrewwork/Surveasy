@@ -71,15 +71,15 @@ function CreateSurvey() {
   return (
     <div className="back-div">
       <form id="form-create-survey">
-        <Input onChange={handleTitleChange} name="SurveyName" />
+        <Input onChange={handleTitleChange} className="form-survey-name" name="SurveyName" />
 
         {surveyData.questions.map((input, index) => {
-          return <div data-key={index} key={index}>
-            <Input onChange={handleInputChange} name={`QuestionName`} />
-            <Input onChange={handleInputChange} name={`Option1`} />
-            <Input onChange={handleInputChange} name={`Option2`} />
-            <Input onChange={handleInputChange} name={`Option3`} />
-            <Input onChange={handleInputChange} name={`Option4`} />
+          return <div id="form-create-survey-questions" data-key={index} key={index}>
+            <Input onChange={handleInputChange} className="form-question" name={`QuestionName`} />
+            <Input onChange={handleInputChange} className="form-option" name={`Option1`} />
+            <Input onChange={handleInputChange} className="form-option" name={`Option2`} />
+            <Input onChange={handleInputChange} className="form-option" name={`Option3`} />
+            <Input onChange={handleInputChange} className="form-option" name={`Option4`} />
           </div>
         })}
 
