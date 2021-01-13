@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,IAAI,CAAA;EACA,KAAK,EAAE,KAAK;CACf",
+    "mappings": "AAEA,AAAA,MAAM,CAAA;EACF,KAAK,ECCO,OAAO;CDAtB;;AAED,AAAA,SAAS,CAAA;EACL,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,OAAO,CAAA;EACH,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,aAAa,CAAA;EACT,KAAK,EAAC,KAAK;CACd",
     "sources": [
-        "takeSurvey.scss"
+        "takeSurvey.scss",
+        "../style/_colors.scss"
     ],
     "names": [],
     "file": "takeSurvey.css"

@@ -3,12 +3,12 @@ import API from "../utils/API";
 import { Container, Grid, Row, Col, } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
+import './takeSurvey.css';
 import Question from "../components/Question/question";
 import Answer from "../components/Answer/answer";
 import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
 import { get } from "mongoose";
-import './takeSurvey.css';
 
 function TakeSurvey() {
   const [survey, setSurvey] = useState({});
@@ -61,10 +61,9 @@ function TakeSurvey() {
       currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
-          {survey.title}
-          <Question question={survey.questions[curQuestionIndex].question} />
+          <h2 className='title'>{survey.title}</h2>
+          <Question className="question" question={survey.questions[curQuestionIndex].question} />
           {renderAnswers()}
-          {/* <button onClick={nextQuestion}>Submit</button> */}
           <Button name="Submit" onClick={nextQuestion}></Button>
         </React.Fragment>
       );
@@ -90,7 +89,7 @@ function TakeSurvey() {
       return (
         <form>
           {currentQuestion.choices.map(({ choice, _id }) => {
-            return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+            return <Answer className="answer" answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
           })}
         </form>
       )

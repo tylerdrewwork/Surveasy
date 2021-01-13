@@ -1,4 +1,16 @@
-body {
+.title {
+  color: #F6B042;
+}
+
+.question {
+  color: white;
+}
+
+.answer {
+  color: white;
+}
+
+.answer-label {
   color: white;
 }
 /*# sourceMappingURL=takeSurvey.css.map */

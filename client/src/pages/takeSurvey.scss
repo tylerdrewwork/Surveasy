@@ -1,3 +1,18 @@
-body{
+@import '../style/_colors.scss';
+
+.title{
+    color: $color-primary;
+}
+
+.question{
     color: white;
 }
+
+.answer{
+    color: white;
+}
+
+.answer-label{
+    color:white;
+}
+
