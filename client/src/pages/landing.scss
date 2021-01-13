@@ -29,6 +29,10 @@ $margin-size: 3rem;
         margin-top: $margin-size;
         margin-bottom: $margin-size;
     }
+
+    img {
+        max-width: 100%;
+    }
 }
 
 .btn-link {

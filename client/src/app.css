@@ -42,6 +42,7 @@ h1.title {
 
 .back-div {
   height: 100%;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

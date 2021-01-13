@@ -24,6 +24,10 @@
   margin-bottom: 3rem;
 }
 
+.description-section img {
+  max-width: 100%;
+}
+
 .btn-link {
   margin: 1em;
 }
