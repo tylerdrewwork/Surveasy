@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
+import './signup.css';
 import API from "../utils/API";
 
 function SignUp() {
@@ -40,9 +40,12 @@ function SignUp() {
             name="Password"
             type="password"
             className="border-field"
-            ></Input>
+          ></Input>
           <Button onClick={handleFormSubmit} name="Sign Up"></Button>
         </div>
+      </div>
+      <div>
+        <p className="err-msg" style={{ display: showRequirementError ? 'block' : 'none' }}>Error: Password does not meet minimum requirements.</p>
       </div>
     </div>
   );
