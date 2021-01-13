@@ -35,13 +35,12 @@ function SignUp() {
       <div className="sign-form-wrapper">
         <div className="sign-form-content">
 
-          <Input onChange={handleInputChange} name="Email" className="form-field"></Input>
-          <Input onChange={handleInputChange} name="Username" className="form-field"></Input>
+          <Input onChange={handleInputChange} name="Email"></Input>
+          <Input onChange={handleInputChange} name="Username"></Input>
           <Input
             onChange={handleInputChange}
             name="Password"
             type="password"
-            className="form-field"
             ></Input>
           <Button onClick={handleFormSubmit} name="Sign Up" className="form-field"></Button>
           <Link to="/">Go Back</Link>
