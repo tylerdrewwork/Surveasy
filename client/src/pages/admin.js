@@ -6,7 +6,6 @@ import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
-import Input from "../components/Input/input";
 import Radio from "../components/RadioButton/radio";
 
 
