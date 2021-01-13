@@ -26,12 +26,10 @@ function SignIn() {
         .then((result) => {
           if (result.data === "Error: Incorrect Username or Password.") {
             setShowRequirementError(true);
-            console.log(result);
-            return (<h1 className="title">Please enter your correct Username and Password</h1>)
           } else {
-          console.log(result);
-          localStorage.setItem("token", result.data.token);
-          history.push("/admin");
+            console.log(result);
+            localStorage.setItem("token", result.data.token);
+            history.push("/admin");
           }
         })
         .catch((err) => console.log(err));
@@ -46,6 +44,9 @@ function SignIn() {
           <Input onChange={handleInputChange} name="password" type="password" className="border-field"></Input>
           <Button name="Sign In" onClick={handleFormSubmit}></Button>
         </div>
+      </div>
+      <div>
+        <h1 className="title" style={{ display: showRequirementError ? "block" : "none" }}>Please enter your correct Username and Password</h1>
       </div>
     </div>
   );
