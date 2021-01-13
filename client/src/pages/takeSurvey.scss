@@ -1,18 +1,30 @@
 @import '../style/_colors.scss';
 
 .title{
+    margin-top: 1em;
     color: $color-primary;
-}
+    font-size: 3em;
+}   
 
-.question{
-    color: white;
-}
+.question-section{
+    margin: 2rem;
 
-.answer{
-    color: white;
-}
+    .question{
+        margin-bottom: 1em;
+        color: white;
+        font-size: 1.5em;
+    }
 
-.answer-label{
-    color:white;
-}
+    .answer{
+        color: white;
+    }
 
+    .answer-label{
+        margin-left: 1em;
+        color:white;
+    }
+
+    Button{
+        margin-top: 2em;
+    }
+}

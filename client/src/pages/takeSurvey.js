@@ -62,9 +62,11 @@ function TakeSurvey() {
       return (
         <React.Fragment>
           <h2 className='title'>{survey.title}</h2>
-          <Question className="question" question={survey.questions[curQuestionIndex].question} />
-          {renderAnswers()}
-          <Button name="Submit" onClick={nextQuestion}></Button>
+          <section className='question-section'>
+            <Question className="question" question={survey.questions[curQuestionIndex].question} />
+            {renderAnswers()}
+            <Button name="Submit" onClick={nextQuestion}></Button>
+          </section>
         </React.Fragment>
       );
     }

@@ -1,16 +1,29 @@
 .title {
+  margin-top: 1em;
   color: #F6B042;
+  font-size: 3em;
 }
 
-.question {
+.question-section {
+  margin: 2rem;
+}
+
+.question-section .question {
+  margin-bottom: 1em;
+  color: white;
+  font-size: 1.5em;
+}
+
+.question-section .answer {
   color: white;
 }
 
-.answer {
+.question-section .answer-label {
+  margin-left: 1em;
   color: white;
 }
 
-.answer-label {
-  color: white;
+.question-section Button {
+  margin-top: 2em;
 }
 /*# sourceMappingURL=takeSurvey.css.map */
