@@ -107,17 +107,17 @@ function Admin() {
         console.log( event.target.checked)
         console.log(event.target.id)
         if(event.target.checked === true && event.target.id === "Active"){
-          setActiveSur(true);
-          setDeactiveSur(false);
+          setPublicSur(true);
+          setPrivateSur(false);
         } else if(event.target.checked === false && event.target.id === "Active"){
-          setActiveSur(false);
-          setDeactiveSur(true);
+          setPublicSur(false);
+          setPrivateSur(true);
         }else if(event.target.checked === true && event.target.id === "Deactive"){
-          setDeactiveSur(true);
-          setActiveSur(false);
+          setPrivateSur(true);
+          setPublicSur(false);
         }else if(event.target.checked === false && event.target.id === "Deactive"){
-          setDeactiveSur(false);
-          setActiveSur(true);
+          setPrivateSur(false);
+          setPublicSur(true);
         }
         
     }
@@ -145,8 +145,8 @@ function Admin() {
                         <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
                         <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
                         <h3>Visibility:</h3>
-                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Public"}  checked={activeSur}></Radio>
-                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Private"}  checked={deactiveSur}></Radio>
+                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Public"}  checked={publicSur}></Radio>
+                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Private"}  checked={privateSur}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
