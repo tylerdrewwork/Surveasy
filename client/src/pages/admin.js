@@ -16,7 +16,7 @@ function Admin() {
     const [survey, setSurvey] = useState({});
     const [curSurvey, setCurSurvey] = useState({});
     const [formCred, setFormCred] = useState({});
-
+    
 
     let token;
     let selectedSurvey; 
@@ -82,13 +82,7 @@ function Admin() {
       function handleRadioSelect (event) {
           console.log( event.target.checked)
           console.log(event.target.id)
-          document.getElementById(event.target.id).checked = true;
-          //this.setState({checked: !this.state.checked});
-          if(event.target.id === false){
-            document.getElementById("deactive").checked = false;
-          }else{
-            document.getElementById("deactive").checked = true;
-          }
+          
       }
 
     return (
