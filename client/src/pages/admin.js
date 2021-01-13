@@ -87,12 +87,16 @@ function Admin() {
           console.log(event.target.id)
           if(event.target.checked === true && event.target.id === "Active"){
             setActiveSur(true);
+            setDeactiveSur(false);
           } else if(event.target.checked === false && event.target.id === "Active"){
             setActiveSur(false);
+            setDeactiveSur(true);
           }else if(event.target.checked === true && event.target.id === "Deactive"){
+            setDeactiveSur(true);
             setActiveSur(false);
           }else if(event.target.checked === false && event.target.id === "Deactive"){
-            setActiveSur(false);
+            setDeactiveSur(false);
+            setActiveSur(true);
           }
           
       }
@@ -117,8 +121,8 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Radio onChange={handleRadioSelect} id = "active" name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
-                        <Radio onChange={handleRadioSelect} id = "deactive" name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
+                        <Radio onChange={handleRadioSelect} name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
+                        <Radio onChange={handleRadioSelect} name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
