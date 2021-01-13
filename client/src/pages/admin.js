@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import Button from "../components/Button/button";
 import API from "../utils/API";
 import Input from "../components/Input/input";
@@ -12,7 +13,7 @@ import Radio from "../components/RadioButton/radio";
 function Admin() {
   const [survey, setSurvey] = useState({});
   const [curSurvey, setCurSurvey] = useState({});
-  const [editTitle, seteditTitle] = useState({});
+  const [editTitle, setEditTitle] = useState({});
   const [activeSur, setActiveSur] = useState({});
   const [deactiveSur, setDeactiveSur] = useState({});
 
@@ -20,12 +21,9 @@ function Admin() {
   let selectedSurvey;
   useEffect(() => {
     uploadSurveys()
-    console.log(token);
-    console.log(survey);
     setActiveSur(false);
     setDeactiveSur(false);
-  }, [])
-
+  }, []);
 
   function uploadSurveys() {
     token = localStorage.getItem(`token`);
@@ -34,10 +32,9 @@ function Admin() {
       .then((res) => {
         setSurvey(res.data);
         accessSurvey(localStorage.getItem(`currentSurvey`))
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
   function accessSurvey(id) {
     selectedSurvey = id;
@@ -55,15 +52,16 @@ function Admin() {
       setActiveSur(false);
     }
 
-    seteditTitle(survey[r].title);
+    setEditTitle(survey[r].title);
   }
 
   function getIndex(id) {
     return survey.findIndex(obj => obj._id === id);
   }
+
   function handleInputChange(event) {
     const { name, value } = event.target;
-    seteditTitle(value);
+    setEditTitle(value);
   }
 
   function handleFormSubmit(event) {
@@ -77,6 +75,20 @@ function Admin() {
 
       })
       .catch((err) => console.log(err));
+  }
+
+  function displayLink() {
+    if (curSurvey._id === null) {
+      return "";
+    }
+    return (
+      <NavLink
+        to={{
+          pathname: `survey/${curSurvey._id}`,
+        }}>
+        https://surveasy.herokuapp.com/survey/{curSurvey._id}
+      </NavLink>
+    )
   }
 
   function formatAdmin() {
@@ -112,35 +124,41 @@ function Admin() {
 
   }
 
-
   return (
 
     <div>
       <NavigationSurvey />
 
-      <Row float="center">
-        <Col sx={3} md={3}>
-          <div className="back-div">
-            {Object.keys(survey).map(key => (
-              <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
-              </SurveyList>
-            ))}
-          </div>
-        </Col>
-        <Col sx={8} md={9}>
-          <div className="back-div" id="displaySurvey"  >
+      <Container fluid>
+        <Row float="center">
+          <Col sx={3} md={3}>
+            <div className="back-div">
+              {Object.keys(survey).map(key => (
+                <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
+                </SurveyList>
+              ))}
+            </div>
+          </Col>
+          <Col sx={8} md={9}>
+            <div className="back-div" id="displaySurvey"  >
 
-            <h3>Edit Title:</h3>
-            <Input onChange={handleInputChange} name={curSurvey.title}></Input>
-            <h3>Edit Active:</h3>
-            <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
-            <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
-            <Col sx={3} md={12}>
-              <Button name="Submit" onClick={handleFormSubmit}></Button>
+              <h3>Edit Title:</h3>
+              <Input onChange={handleInputChange} name={curSurvey.title}></Input>
+              <h3>Edit Active:</h3>
+              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
+              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
+              <Col sx={3} md={12}>
+                <Button name="Submit" onClick={handleFormSubmit}></Button>
+              </Col>
+            </div>
+            <Col>
+              <div className="back-div" id="displaySurvey">
+                {curSurvey.active == null ? "" : <h3>{displayLink()}</h3>}
+              </div>
             </Col>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </Container>
 
     </div>
 
