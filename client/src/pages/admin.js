@@ -81,11 +81,9 @@ function Admin() {
 
       function handleFormSubmit(event) {
         event.preventDefault();
-        const formattedData = formatAdmin();
-          API.updateSurvey({
-            username: formCred.username,
-            password: formCred.password,
-          })
+        const adminData = formatAdmin();
+        console.log(adminData);
+          API.updateSurvey(curSurvey._id, adminData, token)
             .then((result) => {
               console.log(result);
 
@@ -96,14 +94,14 @@ function Admin() {
       function formatAdmin(){
           console.log(formCred)
           console.log(curSurvey);
-          const adminData = {
+          const adminDataFormat = {
             surveyId: curSurvey._id,
             title: curSurvey.title,
             active: activeSur,
             public: publicSur
           }
 
-          return adminData;
+          return adminDataFormat;
       }
 
       function handleRadioSelectActive (event) {
