@@ -200,33 +200,33 @@ const apiRoutes = (app) => {
                 let questionData = req.body.questionData;
                 let newQuestion = req.body.newQuestion;
 
-                if (active === true || active === false) {
+                if (active) {
                     // Update Active
                     surveyController.updateSurveyActive(surveyId, active, result => {
-                        console.log(result);
+                        res.json(result)
                     });
                 }
-                if (public === true || public === false) {
+                if (public) {
                     // Update Public
                     surveyController.updateSurveyPublic(surveyId, public, result => {
-                        console.log(result);
+                        res.json(result);
                     });
                 }
                 if (title) {
                     // Update Title
                     surveyController.updateSurveyTitle(surveyId, title, result => {
-                        console.log(result);
+                        res.json(result);
                     });
                 }
                 if (questionData) {
                     surveyController.updateSurveyQuestions(surveyId, questionData, result => {
-                        console.log(result);
+                        res.json(result);
                     });
                 }
                 if (newQuestion) {
                     surveyController.addQuestionToSurvey(surveyId, newQuestion, result => {
-                        console.log(result);
-                    });
+                        res.json(result);
+                    })
                 }
             });
         })

@@ -14,6 +14,9 @@ export default function NavigationSurvey() {
         Surveasy
       </Navbar.Brand>
       <Nav className="ml-auto">
+        <Nav.Link as={Link} to="/edit">
+          Edit Survey
+        </Nav.Link>
         <Nav.Link as={Link} to="/analytics">
           Analytics
         </Nav.Link>
