@@ -75,8 +75,8 @@ function TakeSurvey() {
     // display link back to landing page
     return (
       <div className="back-div">
-        <h1>Thank you for taking this survey!</h1>
-        <h1>Follow this link to create your own!</h1>
+        <h1 className="end-msg">Thank you for taking this survey!</h1>
+        <h1 className="end-msg">Visit us to create your own!</h1>
         <h2>
           <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
         </h2>
@@ -105,7 +105,6 @@ function TakeSurvey() {
 
   return (
     <div>
-      <NavigationSurvey />
       <Container>
         <Row>
           <Col>
