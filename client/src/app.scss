@@ -58,7 +58,7 @@ h1.title {
     color: white;
     background-color: $color-navbar;
 
-    .navbar-brand {
+    .navbar-brand, .nav-link {
         @include gradient-primary(color);
         // Some cool brand styling... but it offsets the navbar. if you can get it working, go for it!
         // @include responsive-static(font-size, 20, 30);

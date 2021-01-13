@@ -67,7 +67,7 @@ h1.title {
   background-color: #24212B;
 }
 
-.navStyle .navbar-brand {
+.navStyle .navbar-brand, .navStyle .nav-link {
   color: #f6b042;
   color: -moz-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
   color: -webkit-linear-gradient(112deg, #f6b042 0%, #f9ed4e 100%);
