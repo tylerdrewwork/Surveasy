@@ -99,12 +99,14 @@ function Admin() {
 
       function formatAdmin(){
           console.log(formCred)
-        //   const adminData = {
-        //     surveyId: surveyId,
-        //     title: surveyData.title,
-        //     active: surveyData.active,
-        //     public: surveyData.public
-        //   }
+          const adminData = {
+            surveyId: surveyId,
+            title: surveyData.title,
+            active: surveyData.active,
+            public: surveyData.public
+          }
+
+          return adminData;
       }
 
       function handleRadioSelectActive (event) {
