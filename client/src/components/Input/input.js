@@ -3,7 +3,7 @@ import "./input.css";
 
 function Input(props){
     return(
-        <input {...props} placeholder = {props.name}>
+        <input {...props} className="create-survey__input form-field" placeholder = {props.name}>
             
         </input>
     )

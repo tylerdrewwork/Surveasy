@@ -1,0 +1,14 @@
+#form-create-survey {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    
+    & > input {
+        // flex-basis: 50%;
+        // flex-grow: 0;
+    }
+}
+
+.create-survey__input {
+    // width: 1px;
+}

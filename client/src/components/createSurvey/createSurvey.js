@@ -70,20 +70,22 @@ function CreateSurvey() {
 
   return (
     <div className="back-div">
-      <Input onChange={handleTitleChange} name="SurveyName" />
+      <form id="form-create-survey">
+        <Input onChange={handleTitleChange} name="SurveyName" />
 
-      {surveyData.questions.map((input, index) => {
-        return <div data-key={index} key={index}>
-          <Input onChange={handleInputChange} name={`QuestionName`} />
-          <Input onChange={handleInputChange} name={`Option1`} />
-          <Input onChange={handleInputChange} name={`Option2`} />
-          <Input onChange={handleInputChange} name={`Option3`} />
-          <Input onChange={handleInputChange} name={`Option4`} />
-        </div>
-      })}
+        {surveyData.questions.map((input, index) => {
+          return <div data-key={index} key={index}>
+            <Input onChange={handleInputChange} name={`QuestionName`} />
+            <Input onChange={handleInputChange} name={`Option1`} />
+            <Input onChange={handleInputChange} name={`Option2`} />
+            <Input onChange={handleInputChange} name={`Option3`} />
+            <Input onChange={handleInputChange} name={`Option4`} />
+          </div>
+        })}
 
-      <Button onClick={handleFormSubmit} name="Submit" />
-      <Button onClick={handleIncreaseCount} name="Add a Question" />
+        <Button onClick={handleFormSubmit} name="Submit" />
+        <Button onClick={handleIncreaseCount} name="Add a Question" />
+      </form>
     </div>
   );
 }
