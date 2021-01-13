@@ -40,9 +40,12 @@ function SignUp() {
             name="Password"
             type="password"
             className="border-field"
-            ></Input>
+          ></Input>
           <Button onClick={handleFormSubmit} name="Sign Up"></Button>
         </div>
+      </div>
+      <div>
+        <p style={{ color: 'white', display: showRequirementError ? 'block' : 'none' }}>Error: Password does not meet minimum requirements.</p>
       </div>
     </div>
   );
