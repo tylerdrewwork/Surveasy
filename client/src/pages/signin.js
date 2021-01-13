@@ -36,7 +36,7 @@ function SignIn() {
       <div className="sign-form-wrapper">
         <div className="sign-form-content">
           <Input onChange={handleInputChange} name="username" className="border-field"></Input>
-          <Input onChange={handleInputChange} name="password" className="border-field"></Input>
+          <Input onChange={handleInputChange} name="password" type="password" className="border-field"></Input>
           <Button name="Sign In" onClick={handleFormSubmit}></Button>
         </div>
       </div>
