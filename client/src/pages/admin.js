@@ -18,6 +18,8 @@ function Admin() {
     const [formCred, setFormCred] = useState({});
     const [activeSur, setActiveSur] = useState({});
     const [deactiveSur, setDeactiveSur] = useState({});
+    const [publicSur, setPublicSur] = useState({});
+    const [privateSur, setPrivateSur] = useState({});
 
     let token;
     let selectedSurvey; 
@@ -82,7 +84,7 @@ function Admin() {
         //   }
       }
 
-      function handleRadioSelect (event) {
+      function handleRadioSelectActive (event) {
           console.log( event.target.checked)
           console.log(event.target.id)
           if(event.target.checked === true && event.target.id === "Active"){
@@ -100,6 +102,25 @@ function Admin() {
           }
           
       }
+
+      function handleRadioSelectVisible (event) {
+        console.log( event.target.checked)
+        console.log(event.target.id)
+        if(event.target.checked === true && event.target.id === "Active"){
+          setActiveSur(true);
+          setDeactiveSur(false);
+        } else if(event.target.checked === false && event.target.id === "Active"){
+          setActiveSur(false);
+          setDeactiveSur(true);
+        }else if(event.target.checked === true && event.target.id === "Deactive"){
+          setDeactiveSur(true);
+          setActiveSur(false);
+        }else if(event.target.checked === false && event.target.id === "Deactive"){
+          setDeactiveSur(false);
+          setActiveSur(true);
+        }
+        
+    }
 
     return (
 
@@ -121,8 +142,11 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Radio onChange={handleRadioSelect} name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
-                        <Radio onChange={handleRadioSelect} name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
+                        <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"}  checked={activeSur}></Radio>
+                        <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"}  checked={deactiveSur}></Radio>
+                        <h3>Visibility:</h3>
+                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Public"}  checked={activeSur}></Radio>
+                        <Radio onChange={handleRadioSelectVisible} name={curSurvey.active == null ? '' : "Private"}  checked={deactiveSur}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
