@@ -3,8 +3,10 @@ import API from "../utils/API";
 import { Container, Row, Col, } from "react-bootstrap";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { useParams } from "react-router-dom";
+import './takeSurvey.css';
 import Question from "../components/Question/question";
 import Answer from "../components/Answer/answer";
+import Button from "../components/Button/button";
 import { NavLink } from "react-router-dom";
 
 function TakeSurvey() {
@@ -58,10 +60,12 @@ function TakeSurvey() {
       currentQuestion = survey.questions[curQuestionIndex]
       return (
         <React.Fragment>
-          {survey.title}
-          <Question question={survey.questions[curQuestionIndex].question} />
-          {renderAnswers()}
-          <button onClick={nextQuestion}></button>
+          <h2 className='title'>{survey.title}</h2>
+          <section className='question-section'>
+            <Question className="question" question={survey.questions[curQuestionIndex].question} />
+            {renderAnswers()}
+            <Button name="Submit" onClick={nextQuestion}></Button>
+          </section>
         </React.Fragment>
       );
     }
@@ -70,8 +74,8 @@ function TakeSurvey() {
     // display link back to landing page
     return (
       <div className="back-div">
-        <h1>Thank you for taking this survey!</h1>
-        <h1>Follow this link to create your own!</h1>
+        <h1 className="end-msg">Thank you for taking this survey!</h1>
+        <h1 className="end-msg">Visit us to create your own!</h1>
         <h2>
           <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
         </h2>
@@ -86,7 +90,8 @@ function TakeSurvey() {
       return (
         <form>
           {currentQuestion.choices.map(({ choice, _id }) => {
-            return <Answer answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+            return <Answer className="answer" answer={choice} key={_id} choiceId={_id} handleSelectFunction={handleRadioSelect} />
+
           })}
         </form>
       )
@@ -100,7 +105,6 @@ function TakeSurvey() {
 
   return (
     <div>
-      <NavigationSurvey />
       <Container>
         <Row>
           <Col>
