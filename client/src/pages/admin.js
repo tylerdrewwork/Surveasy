@@ -106,16 +106,16 @@ function Admin() {
       function handleRadioSelectVisible (event) {
         console.log( event.target.checked)
         console.log(event.target.id)
-        if(event.target.checked === true && event.target.id === "Active"){
+        if(event.target.checked === true && event.target.id === "Public"){
           setPublicSur(true);
           setPrivateSur(false);
-        } else if(event.target.checked === false && event.target.id === "Active"){
+        } else if(event.target.checked === false && event.target.id === "Public"){
           setPublicSur(false);
           setPrivateSur(true);
-        }else if(event.target.checked === true && event.target.id === "Deactive"){
+        }else if(event.target.checked === true && event.target.id === "Private"){
           setPrivateSur(true);
           setPublicSur(false);
-        }else if(event.target.checked === false && event.target.id === "Deactive"){
+        }else if(event.target.checked === false && event.target.id === "Private"){
           setPrivateSur(false);
           setPublicSur(true);
         }
