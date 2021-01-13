@@ -7,6 +7,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 
 function SignIn() {
   const [formCred, setFormCred] = useState({});
+  const [showRequirementError, setShowRequirementError] = useState(false);
   const history = useHistory();
 
   function handleInputChange(event) {
@@ -23,9 +24,15 @@ function SignIn() {
         password: formCred.password,
       })
         .then((result) => {
+          if (result.data === "Error: Incorrect Username or Password.") {
+            setShowRequirementError(true);
+            console.log(result);
+            return (<h1 className="title">Please enter your correct Username and Password</h1>)
+          } else {
           console.log(result);
           localStorage.setItem("token", result.data.token);
           history.push("/admin");
+          }
         })
         .catch((err) => console.log(err));
     }
