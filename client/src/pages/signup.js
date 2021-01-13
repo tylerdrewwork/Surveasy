@@ -43,7 +43,7 @@ function SignUp() {
             type="password"
             className="form-field"
             ></Input>
-          <Button onClick={handleFormSubmit} name="Sign Up"></Button>
+          <Button onClick={handleFormSubmit} name="Sign Up" className="form-field"></Button>
           <Link to="/">Go Back</Link>
         </div>
       </div>
