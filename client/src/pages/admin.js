@@ -10,6 +10,7 @@ import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Input from "../components/Input/input";
 import Radio from "../components/RadioButton/radio";
+import Answer from "../components/Answer/answer";
 
 function Admin() {
     const [survey, setSurvey] = useState({});
@@ -77,6 +78,19 @@ function Admin() {
         //     public: surveyData.public
         //   }
       }
+
+      function handleRadioSelect (event) {
+          console.log( event.target.checked)
+          console.log(event.target.id)
+          document.getElementById(event.target.id).checked = true;
+          //this.setState({checked: !this.state.checked});
+          if(event.target.id === false){
+            document.getElementById("deactive").checked = false;
+          }else{
+            document.getElementById("deactive").checked = true;
+          }
+      }
+
     return (
 
         <div>
@@ -97,8 +111,8 @@ function Admin() {
                         <h3>Edit Title:</h3>
                         <Input onChange={handleInputChange} name={curSurvey.title}></Input>
                         <h3>Edit Active:</h3>
-                        <Radio onChange={handleInputChange} name={curSurvey.active == null ? '' : "Active"} ></Radio>
-                        <Radio onChange={handleInputChange} name={curSurvey.active == null ? '' : "Deactive"} ></Radio>
+                        <Radio onChange={handleRadioSelect} id = "active" name={curSurvey.active == null ? '' : "Active"}  checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "true"}></Radio>
+                        <Radio onChange={handleRadioSelect} id = "deactive" name={curSurvey.active == null ? '' : "Deactive"}  checked={curSurvey.active == null ? '' : curSurvey.active.toString() == "false"}></Radio>
                         <Col sx={3} md={12}>
                         <Button name="Submit" onClick={handleFormSubmit}></Button>
                         </Col>
