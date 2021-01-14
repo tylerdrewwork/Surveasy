@@ -30,6 +30,7 @@ function CreateSurvey() {
     event.preventDefault();
     const token = localStorage.getItem('token');
     const formattedData = formatSurveyData(surveyData, surveyTitle.SurveyName);
+    console.log("Formatted data: ", formattedData);
 
     API.createSurvey(formattedData, token).then(result => {
       console.log(result);
@@ -75,11 +76,11 @@ function CreateSurvey() {
 
         {surveyData.questions.map((input, index) => {
           return <div id="form-create-survey-questions" data-key={index} key={index}>
-            <Input onChange={handleInputChange} className="form-question" name={`QuestionName`} />
-            <Input onChange={handleInputChange} className="form-option" name={`Option1`} />
-            <Input onChange={handleInputChange} className="form-option" name={`Option2`} />
-            <Input onChange={handleInputChange} className="form-option" name={`Option3`} />
-            <Input onChange={handleInputChange} className="form-option" name={`Option4`} />
+            <Input onChange={handleInputChange} data-key={index} className="form-question" name={`QuestionName`} />
+            <Input onChange={handleInputChange} data-key={index} className="form-option" name={`Option1`} />
+            <Input onChange={handleInputChange} data-key={index} className="form-option" name={`Option2`} />
+            <Input onChange={handleInputChange} data-key={index} className="form-option" name={`Option3`} />
+            <Input onChange={handleInputChange} data-key={index} className="form-option" name={`Option4`} />
           </div>
         })}
 
