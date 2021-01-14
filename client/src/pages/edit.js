@@ -14,7 +14,6 @@ function Edit() {
   let selectedSurvey;
   useEffect(() => {
     uploadSurveys();
-    console.log(token);
   }, []);
 
   function uploadSurveys() {
@@ -24,18 +23,15 @@ function Edit() {
       .then((res) => {
         setSurvey(res.data);
         accessSurvey(localStorage.getItem(`currentSurvey`));
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }
 
   function accessSurvey(id) {
     selectedSurvey = id;
-    console.log(selectedSurvey);
     localStorage.setItem("currentSurvey", id);
     var r = getIndex(id);
     setCurSurvey(survey[r]);
-    console.log(curSurvey);
   }
 
   function getIndex(id) {
@@ -55,7 +51,7 @@ function Edit() {
     }
   }
 
-  function editSurvey() {}
+  function editSurvey() { }
 
   return (
     //navbar will be set up here
@@ -77,7 +73,7 @@ function Edit() {
         <Col sx={8} md={9}>
           {/* {renderSurvey()} */}
           <div className="back-div" id="displaySurvey">
-          
+
             {Object.keys(survey).map((key) => (
               <SurveyList
                 name={survey[key].title}
@@ -85,7 +81,7 @@ function Edit() {
               ></SurveyList>
             ))}
             <Input >
-            
+
             </Input>
           </div>
           {/*<div className="back-div" id="displaySurvey">

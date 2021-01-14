@@ -37,7 +37,6 @@ function Analytics() {
         API.getUserSurveys(token)
             .then((res) => {
                 setSurvey(res.data);
-                console.log(res.data);
             })
             .catch((err) => console.log(err));
     };

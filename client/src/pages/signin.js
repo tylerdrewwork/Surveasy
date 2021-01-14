@@ -28,7 +28,6 @@ function SignIn() {
           if (result.data === "Error: Incorrect Username or Password.") {
             setShowRequirementError(true);
           } else {
-            console.log(result);
             localStorage.setItem("token", result.data.token);
             history.push("/admin");
           }
