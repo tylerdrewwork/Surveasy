@@ -1,5 +1,8 @@
-.example_e {
+button {
   background: #533549;
+  background: #533549;
+  background: linear-gradient(112deg, #533549 0%, #523961 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#533549",endColorstr="#523961",GradientType=1);
   color: #ffffff !important;
   font-weight: 100;
   padding: 20px;
@@ -11,7 +14,7 @@
   letter-spacing: 3px;
 }
 
-.example_e:hover {
+button:hover {
   color: #533549 !important;
   font-weight: 700 !important;
   letter-spacing: 5px;
@@ -21,4 +24,3 @@
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
-/*# sourceMappingURL=button.css.map */

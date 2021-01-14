@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
 import API from "../utils/API";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Grid, Row, Col } from "react-bootstrap";
+import './signin-signup.css';
 
 function SignIn() {
   const [formCred, setFormCred] = useState({});
@@ -40,9 +41,10 @@ function SignIn() {
     <div className="back-div">
       <div className="sign-form-wrapper">
         <div className="sign-form-content">
-          <Input onChange={handleInputChange} name="username" className="border-field"></Input>
-          <Input onChange={handleInputChange} name="password" type="password" className="border-field"></Input>
-          <Button name="Sign In" onClick={handleFormSubmit}></Button>
+          <Input onChange={handleInputChange} name="username"></Input>
+          <Input onChange={handleInputChange} name="password" type="password"></Input>
+          <Button name="Sign In" className="form-field" onClick={handleFormSubmit}></Button>
+          <Link to="/">Go Back</Link>
         </div>
       </div>
       <div>

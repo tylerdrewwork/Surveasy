@@ -1,0 +1,19 @@
+@import '../../style/_colors.scss';
+@import '../../style/_responsive.scss';
+
+
+
+.navStyle {
+    // color: white;
+    background-color: $color-navbar !important;
+
+    .navbar-brand, .nav-link {
+        color: $color-primary !important;
+        // Some cool brand styling... but it offsets the navbar. if you can get it working, go for it!
+        // @include responsive-static(font-size, 20, 30);
+        // letter-spacing: 4px;
+        // margin-right: 0;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+}

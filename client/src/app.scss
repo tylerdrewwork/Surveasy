@@ -32,7 +32,7 @@ h1.title {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.border-field {
+.form-field {
     border: 2px solid rgba($color: $color-primary, $alpha: 0.5);
 }
 
@@ -42,8 +42,7 @@ h1.title {
 
 .back-div {
     height: 100%;
-    max-width: 70%;
-    margin: 0 auto;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -52,53 +51,12 @@ h1.title {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding : 60px;
+    padding : 60px 0;
 }
+
+
 
 // 
 // PAGE SPECIFIC
 // 
 
-// Sign up and Sign in pages
-.sign-form-wrapper {
-    position: relative;
-    width: 40%;
-    height: auto;
-    padding-top: 40%;
-
-    .sign-form-content {
-        // The following lines are for positioning the content
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        width: 70%;
-        margin: 0 auto;
-
-        & > * {
-            margin: 5px 0px;
-        }
-    }
-
-    &::before {
-        @include psuedo-element;
-        z-index: -1;
-        // top: -50%;
-        // padding-bottom: 100%;
-        border-radius: 100%;
-        
-        background-color: rgba($color: $color-primary, $alpha: 1.0);
-        border: 2px solid $color-primary;
-        @include pattern-primary;
-    }
-
-    & input {
-        // margin: 5px 0px;
-    }
-}

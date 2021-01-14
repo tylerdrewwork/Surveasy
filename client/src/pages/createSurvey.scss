@@ -1,0 +1,53 @@
+@import '../style/_colors.scss';
+@import '../style/_responsive.scss';
+
+#form-create-survey {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    #form-create-survey-questions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+label {
+    color: $color-primary;
+    @include gradient-primary(color); // gradient the text if possible, otherwise use color fallback
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.form-survey-name {
+    label {
+        @include responsive-static(font-size, 30, 50);
+    }
+}
+
+.form-question {
+    flex-basis: 100%;
+    margin-top: 20px;
+
+    label {
+        @include responsive-static(font-size, 20, 40);
+    }
+}
+
+.form-option {
+    flex-basis: 50%;
+
+    label {
+        @include responsive-static(font-size, 10, 20);
+    }
+}
+
+.form-field {
+    margin: 0 auto;
+    width: 80%;
+}

@@ -16,12 +16,18 @@
   margin: 3rem 0;
   border-radius: 6px;
   background: #533549;
+  background: linear-gradient(112deg, #533549 0%, #523961 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#533549",endColorstr="#523961",GradientType=1);
   color: #ffffff;
 }
 
 .description-section p {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.description-section img {
+  max-width: 100%;
 }
 
 .btn-link {

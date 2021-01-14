@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import Button from "../components/Button/button";
 import Input from "../components/Input/input";
 import './signup.css';
 import API from "../utils/API";
+import './signin-signup.css';
+
 
 function SignUp() {
   const [formCred, setFormCred] = useState({});
@@ -33,15 +36,15 @@ function SignUp() {
       <div className="sign-form-wrapper">
         <div className="sign-form-content">
 
-          <Input onChange={handleInputChange} name="Email" className="border-field"></Input>
-          <Input onChange={handleInputChange} name="Username" className="border-field"></Input>
+          <Input onChange={handleInputChange} name="Email"></Input>
+          <Input onChange={handleInputChange} name="Username"></Input>
           <Input
             onChange={handleInputChange}
             name="Password"
             type="password"
-            className="border-field"
-          ></Input>
-          <Button onClick={handleFormSubmit} name="Sign Up"></Button>
+            ></Input>
+          <Button onClick={handleFormSubmit} name="Sign Up" className="form-field"></Button>
+          <Link to="/">Go Back</Link>
         </div>
       </div>
       <div>

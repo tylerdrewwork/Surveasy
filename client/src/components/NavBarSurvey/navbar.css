@@ -1,0 +1,9 @@
+.navStyle {
+  background-color: #24212B !important;
+}
+
+.navStyle .navbar-brand, .navStyle .nav-link {
+  color: #F6B042 !important;
+  font-weight: 300;
+  text-transform: uppercase;
+}

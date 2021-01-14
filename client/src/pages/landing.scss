@@ -22,12 +22,16 @@ $margin-size: 3rem;
 
     border-radius: 6px;
 
-    background: #533549;
+    @include gradient-secondary(background);
     color: #ffffff;
 
     p {
         margin-top: $margin-size;
         margin-bottom: $margin-size;
+    }
+
+    img {
+        max-width: 100%;
     }
 }
 

@@ -1,7 +1,8 @@
 @import '../../style/_colors.scss';
 
-.example_e {
+button {
     background: #533549;
+    @include gradient-secondary(background);
     color: #ffffff !important;
     font-weight: 100;
     padding: 20px;
@@ -12,7 +13,7 @@
     letter-spacing: 3px;
 }
 
-.example_e:hover {
+button:hover {
     color: #533549 !important;
     font-weight: 700 !important;
     letter-spacing: 5px;
