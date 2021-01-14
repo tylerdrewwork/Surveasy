@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "../components/Button/button";
 import API from "../utils/API";
-import Input from "../components/Input/input";
+import Input from "../components/Input2/input";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
@@ -146,9 +146,9 @@ function Admin() {
           <div className="admin-wrapper">
             <div className="sign-form-content" id="displaySurvey" style = {{marginTop: "100px"}} >
 
-              <h3>Edit Title:</h3>
+              <h6>Edit Title:</h6>
               <Input onChange={handleInputChange} name={curSurvey.title}></Input>
-              <h3>Edit Active:</h3>
+              <h6>Edit Active:</h6>
               <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
               <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
               <Col sx={3} md={12}>
