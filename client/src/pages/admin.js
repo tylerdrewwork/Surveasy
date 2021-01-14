@@ -130,10 +130,10 @@ function Admin() {
     <div>
       <NavigationSurvey />
 
-      <Container fluid>
+      <Container fluid style = {{marginTop: "100px"}}>
         <Row float="center" >
-          <Col sx={3} md={3}>
-          <div className="sign-form-wrapper" style = {{marginTop: "100px"}}>
+          <Col sx={3} md={4}>
+          <div className="sign-form-wrapper">
             <div className="back-div">
               {Object.keys(survey).map(key => (
                 <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
@@ -142,13 +142,13 @@ function Admin() {
             </div>
             </div>
           </Col>
-          <Col sx={8} md={9}>
+          <Col sx={8} md={8}>
           <div className="admin-wrapper">
-            <div className="sign-form-content" id="displaySurvey" style = {{marginTop: "100px"}} >
+            <div className="sign-form-content" id="displaySurvey">
 
-              <h6>Edit Title:</h6>
+              <h4>Edit Title:</h4>
               <Input onChange={handleInputChange} name={curSurvey.title}></Input>
-              <h6>Edit Active:</h6>
+              <h4>Edit Active:</h4>
               <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
               <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
               <Col sx={3} md={12}>
