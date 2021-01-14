@@ -9,7 +9,7 @@ export default function NavigationSurvey() {
   }
 
   return (
-    <Navbar className="navStyle" bg="light">
+    <Navbar className="navStyle" >
       <Navbar.Brand as={Link} href="#home">
         Surveasy
       </Navbar.Brand>
