@@ -129,8 +129,8 @@ function Analytics() {
             <NavigationSurvey />
             <Container fluid style = {{marginTop: "100px"}}>
             <Row float="center">
-                <Col sx={3} md={3}>
-                <div className="sign-form-wrapper">
+                <Col sx={2} md={2}>
+                <div className="survey-bar">
                     <div className="back-div">
                         {Object.keys(survey).map(key => (
                             <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
@@ -139,8 +139,8 @@ function Analytics() {
                     </div>
                     </div>
                 </Col>
-                <Col sx={8} md={9}>
-                    <div className="admin-wrapper" style = {{padding: "30px"}}>
+                <Col sx={10} md={9}>
+                    <div className="admin-wrapper" style = {{padding: "50px"}}>
                         <Row float="center">
                             {Object.keys(state).map(key => (
                                 <Col sx={8} md={6}>

@@ -132,8 +132,8 @@ function Admin() {
 
       <Container fluid style = {{marginTop: "100px"}}>
         <Row float="center" >
-          <Col sx={3} md={2}>
-          <div className="sign-form-wrapper">
+          <Col sx={2} md={2}>
+          <div className="survey-bar">
             <div className="back-div">
               {Object.keys(survey).map(key => (
                 <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
@@ -142,7 +142,7 @@ function Admin() {
             </div>
             </div>
           </Col>
-          <Col sx={8} md={9}>
+          <Col sx={10} md={9}>
                 <div className="admin-wrapper">
                   <div className="sign-form-content" id="displaySurvey">
                     
