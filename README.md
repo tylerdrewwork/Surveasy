@@ -107,6 +107,7 @@ If you do not sign out of your account, the application will remember you for 12
 ##### Front End Technologies
 
 * React
+* Sass
 * Bootstrap
 * Chart.js
 * Axios
