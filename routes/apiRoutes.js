@@ -192,6 +192,8 @@ const apiRoutes = (app) => {
                     return;
                 }
 
+                let amountToFinish = 0;
+
                 // Define Parameters
                 let surveyId = req.body.surveyId;
                 let active = req.body.active;
@@ -201,33 +203,43 @@ const apiRoutes = (app) => {
                 let newQuestion = req.body.newQuestion;
 
                 if (active === true || active === false) {
+                    amountToFinish++;
                     // Update Active
                     surveyController.updateSurveyActive(surveyId, active, result => {
                         console.log(result);
                     });
                 }
                 if (public === true || public === false) {
+                    amountToFinish++;
                     // Update Public
                     surveyController.updateSurveyPublic(surveyId, public, result => {
                         console.log(result);
                     });
                 }
                 if (title) {
+                    amountToFinish++;
                     // Update Title
                     surveyController.updateSurveyTitle(surveyId, title, result => {
                         console.log(result);
                     });
                 }
                 if (questionData) {
+                    amountToFinish++;
                     surveyController.updateSurveyQuestions(surveyId, questionData, result => {
                         console.log(result);
                     });
                 }
                 if (newQuestion) {
+                    amountToFinish++;
                     surveyController.addQuestionToSurvey(surveyId, newQuestion, result => {
                         console.log(result);
                     });
                 }
+
+                console.log(amountToFinish);
+                do {
+                    res.send('done');
+                } while (amountToFinish > 0)
             });
         })
         // Delete a survey
