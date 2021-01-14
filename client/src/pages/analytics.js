@@ -5,6 +5,7 @@ import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
+import './analytics.css';
 
 function Analytics() {
     const [survey, setSurvey] = useState({});
@@ -32,6 +33,15 @@ function Analytics() {
         console.log("This is state variable for PIE data", state2);
     }, [state2])
 
+    const barOptions = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    stepSize: 1,
+                }
+            }]
+        }
+    }
 
 
     function uploadSurveys() {
@@ -73,7 +83,7 @@ function Analytics() {
                     labels: labelChoice,
                     datasets: [{
                         label: curSurvey.questions[i].question,
-                        backgroundColor: '#533540',
+                        backgroundColor: '#F6B042',
                         borderColor: 'rgba(0,0,0,1)',
                         borderWidth: 2,
                         data: countChoice
@@ -92,10 +102,10 @@ function Analytics() {
                 var countChoice = [];
                 var labelChoice = [];
                 var backgroundChoice = [];
-                var countR = 83;
-                var countG = 53;
-                var countB = 64;
-                var countA = 33;
+                var countR = 246;
+                var countG = 176;
+                var countB = 66;
+                var countA = 256;
                 for (var j = 0; j < curSurvey.questions[i].choices.length; j++) {
                     countChoice.push(curSurvey.questions[i].choices[j].votes);
                     labelChoice.push(curSurvey.questions[i].choices[j].choice);
@@ -136,20 +146,24 @@ function Analytics() {
                     </div>
                 </Col>
                 <Col sx={8} md={9}>
-                    <div>
-                        <Row float="center">
-                            {Object.keys(state).map(key => (
-                                <Col sx={8} md={6}>
-                                    <Bar data={state[key]} />
-                                </Col>
-                            ))}
-                        </Row>
-                        <Row float="center" style={{ padding: 40 }}>
-                            {Object.keys(state2).map(key => (
-                                <Col sx={8} md={6}>
+                    <div id="charts-container">
+                        <Row>
+                            <Col sx={8} md={6}>
+                                {Object.keys(state).map(key => (
+                                    <>
+                                    <Bar data={state[key]} options={barOptions} />
+                                    <hr/>
+                                    </>
+                                ))}
+                            </Col>
+                            <Col sx={8} md={6}>
+                                {Object.keys(state2).map(key => (
+                                    <>
                                     <Pie data={state2[key]} />
-                                </Col>
-                            ))}
+                                    <hr/>
+                                    </>
+                                ))}
+                            </Col>
                         </Row>
                     </div>
                 </Col>

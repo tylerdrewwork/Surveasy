@@ -1,0 +1,16 @@
+@import '../style/_colors.scss';
+
+#charts-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    // background-color: $color-primary-muted;
+}   
+
+hr {
+    border-color: $color-secondary !important;
+}
+
+.chartjs-render-monitor {
+    // background-color: $;
+}
