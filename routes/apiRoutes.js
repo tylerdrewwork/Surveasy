@@ -228,6 +228,8 @@ const apiRoutes = (app) => {
                         console.log(result);
                     });
                 }
+
+                res.send('done');
             });
         })
         // Delete a survey

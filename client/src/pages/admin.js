@@ -69,10 +69,12 @@ function Admin() {
     const adminData = formatAdmin();
     console.log(adminData);
     token = localStorage.getItem(`token`);
+
+    console.log('Outside then function');
+
     API.updateSurvey(curSurvey._id, adminData, token)
       .then((result) => {
-        console.log(result);
-
+        uploadSurveys();
       })
       .catch((err) => console.log(err));
   }
