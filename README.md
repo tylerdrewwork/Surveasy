@@ -125,19 +125,38 @@ SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) licens
 
 ## Contributors
 
+<table>
+<tr>
+<td style="border: none">
+
 ##### Jesse J.
 <a href="https://github.com/JesseJ713">![Profile Image](https://github.com/JesseJ713.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/jesse-jackson-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/JesseJ713">![Badge](https://img.shields.io/badge/Github--40c256)</a>
+
+</td>
+<td style="border: none">
 
 ##### Nick B.
 <a href="https://github.com/nbur4556">![Profile Image](https://github.com/nbur4556.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/nick-burt/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/nbur4556">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
+</td>
+</tr>
+
+<tr>
+<td style="border: none">
 
 ##### Shubhangi M.
 <a href="https://github.com/smundhada">![Profile Image](https://github.com/smundhada.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/shubhi-mundhada/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/smundhada">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
+</td>
+<td style="border: none">
+
 ##### Tyler S.
 <a href="https://github.com/Sakiskid">![Profile Image](https://github.com/Sakiskid.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/tyler-smith-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/Sakiskid">![Badge](https://img.shields.io/badge/Github--40c256)</a>
+
+</td>
+</tr>
+</table>
