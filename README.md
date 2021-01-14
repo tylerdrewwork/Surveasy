@@ -8,7 +8,7 @@
 
 SurvEasy is a solution for your survey needs. Create your survey, and share with your customer base. See your survey results in easy to follow graphs and charts.
 
-<!-- ![SCREENSHOT](SCREENSHOT PATH) -->
+![Homepage Screen](./docs/homepage-screen.png)
 
 ## Table of Contents
 
