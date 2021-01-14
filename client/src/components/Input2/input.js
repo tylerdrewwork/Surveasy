@@ -3,7 +3,8 @@ import "./input.css";
 
 function Input(props){
     return(
-        <div data-key={props["data-key"]} className={`form-input ${props.className}`}>
+        <div data-key={props["data-key"]}>
+
         <input {...props} id={`form-${props.name}`} className="form-field" placeholder = {props.name}></input>
         </div>
 

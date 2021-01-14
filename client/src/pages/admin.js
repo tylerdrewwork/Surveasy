@@ -132,7 +132,7 @@ function Admin() {
 
       <Container fluid style = {{marginTop: "100px"}}>
         <Row float="center" >
-          <Col sx={3} md={4}>
+          <Col sx={3} md={2}>
           <div className="sign-form-wrapper">
             <div className="back-div">
               {Object.keys(survey).map(key => (
@@ -142,25 +142,31 @@ function Admin() {
             </div>
             </div>
           </Col>
-          <Col sx={8} md={8}>
-          <div className="admin-wrapper">
-            <div className="sign-form-content" id="displaySurvey">
+          <Col sx={8} md={9}>
+                <div className="admin-wrapper">
+                  <div className="sign-form-content" id="displaySurvey">
+                    
+                
+                          <h4 style = {{marginTop : "10px"}}>Edit Title:</h4>
+                          <Input onChange={handleInputChange} name={curSurvey.title}></Input>
 
-              <h4>Edit Title:</h4>
-              <Input onChange={handleInputChange} name={curSurvey.title}></Input>
-              <h4>Edit Active:</h4>
-              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
-              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
-              <Col sx={3} md={12}>
-                <Button name="Submit" onClick={handleFormSubmit}></Button>
-              </Col>
-              <Col>
-                <div className="sign-form-content" id="displaySurvey">
-                  {curSurvey.active == null ? "" : <h3>{displayLink()}</h3>}
+                          <div style = {{padding : "50px"}}></div>
+                          <h4>Edit Active:</h4>
+                          <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
+                          <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
+                      
+                          <div style = {{padding : "20px"}}></div>
+
+
+                          <Col sx={3} md={12}>
+                            <Button name="Submit" onClick={handleFormSubmit} style = {{float: "right"}}></Button>
+                          </Col>
+
+                      <div className="sign-form-content" id="displaySurvey" style = {{marginTop : "20px"}}>
+                        {curSurvey.active == null ? "" : <h4 style = {{marginTop : "30px"}}>{displayLink()}</h4>}
+                      </div>
+                  </div>
                 </div>
-              </Col>
-            </div>
-            </div>
           </Col>
         </Row>
       </Container>
