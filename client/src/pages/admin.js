@@ -72,7 +72,7 @@ function Admin() {
     token = localStorage.getItem(`token`);
     API.updateSurvey(curSurvey._id, adminData, token)
       .then((result) => {
-        console.log("this is resultsjlkj");
+        console.log("this is resultsjlkjsdf ");
         console.log(result);
         uploadSurveys();
       })
