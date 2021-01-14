@@ -16,8 +16,6 @@ function Analytics() {
 
     useEffect(() => {
         uploadSurveys()
-        console.log(token);
-        console.log(survey);
     }, [])
 
     useEffect(() => {
