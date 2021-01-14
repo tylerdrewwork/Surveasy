@@ -134,11 +134,13 @@ function Admin() {
       <Container fluid>
         <Row float="center">
           <Col sx={3} md={3}>
+          <div className="sign-form-wrapper">
             <div className="back-div">
               {Object.keys(survey).map(key => (
                 <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
                 </SurveyList>
               ))}
+            </div>
             </div>
           </Col>
           <Col sx={8} md={9}>
