@@ -16,8 +16,6 @@ SurvEasy is a solution for your survey needs. Create your survey, and share with
 * [Usage](#Usage)
 * [Technologies](#Technologies)
 * [License](#License)
-<!-- * [Contribution](#Contribution) -->
-<!-- * [Tests](#Tests) -->
 * [Contributors](#Contributors)
 
 ## Installation
@@ -123,14 +121,6 @@ If you do not sign out of your account, the application will remember you for 12
 ## License
 
 SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
-
-<!-- ## Contribution
-
-N/A -->
-
-<!-- ## Tests
-
-N/A -->
 
 ## Contributors
 
