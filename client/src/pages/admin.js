@@ -38,7 +38,6 @@ function Admin() {
 
   function accessSurvey(id) {
     selectedSurvey = id;
-    console.log(selectedSurvey);
     localStorage.setItem('currentSurvey', id);
     var r = getIndex(id);
     setCurSurvey(survey[r]);
@@ -67,11 +66,7 @@ function Admin() {
   function handleFormSubmit(event) {
     event.preventDefault();
     const adminData = formatAdmin();
-    console.log(adminData);
     token = localStorage.getItem(`token`);
-
-    console.log('Outside then function');
-
     API.updateSurvey(curSurvey._id, adminData, token)
       .then((result) => {
         uploadSurveys();
@@ -95,8 +90,6 @@ function Admin() {
 
   function formatAdmin() {
 
-    console.log(curSurvey);
-    console.log(editTitle);
     const adminDataFormat = {
       surveyId: curSurvey._id,
       title: editTitle,
@@ -108,8 +101,6 @@ function Admin() {
   }
 
   function handleRadioSelectActive(event) {
-    console.log(event.target.checked)
-    console.log(event.target.id)
     if (event.target.checked === true && event.target.id === "Active") {
       setActiveSur(true);
       setDeactiveSur(false);

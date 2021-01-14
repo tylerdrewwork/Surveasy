@@ -16,8 +16,6 @@ function Analytics() {
 
     useEffect(() => {
         uploadSurveys()
-        console.log(token);
-        console.log(survey);
     }, [])
 
     useEffect(() => {
@@ -39,7 +37,6 @@ function Analytics() {
         API.getUserSurveys(token)
             .then((res) => {
                 setSurvey(res.data);
-                console.log(res.data);
             })
             .catch((err) => console.log(err));
     };
