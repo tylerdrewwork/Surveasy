@@ -163,7 +163,7 @@ function Admin() {
                           </Col>
 
                       <div className="sign-form-content" id="displaySurvey" style = {{marginTop : "20px"}}>
-                        {curSurvey.active == null ? "" : <h4 style = {{marginTop : "30px"}}>{displayLink()}</h4>}
+                        {curSurvey.active == null ? "" : <h4 style = {{marginTop : "50px"}}>{displayLink()}</h4>}
                       </div>
                   </div>
                 </div>

@@ -140,7 +140,7 @@ function Analytics() {
                     </div>
                 </Col>
                 <Col sx={10} md={9}>
-                    <div className="admin-wrapper" style = {{padding: "50px"}}>
+                    <div className="admin-wrapper" style = {{padding: "20px"}}>
                         <Row float="center">
                             {Object.keys(state).map(key => (
                                 <Col sx={8} md={6}>
