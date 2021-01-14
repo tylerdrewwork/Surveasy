@@ -8,7 +8,7 @@ import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Radio from "../components/RadioButton/radio";
-
+import { useHistory } from "react-router-dom";
 
 function Admin() {
   const [survey, setSurvey] = useState({});
@@ -16,11 +16,12 @@ function Admin() {
   const [editTitle, setEditTitle] = useState({});
   const [activeSur, setActiveSur] = useState({});
   const [deactiveSur, setDeactiveSur] = useState({});
+  const history = useHistory();
 
   let token;
   let selectedSurvey;
   useEffect(() => {
-    uploadSurveys()
+    uploadSurveys();
     setActiveSur(false);
     setDeactiveSur(false);
   }, []);
@@ -65,14 +66,15 @@ function Admin() {
   }
 
   function handleFormSubmit(event) {
-    event.preventDefault();
+
     const adminData = formatAdmin();
     console.log(adminData);
     token = localStorage.getItem(`token`);
     API.updateSurvey(curSurvey._id, adminData, token)
       .then((result) => {
+        console.log("this is resultsjlkj");
         console.log(result);
-
+        uploadSurveys();
       })
       .catch((err) => console.log(err));
   }
