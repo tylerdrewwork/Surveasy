@@ -99,7 +99,7 @@ const API = {
         active: surveyData.active,
         public: surveyData.public
       }
-    });
+    })
   },
 
   deleteSurvey: function (surveyId, token) {
