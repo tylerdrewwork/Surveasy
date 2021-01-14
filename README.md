@@ -1,14 +1,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# SurvEasy
-
-[surveasy.herokuapp.com](https://surveasy.herokuapp.com/)
+<h1 align="center">SurvEasy</h1>
 
 ## Description
 
+[surveasy.herokuapp.com](https://surveasy.herokuapp.com/)
+
 SurvEasy is a solution for your survey needs. Create your survey, and share with your customer base. See your survey results in easy to follow graphs and charts.
 
-<!-- ![SCREENSHOT](SCREENSHOT PATH) -->
+![Homepage Screen](./docs/homepage-screen.png)
 
 ## Table of Contents
 
@@ -16,8 +16,6 @@ SurvEasy is a solution for your survey needs. Create your survey, and share with
 * [Usage](#Usage)
 * [Technologies](#Technologies)
 * [License](#License)
-<!-- * [Contribution](#Contribution) -->
-<!-- * [Tests](#Tests) -->
 * [Contributors](#Contributors)
 
 ## Installation
@@ -109,6 +107,7 @@ If you do not sign out of your account, the application will remember you for 12
 ##### Front End Technologies
 
 * React
+* Sass
 * Bootstrap
 * Chart.js
 * Axios
@@ -124,29 +123,40 @@ If you do not sign out of your account, the application will remember you for 12
 
 SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
-<!-- ## Contribution
-
-N/A -->
-
-<!-- ## Tests
-
-N/A -->
-
 ## Contributors
+
+<table>
+<tr>
+<td style="border: none">
 
 ##### Jesse J.
 <a href="https://github.com/JesseJ713">![Profile Image](https://github.com/JesseJ713.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/jesse-jackson-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/JesseJ713">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
+</td>
+<td style="border: none">
+
 ##### Nick B.
 <a href="https://github.com/nbur4556">![Profile Image](https://github.com/nbur4556.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/nick-burt/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/nbur4556">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
+</td>
+</tr>
+
+<tr>
+<td style="border: none">
 
 ##### Shubhangi M.
 <a href="https://github.com/smundhada">![Profile Image](https://github.com/smundhada.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/shubhi-mundhada/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/smundhada">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
+</td>
+<td style="border: none">
+
 ##### Tyler S.
 <a href="https://github.com/Sakiskid">![Profile Image](https://github.com/Sakiskid.png?size=50)</a> 
 <a href="https://www.linkedin.com/in/tyler-smith-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/Sakiskid">![Badge](https://img.shields.io/badge/Github--40c256)</a>
+
+</td>
+</tr>
+</table>
