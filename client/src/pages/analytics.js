@@ -24,6 +24,15 @@ function Analytics() {
             getCharts();
         }, [curSurvey])
 
+        useEffect(() => {
+            console.log("This is state variable for BAR data", state);
+        }, [state])
+
+        useEffect(() => {
+            console.log("This is state variable for PIE data", state2);
+        }, [state2])
+
+
 
     function uploadSurveys() {
         token = localStorage.getItem(`token`);
@@ -110,6 +119,7 @@ function Analytics() {
             console.log(backgroundChoice);
         }
         setState2(stateSet2);
+        console.log(Object.keys(survey), "<---- Object.keys")
     }
 
 
