@@ -3,12 +3,11 @@ import { NavLink } from "react-router-dom";
 import Button from "../components/Button/button";
 import API from "../utils/API";
 import Input from "../components/Input/input";
-import CreateSurvey from "../components/createSurvey/createSurvey";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Radio from "../components/RadioButton/radio";
-
+import './admin.css';
 
 function Admin() {
   const [survey, setSurvey] = useState({});
@@ -144,6 +143,7 @@ function Admin() {
             </div>
           </Col>
           <Col sx={8} md={9}>
+          <div className="admin-wrapper">
             <div className="sign-form-content" id="displaySurvey" style = {{marginTop: "100px"}} >
 
               <h3>Edit Title:</h3>
@@ -160,7 +160,7 @@ function Admin() {
                 </div>
               </Col>
             </div>
-
+            </div>
           </Col>
         </Row>
       </Container>
