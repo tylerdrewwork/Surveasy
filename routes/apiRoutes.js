@@ -151,9 +151,14 @@ const apiRoutes = (app) => {
                 let userId = authorization.userId;
 
                 surveyController.createSurvey(surveyData, survey => {
-                    userController.addSurveyToUser(userId, survey._id, result => {
+                    if (!survey.errors) {
+                        userController.addSurveyToUser(userId, survey._id, result => {
+                            res.json(survey);
+                        });
+                    }
+                    else {
                         res.json(survey);
-                    });
+                    }
                 });
             });
         })
