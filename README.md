@@ -1,10 +1,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# SurvEasy
-
-[surveasy.herokuapp.com](https://surveasy.herokuapp.com/)
+<h1 style="text-align:center">SurvEasy</h1>
 
 ## Description
+
+[surveasy.herokuapp.com](https://surveasy.herokuapp.com/)
 
 SurvEasy is a solution for your survey needs. Create your survey, and share with your customer base. See your survey results in easy to follow graphs and charts.
 
