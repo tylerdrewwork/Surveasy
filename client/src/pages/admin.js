@@ -144,7 +144,7 @@ function Admin() {
             </div>
           </Col>
           <Col sx={8} md={9}>
-            <div className="sign-form-content" id="displaySurvey"  >
+            <div className="sign-form-content" id="displaySurvey" style = {{marginTop: "100px"}} >
 
               <h3>Edit Title:</h3>
               <Input onChange={handleInputChange} name={curSurvey.title}></Input>
