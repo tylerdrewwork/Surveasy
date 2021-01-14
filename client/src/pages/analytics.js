@@ -35,12 +35,20 @@ function Analytics() {
 
     const barOptions = {
         scales: {
+            xAxes: [{
+                gridLines: {
+                    color: 'rgba(255, 255, 255, 100)',
+                }
+            }],
             yAxes: [{
                 ticks: {
                     stepSize: 1,
+                },
+                gridLines: {
+                    color: 'rgba(255, 255, 255, 100)',
                 }
-            }]
-        }
+            }],
+        },
     }
 
 
