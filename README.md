@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<h1 style="text-align:center">SurvEasy</h1>
+<h1 align="center">SurvEasy</h1>
 
 ## Description
 
