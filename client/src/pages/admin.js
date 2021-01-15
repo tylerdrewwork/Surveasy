@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "../components/Button/button";
 import API from "../utils/API";
-import Input from "../components/Input/input";
-import CreateSurvey from "../components/createSurvey/createSurvey";
+import Input from "../components/Input2/input";
 import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
 import Radio from "../components/RadioButton/radio";
-
+import './admin.css';
 
 function Admin() {
   const [survey, setSurvey] = useState({});
@@ -122,33 +121,43 @@ function Admin() {
     <div>
       <NavigationSurvey />
 
-      <Container fluid>
-        <Row float="center">
-          <Col sx={3} md={3}>
+      <Container fluid style = {{marginTop: "100px"}}>
+        <Row float="center" >
+          <Col sx={2} md={2}>
+          <div className="survey-bar">
             <div className="back-div">
               {Object.keys(survey).map(key => (
                 <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
                 </SurveyList>
               ))}
             </div>
-          </Col>
-          <Col sx={8} md={9}>
-            <div className="back-div" id="displaySurvey"  >
-
-              <h3>Edit Title:</h3>
-              <Input onChange={handleInputChange} name={curSurvey.title}></Input>
-              <h3>Edit Active:</h3>
-              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
-              <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
-              <Col sx={3} md={12}>
-                <Button name="Submit" onClick={handleFormSubmit}></Button>
-              </Col>
             </div>
-            <Col>
-              <div className="back-div" id="displaySurvey">
-                {curSurvey.active == null ? "" : <h3>{displayLink()}</h3>}
-              </div>
-            </Col>
+          </Col>
+          <Col sx={10} md={9}>
+                <div className="admin-wrapper">
+                  <div className="sign-form-content" id="displaySurvey">
+                    
+                
+                          <h4 style = {{marginTop : "10px"}}>Edit Title:</h4>
+                          <Input onChange={handleInputChange} name={curSurvey.title}></Input>
+
+                          <div style = {{padding : "50px"}}></div>
+                          <h4>Edit Active:</h4>
+                          <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Active"} checked={activeSur}></Radio>
+                          <Radio onChange={handleRadioSelectActive} name={curSurvey.active == null ? '' : "Deactive"} checked={deactiveSur}></Radio>
+                      
+                          <div style = {{padding : "20px"}}></div>
+
+
+                          <Col sx={3} md={12}>
+                            <Button name="Submit" onClick={handleFormSubmit} style = {{float: "right"}}></Button>
+                          </Col>
+
+                      <div className="sign-form-content" id="displaySurvey" style = {{marginTop : "20px"}}>
+                        {curSurvey.active == null ? "" : <h4 style = {{marginTop : "50px"}}>{displayLink()}</h4>}
+                      </div>
+                  </div>
+                </div>
           </Col>
         </Row>
       </Container>

@@ -5,6 +5,7 @@ import NavigationSurvey from "../components/NavBarSurvey/navbarSurvey";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import SurveyList from "../components/SurveyList/surveyList"
 import { Container, Grid, Row, Col } from "react-bootstrap";
+import './admin.css';
 
 function Analytics() {
     const [survey, setSurvey] = useState({});
@@ -123,17 +124,20 @@ function Analytics() {
     return (
         <div>
             <NavigationSurvey />
+            <Container fluid style = {{marginTop: "100px"}}>
             <Row float="center">
-                <Col sx={3} md={3}>
+                <Col sx={2} md={2}>
+                <div className="survey-bar">
                     <div className="back-div">
                         {Object.keys(survey).map(key => (
                             <SurveyList name={survey[key].title} onClick={() => accessSurvey(survey[key]._id)} >
                             </SurveyList>
                         ))}
                     </div>
+                    </div>
                 </Col>
-                <Col sx={8} md={9}>
-                    <div>
+                <Col sx={10} md={9}>
+                    <div className="admin-wrapper" style = {{padding: "20px"}}>
                         <Row float="center">
                             {Object.keys(state).map(key => (
                                 <Col sx={8} md={6}>
@@ -151,7 +155,7 @@ function Analytics() {
                     </div>
                 </Col>
             </Row>
-
+            </Container>
         </div>
 
     );

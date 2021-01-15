@@ -5,7 +5,7 @@
 
 .navStyle {
     // color: white;
-    background-color: $color-navbar !important;
+    @include pattern-primary;
 
     .navbar-brand, .nav-link {
         color: $color-primary !important;
