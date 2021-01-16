@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button/button";
+import graphSampleImg from "../assets/graph-sample.jpg";
 import './landing.css';
 import { gsap } from 'gsap';
 
@@ -55,7 +56,7 @@ function Landing() {
                     you to review. Our easy to read graphs help you visualize and understand your market, allowing
                     you to meet their goals!
                 </p>
-                <img src="https://via.placeholder.com/600x450" />
+                <img alt="Sample of charts and analytics." src={graphSampleImg} />
             </section>
 
 
