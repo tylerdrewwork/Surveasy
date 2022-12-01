@@ -82,7 +82,7 @@ function Admin() {
         to={{
           pathname: `survey/${curSurvey._id}`,
         }}>
-        https://surveasy.herokuapp.com/survey/{curSurvey._id}
+        https://https://surveasy.onrender.com//survey/{curSurvey._id}
       </NavLink>
     )
   }

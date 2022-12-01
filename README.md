@@ -4,7 +4,7 @@
 
 ## Description
 
-[surveasy.herokuapp.com](https://surveasy.herokuapp.com/)
+[surveasy.onrender.com](https://surveasy.onrender.com/)
 
 SurvEasy is a solution for your survey needs. Create your survey, and share with your customer base. See your survey results in easy to follow graphs and charts.
 
@@ -12,11 +12,11 @@ SurvEasy is a solution for your survey needs. Create your survey, and share with
 
 ## Table of Contents
 
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Technologies](#Technologies)
-* [License](#License)
-* [Contributors](#Contributors)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Technologies](#Technologies)
+- [License](#License)
+- [Contributors](#Contributors)
 
 ## Installation
 
@@ -34,7 +34,7 @@ In your terminal, navigate into the Surveasy directory. To install all required 
 
     npm install
 
-This will install all dependencies, both for the front and back end. 
+This will install all dependencies, both for the front and back end.
 
 ##### Create Environment Variables
 
@@ -61,10 +61,10 @@ In a dev environment, this will run the application on _localhost:3000_.
 
 From the landing page, click the _Sign Up_ link. This will direct you to a sign up form. Enter your email, username and password. Password requirements include:
 
-* At least 8 characters
-* At least 1 lowercase letter
-* At least 1 uppercase letter
-* At least 1 number
+- At least 8 characters
+- At least 1 lowercase letter
+- At least 1 uppercase letter
+- At least 1 number
 
 Click submit. If your user account is successfully created, you will be directed to the _Admin_ page.
 
@@ -106,18 +106,18 @@ If you do not sign out of your account, the application will remember you for 12
 
 ##### Front End Technologies
 
-* React
-* Sass
-* Bootstrap
-* Chart.js
-* Axios
+- React
+- Sass
+- Bootstrap
+- Chart.js
+- Axios
 
 ##### Back End Technologies
 
-* Node JS
-* Express
-* Mongoose
-* JWT
+- Node JS
+- Express
+- Mongoose
+- JWT
 
 ## License
 
@@ -130,14 +130,16 @@ SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) licens
 <td style="border: none">
 
 ##### Jesse J.
-<a href="https://github.com/JesseJ713">![Profile Image](https://github.com/JesseJ713.png?size=50)</a> 
+
+<a href="https://github.com/JesseJ713">![Profile Image](https://github.com/JesseJ713.png?size=50)</a>
 <a href="https://www.linkedin.com/in/jesse-jackson-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/JesseJ713">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
 </td>
 <td style="border: none">
 
 ##### Nick B.
-<a href="https://github.com/nbur4556">![Profile Image](https://github.com/nbur4556.png?size=50)</a> 
+
+<a href="https://github.com/nbur4556">![Profile Image](https://github.com/nbur4556.png?size=50)</a>
 <a href="https://www.linkedin.com/in/nick-burt/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/nbur4556">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
 </td>
@@ -147,14 +149,16 @@ SurvEasy is licensed under the [MIT](https://opensource.org/licenses/MIT) licens
 <td style="border: none">
 
 ##### Shubhangi M.
-<a href="https://github.com/smundhada">![Profile Image](https://github.com/smundhada.png?size=50)</a> 
+
+<a href="https://github.com/smundhada">![Profile Image](https://github.com/smundhada.png?size=50)</a>
 <a href="https://www.linkedin.com/in/shubhi-mundhada/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/smundhada">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
 </td>
 <td style="border: none">
 
 ##### Tyler S.
-<a href="https://github.com/Sakiskid">![Profile Image](https://github.com/Sakiskid.png?size=50)</a> 
+
+<a href="https://github.com/Sakiskid">![Profile Image](https://github.com/Sakiskid.png?size=50)</a>
 <a href="https://www.linkedin.com/in/tyler-smith-atx/">![Badge](https://img.shields.io/badge/LinkedIn--3480eb)</a> <a href="https://github.com/Sakiskid">![Badge](https://img.shields.io/badge/Github--40c256)</a>
 
 </td>

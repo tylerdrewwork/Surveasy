@@ -77,7 +77,7 @@ function TakeSurvey() {
         <h1 className="end-msg">Thank you for taking this survey!</h1>
         <h1 className="end-msg">Visit us to create your own!</h1>
         <h2>
-          <NavLink to="/">https://surveasy.herokuapp.com/</NavLink>
+          <NavLink to="/">https://https://surveasy.onrender.com//</NavLink>
         </h2>
 
       </div>
